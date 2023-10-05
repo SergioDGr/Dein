@@ -24,6 +24,7 @@ public class EjercicioA extends Application{
         //scene.getStylesheets().add(getClass() .getResource("/css/application.css").toExternalForm());
 		stage.setTitle("ENCUESTA");
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 	}
 	
