@@ -7,8 +7,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * 
- *  
+ *	Ventana que muestra una encuesta donde se rellena una
+ *	informacion general de la persona que contesta
  * 
  */
 public class EjercicioA extends Application{
