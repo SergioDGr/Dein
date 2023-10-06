@@ -10,11 +10,12 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EncuestaController">
    <children>
@@ -33,7 +34,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="tfProfesion" alignment="TOP_LEFT" prefHeight="24.0" prefWidth="473.0" />
+            <TextField fx:id="tfProfesion" alignment="TOP_LEFT" prefHeight="24.0" prefWidth="462.0" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
@@ -69,18 +70,21 @@
                   <Insets right="10.0" />
                </padding>
             </Label>
-            <Group fx:id="gSexo">
+            <Group>
                <children>
-                  <RadioButton fx:id="rbMujer" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="69.0" selected="true" text="Mujer" />
-                  <RadioButton fx:id="rbHombre" layoutX="-92.0" layoutY="1.0" mnemonicParsing="false" text="Hombre" />
-                  <RadioButton fx:id="rbOtro" layoutX="93.0" layoutY="1.0" mnemonicParsing="false" text="Otro" />
+                  <RadioButton fx:id="rdbMujer" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="69.0" selected="true" text="Mujer">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="sexo" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="rdbHombre" layoutX="-92.0" layoutY="1.0" mnemonicParsing="false" text="Hombre" toggleGroup="$sexo" />
+                  <RadioButton fx:id="rdbOtro" layoutX="93.0" layoutY="1.0" mnemonicParsing="false" text="Otro" toggleGroup="$sexo" />
                </children>
             </Group>
          </children>
       </HBox>
       <HBox prefHeight="80.0" prefWidth="600.0">
          <children>
-            <CheckBox mnemonicParsing="false" prefHeight="11.0" prefWidth="275.0" text="¿Practica algun deporte?" fx:id="xbPracDeport">
+            <CheckBox fx:id="cxbPracDeport" mnemonicParsing="false" onAction="#check_deporte" prefHeight="11.0" prefWidth="275.0" text="¿Practica algun deporte?">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -111,7 +115,10 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Slider fx:id="sldCompras" max="10.0" prefHeight="28.0" prefWidth="473.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
+            <Slider fx:id="sldCompras" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="28.0" prefWidth="473.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0">
+               <tooltip>
+                  <Tooltip text="Indica de 1 a 10 cuanto te gusta ir de compras" />
+               </tooltip></Slider>
          </children>
          <padding>
             <Insets bottom="10.0" top="10.0" />
@@ -127,7 +134,10 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </Label>
-            <Slider fx:id="sldTv" max="10.0" prefHeight="28.0" prefWidth="473.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
+            <Slider fx:id="sldTv" majorTickUnit="1.0" max="10.0" prefHeight="28.0" prefWidth="473.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0">
+               <tooltip>
+                  <Tooltip text="Indica de 1 a 10 cuanto te gusta ver television" />
+               </tooltip></Slider>
          </children>
       </HBox>
       <HBox prefHeight="31.0" prefWidth="600.0">
@@ -137,10 +147,13 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Slider fx:id="sldCine" max="10.0" prefHeight="28.0" prefWidth="473.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0">
+            <Slider fx:id="sldCine" majorTickUnit="1.0" max="10.0" prefHeight="28.0" prefWidth="473.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
+               <tooltip>
+                  <Tooltip text="Indica de 1 a 10 cuanto te gusta ir al cine" />
+               </tooltip>
             </Slider>
          </children>
       </HBox>
