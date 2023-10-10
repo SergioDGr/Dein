@@ -1,8 +1,9 @@
-package aplication.ejercicio_b;
+package application.ejercicio_b;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
@@ -18,11 +19,11 @@ public class EjercicioB extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		FXMLLoader.load(getClass().getResource("/fxml/EjercicioB.fxml"));
-		//Scene scene = new Scene(root,600,550);
+		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioB.fxml"));
+		Scene scene = new Scene(root,650,400);
         //scene.getStylesheets().add(getClass() .getResource("/css/application.css").toExternalForm());
-		stage.setTitle("");
-		//stage.setScene(scene);
+		stage.setTitle("PERSONAS");
+		stage.setScene(scene);
 		stage.show();
 	}
 	
