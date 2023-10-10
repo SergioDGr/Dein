@@ -3,8 +3,8 @@ package model;
 import java.util.Objects;
 
 /**
- * 
- * 
+ * Clase que representa una persona con nombre,
+ * apellidos y la edad
  */
 public class Persona {
 	
