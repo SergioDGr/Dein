@@ -24,7 +24,12 @@ public class PersonaController2 implements Initializable{
 
     @FXML
     private Button btnAddPersona;
+    
+    @FXML
+    private Button btnDelPersona;
 
+    @FXML
+    private Button btnModPersona;
     @FXML
     private TableView<Persona> tablePersona;
     
@@ -81,6 +86,16 @@ public class PersonaController2 implements Initializable{
     	//Se visualiza la alerta
         alert.setHeaderText("");
         alert.showAndWait();
+    }
+    
+    @FXML
+    void click_delPersona(ActionEvent event) {
+
+    }
+
+    @FXML
+    void click_modPersona(ActionEvent event) {
+
     }
     
     /**
