@@ -13,11 +13,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import model.Persona;
 
 public class PersonaController2 implements Initializable{
@@ -70,22 +72,17 @@ public class PersonaController2 implements Initializable{
     		aniadido = aniadirPersona(p);
     		if (aniadido) {
     			//En caso de que se podido añadirlo
-		    	alert = new Alert(Alert.AlertType.INFORMATION);
-		    	alert.setContentText("Persona añadida correctamente");
-		    	alert.setTitle("Info");
+    			alert = crearAlert(alert, Alert.AlertType.INFORMATION, "Persona añadida correctamente","info");
     		}
     	}
     	//Cuando hay algun error
     	if (! mensajeErrores.isEmpty() || !aniadido) {
     		if ( mensajeErrores.isEmpty() && !aniadido)
     			mensajeErrores = "La persona ya esta en el tabla\n";
-    		alert = new Alert(Alert.AlertType.ERROR);
-    		alert.setContentText(mensajeErrores);
-    		alert.setTitle("Error");
+    		alert = crearAlert(alert, Alert.AlertType.ERROR, mensajeErrores,"Error");
+
     	}
-    	//Se visualiza la alerta
-        alert.setHeaderText("");
-        alert.showAndWait();
+    	mostrarAlert(alert);
     }
     
     @FXML
@@ -94,21 +91,43 @@ public class PersonaController2 implements Initializable{
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	if (index != -1) {
     		lstPesonas.remove(index);
-    		alert = new Alert(Alert.AlertType.INFORMATION);
-    		alert.setContentText("La persona se ha eliminado correctamente");
+    		alert = crearAlert(alert, Alert.AlertType.INFORMATION, "La persona se ha eliminado correctamente");
     	}else {
-    		alert = new Alert(Alert.AlertType.ERROR);
-    		alert.setContentText("No se a seleciona ninguna");
+    		alert = crearAlert(alert, Alert.AlertType.ERROR, "No se a seleciona ninguna");
     	}
     	tablePersona.getSelectionModel().clearSelection();
-    	//Se visualiza la alerta
-        alert.setHeaderText("");
-        alert.showAndWait();
+    	mostrarAlert(alert);
     }
 
     @FXML
     void click_modPersona(ActionEvent event) {
-
+    	Alert alert = null;
+    	Persona existePersona = null;
+    	
+    	int index = tablePersona.getSelectionModel().getSelectedIndex();
+    	try {
+        	existePersona = new Persona(tfNombre.getText(), tfApellidos.getText(), Integer.parseInt(tfEdad.getText()));
+		} catch (Exception e) {}
+    	
+    	String msgError = validarTextFields();
+    	boolean estaPersona = lstPesonas.contains(existePersona);
+    	if (msgError.isEmpty() && index != -1 && !estaPersona) {
+    		//Modificamos la persona
+    		Persona p = lstPesonas.get(index);
+    		p.setNombre(tfNombre.getText());
+    		p.setApellidos(tfApellidos.getText());
+    		p.setEdad(Integer.parseInt(tfEdad.getText()));
+    		tablePersona.refresh();
+    		//
+    		alert = crearAlert(alert, Alert.AlertType.INFORMATION, "La persona se ha modificado correctamente");
+    	}else {
+    		if(estaPersona)
+    			msgError = "La persona ya esta en el tabla\n";
+    		if(index == -1)
+    			msgError = "No se a seleciona ninguna\n";
+    		alert = crearAlert(alert, Alert.AlertType.ERROR, msgError);
+    	}
+    	mostrarAlert(alert);
     }
     
     /**
@@ -136,6 +155,7 @@ public class PersonaController2 implements Initializable{
     	return mensaje;
     }
     
+    
     /**
      * Metodo que añada a la lista de personas una persona
      * @param p la persona a añadir
@@ -146,6 +166,24 @@ public class PersonaController2 implements Initializable{
     		return false;
     	lstPesonas.add(p);
     	return true;
+    }
+    
+    private void mostrarAlert(Alert alert) {
+    	//Se visualiza la alerta
+        alert.setHeaderText("");
+        alert.showAndWait();
+    }
+    
+    private Alert crearAlert(Alert alert, AlertType alertType, String msg) {
+    	alert = new Alert(alertType);
+		alert.setContentText(msg);
+		return alert;
+    }
+    
+    private Alert crearAlert(Alert alert, AlertType alertType, String msg, String titulo) {
+    	alert = crearAlert(alert, alertType, msg);
+    	alert.setTitle(titulo);
+    	return alert;
     }
     
     @Override
