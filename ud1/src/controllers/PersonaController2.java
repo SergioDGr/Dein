@@ -90,7 +90,20 @@ public class PersonaController2 implements Initializable{
     
     @FXML
     void click_delPersona(ActionEvent event) {
-
+    	Alert alert = null;
+    	int index = tablePersona.getSelectionModel().getSelectedIndex();
+    	if (index != -1) {
+    		lstPesonas.remove(index);
+    		alert = new Alert(Alert.AlertType.INFORMATION);
+    		alert.setContentText("La persona se ha eliminado correctamente");
+    	}else {
+    		alert = new Alert(Alert.AlertType.ERROR);
+    		alert.setContentText("No se a seleciona ninguna");
+    	}
+    	tablePersona.getSelectionModel().clearSelection();
+    	//Se visualiza la alerta
+        alert.setHeaderText("");
+        alert.showAndWait();
     }
 
     @FXML
