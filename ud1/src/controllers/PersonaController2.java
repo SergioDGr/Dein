@@ -85,6 +85,11 @@ public class PersonaController2 implements Initializable{
     	mostrarAlert(alert);
     }
     
+    /**
+     * Al darle click al boton elimina a la persona selecciona de la tabla.
+     * Muestra una alerta si a podido eliminar o no a la persona correspondiente.
+     * @param event
+     */
     @FXML
     void click_delPersona(ActionEvent event) {
     	Alert alert = null;
