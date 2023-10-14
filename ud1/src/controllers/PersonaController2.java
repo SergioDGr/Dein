@@ -103,12 +103,19 @@ public class PersonaController2 implements Initializable{
     	tablePersona.getSelectionModel().clearSelection();
     	mostrarAlert(alert);
     }
-
+    
+    /**
+     * Al darle click al boton intenta modificar a la persona seleccionada,
+     * con los valores que se han puesto textfield. Muestra con una alerta 
+     * si se a podido o no modificar a la persona.
+     * @param event
+     */
     @FXML
     void click_modPersona(ActionEvent event) {
     	Alert alert = null;
     	Persona existePersona = null;
     	
+    	//indice de la selecion
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	try {
         	existePersona = new Persona(tfNombre.getText(), tfApellidos.getText(), Integer.parseInt(tfEdad.getText()));
@@ -116,6 +123,7 @@ public class PersonaController2 implements Initializable{
     	
     	String msgError = validarTextFields();
     	boolean estaPersona = lstPesonas.contains(existePersona);
+    	//En caso que se puede modificar a la persona
     	if (msgError.isEmpty() && index != -1 && !estaPersona) {
     		//Modificamos la persona
     		Persona p = lstPesonas.get(index);
@@ -123,15 +131,15 @@ public class PersonaController2 implements Initializable{
     		p.setApellidos(tfApellidos.getText());
     		p.setEdad(Integer.parseInt(tfEdad.getText()));
     		tablePersona.refresh();
-    		//
     		alert = crearAlert(alert, Alert.AlertType.INFORMATION, "La persona se ha modificado correctamente");
-    	}else {
+    	}else { //En caso que no se puede modificar a la persona
     		if(estaPersona)
     			msgError = "La persona ya esta en el tabla\n";
     		if(index == -1)
     			msgError = "No se a seleciona ninguna\n";
     		alert = crearAlert(alert, Alert.AlertType.ERROR, msgError);
     	}
+    	//Visualisamos la alerta
     	mostrarAlert(alert);
     }
     
@@ -173,12 +181,23 @@ public class PersonaController2 implements Initializable{
     	return true;
     }
     
+    /**
+     * Se le cambia el encabezado y se visualiza la alerta
+     * @param alert Alerta a visualizar
+     */
     private void mostrarAlert(Alert alert) {
     	//Se visualiza la alerta
         alert.setHeaderText("");
         alert.showAndWait();
     }
     
+    /**
+     * Se crea la alerta que se necesita
+     * @param alert El objeto aletra
+     * @param alertType El tipo de alerta que es
+     * @param msg El mensaje que se mostrara
+     * @return devuelve la alerta creada
+     */
     private Alert crearAlert(Alert alert, AlertType alertType, String msg) {
     	alert = new Alert(alertType);
 		alert.setContentText(msg);
