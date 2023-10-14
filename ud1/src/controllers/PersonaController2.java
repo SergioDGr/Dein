@@ -72,14 +72,14 @@ public class PersonaController2 implements Initializable{
     		aniadido = aniadirPersona(p);
     		if (aniadido) {
     			//En caso de que se podido añadirlo
-    			alert = crearAlert(alert, Alert.AlertType.INFORMATION, "Persona añadida correctamente","info");
+    			alert = crearAlert(Alert.AlertType.INFORMATION, "Persona añadida correctamente","info");
     		}
     	}
     	//Cuando hay algun error
     	if (! mensajeErrores.isEmpty() || !aniadido) {
     		if ( mensajeErrores.isEmpty() && !aniadido)
     			mensajeErrores = "La persona ya esta en el tabla\n";
-    		alert = crearAlert(alert, Alert.AlertType.ERROR, mensajeErrores,"Error");
+    		alert = crearAlert(Alert.AlertType.ERROR, mensajeErrores,"Error");
 
     	}
     	mostrarAlert(alert);
@@ -96,9 +96,9 @@ public class PersonaController2 implements Initializable{
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	if (index != -1) {
     		lstPesonas.remove(index);
-    		alert = crearAlert(alert, Alert.AlertType.INFORMATION, "La persona se ha eliminado correctamente");
+    		alert = crearAlert(Alert.AlertType.INFORMATION, "La persona se ha eliminado correctamente");
     	}else {
-    		alert = crearAlert(alert, Alert.AlertType.ERROR, "No se a seleciona ninguna");
+    		alert = crearAlert(Alert.AlertType.ERROR, "No se a seleciona ninguna");
     	}
     	tablePersona.getSelectionModel().clearSelection();
     	mostrarAlert(alert);
@@ -131,13 +131,13 @@ public class PersonaController2 implements Initializable{
     		p.setApellidos(tfApellidos.getText());
     		p.setEdad(Integer.parseInt(tfEdad.getText()));
     		tablePersona.refresh();
-    		alert = crearAlert(alert, Alert.AlertType.INFORMATION, "La persona se ha modificado correctamente");
+    		alert = crearAlert(Alert.AlertType.INFORMATION, "La persona se ha modificado correctamente");
     	}else { //En caso que no se puede modificar a la persona
     		if(estaPersona)
     			msgError = "La persona ya esta en el tabla\n";
     		if(index == -1)
     			msgError = "No se a seleciona ninguna\n";
-    		alert = crearAlert(alert, Alert.AlertType.ERROR, msgError);
+    		alert = crearAlert(Alert.AlertType.ERROR, msgError);
     	}
     	//Visualisamos la alerta
     	mostrarAlert(alert);
@@ -193,19 +193,25 @@ public class PersonaController2 implements Initializable{
     
     /**
      * Se crea la alerta que se necesita
-     * @param alert El objeto aletra
      * @param alertType El tipo de alerta que es
-     * @param msg El mensaje que se mostrara
+     * @param msg El mensaje que se quiere mostrar
      * @return devuelve la alerta creada
      */
-    private Alert crearAlert(Alert alert, AlertType alertType, String msg) {
-    	alert = new Alert(alertType);
+    private Alert crearAlert(AlertType alertType, String msg) {
+    	Alert alert = new Alert(alertType);
 		alert.setContentText(msg);
 		return alert;
     }
     
-    private Alert crearAlert(Alert alert, AlertType alertType, String msg, String titulo) {
-    	alert = crearAlert(alert, alertType, msg);
+    /**
+     * Se crea la alerta que se necesita
+     * @param alertType El tipo de alerta que es
+     * @param msg El mensaje que se quiere mostrar
+     * @param titulo
+     * @return devuelve la alerta creada
+     */
+    private Alert crearAlert(AlertType alertType, String msg, String titulo) {
+    	Alert alert = crearAlert(alertType, msg);
     	alert.setTitle(titulo);
     	return alert;
     }
