@@ -57,7 +57,7 @@ public class PersonaController3 implements Initializable{
     		//
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioD_Modal.fxml"));
     		Parent parent = loader.load();
-    		//
+    		//Le pasamos el controlador al controlador de la ventana modal
     		NuevaPersonaController NuevaPersonaController = loader.getController();
     		NuevaPersonaController.setpersonaController(this);
     		//

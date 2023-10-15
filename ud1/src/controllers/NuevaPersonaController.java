@@ -38,7 +38,13 @@ public class NuevaPersonaController {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
     	stage.close();
     }
-
+    
+    /**
+     * Al darle click al boton guardara la infomacion de los 3 textfield
+     * para crear a la persona y guardarla en la tabla que esta en ventana
+     * principal
+     * @param event
+     */
     @FXML
     void click_guardar(ActionEvent event) {
     	String mensajeErrores = validarTextFields();
@@ -50,7 +56,7 @@ public class NuevaPersonaController {
     		aniadido = personaController.aniadirPersona(p);
     		if (aniadido) {
     			//En caso de que se podido añadirlo
-    			Stage stage = (Stage) btnCancelar.getScene().getWindow();
+    			Stage stage = (Stage) btnGuardar.getScene().getWindow();
     	    	stage.close();
     	    	return;
     		}
@@ -89,6 +95,10 @@ public class NuevaPersonaController {
     	return mensaje;
     }
     
+    /**
+     * Metodo para guardar al controlador de la ventana principal
+     * @param personaController
+     */
     public void setpersonaController(PersonaController3 personaController) {
         this.personaController = personaController;
     }
