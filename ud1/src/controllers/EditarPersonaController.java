@@ -10,7 +10,7 @@ import model.Persona;
 
 public class EditarPersonaController {
 	
-private PersonaController4 personaController;
+	private PersonaController4 personaController;
 	
 	@FXML
     private Button btnCancelar;
