@@ -122,6 +122,12 @@ public class PersonaController4 implements Initializable{
 		}
     }
     
+    /**
+     * Crea y muestra un mensaje de alerta
+     * @param tipoAlert El tipo de alerta
+     * @param titulo El titulo que tendra la alerta
+     * @param msg El mensaje que mostrara la alerta
+     */
     private void crear_mostrar_alerta(AlertType tipoAlert,String titulo, String msg) {
     	Alert alert = new Alert(tipoAlert);
     	alert.setHeaderText(null);
@@ -130,6 +136,13 @@ public class PersonaController4 implements Initializable{
     	alert.showAndWait();
     }
     
+    /**
+     * carga y muestra la ventana modal con los siguientes paramatros:
+     * @param controlador El controlador de la ventana
+     * @param titulo El titulo de la ventana
+     * @param window A la ventana que pertenece la ventana modal
+     * @throws IOException en caso de que de error cuando cargue el fxml
+     */
     private void cargar_ventana_modal(Object controlador , String titulo, Window window) throws IOException {
     	//Cargamos la intefaz que se visualizara
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioE_Modal.fxml"));
@@ -158,7 +171,6 @@ public class PersonaController4 implements Initializable{
     	lstPesonas.add(p);
     	return true;
     }
-
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
