@@ -82,15 +82,21 @@ public class PersonaController4 implements Initializable{
 		}
     }
     
+    /**
+     * Al darle click al boton elimina a la persona selecciona de la tabla.
+     * Muestra una alerta si a podido eliminar o no a la persona correspondiente.
+     * @param event
+     */
     @FXML
     void click_delPersona(ActionEvent event) {
     	Alert alert = null;
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
+    	//Si se a seleccionado alguna persona
     	if (index != -1) {
     		lstPesonas.remove(index);
     		alert =	new Alert(Alert.AlertType.INFORMATION);
     		alert.setContentText("La persona se ha eliminado correctamente");
-    	}else {
+    	}else { //En caso contrario
     		alert = new Alert(Alert.AlertType.ERROR);
     		alert.setContentText("No se a seleciona ninguna");
     	}
