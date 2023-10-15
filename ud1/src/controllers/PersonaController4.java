@@ -60,10 +60,11 @@ public class PersonaController4 implements Initializable{
     void clic_addPersona(ActionEvent event) {
     	try {	//Cargamos la intefaz que se visualizara
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioE_Modal.fxml"));
+    		NuevaPersonaController2 nuevaPersonaController = new NuevaPersonaController2();
+    		loader.setController(nuevaPersonaController);
     		Parent parent = loader.load();
     		//Le pasamos el controlador al controlador de la ventana modal
-    		NuevaPersonaController2 NuevaPersonaController = loader.getController();
-    		NuevaPersonaController.setpersonaController(this);
+    		nuevaPersonaController.setpersonaController(this);
     		//Creamos la ventana y la visualizamos
     		Scene newScene = new Scene(parent);
     		Stage newStage = new Stage();
@@ -107,7 +108,29 @@ public class PersonaController4 implements Initializable{
 
     @FXML
     void click_modPersona(ActionEvent event) {
-
+    	try {	//Cargamos la intefaz que se visualizara
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioE_Modal.fxml"));
+    		EditarPersonaController editarPersonaController = new EditarPersonaController();
+    		loader.setController(editarPersonaController);
+    		Parent parent = loader.load();
+    		//Le pasamos el controlador al controlador de la ventana modal
+    		editarPersonaController.setpersonaController(this);
+    		//Creamos la ventana y la visualizamos
+    		Scene newScene = new Scene(parent);
+    		Stage newStage = new Stage();
+    		newStage.initModality(Modality.APPLICATION_MODAL);
+    		newStage.initOwner(this.btnAddPersona.getScene().getWindow());
+    		newStage.setScene(newScene);
+    		newStage.setTitle("Nueva Persona");
+    		newStage.setResizable(false);
+    		newStage.showAndWait();
+		} catch (Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+	        alert.setHeaderText(null);
+	        alert.setTitle("Error");
+	        alert.setContentText(e.getMessage());
+	        alert.showAndWait();
+		}
     }
     
     /**
