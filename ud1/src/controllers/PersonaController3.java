@@ -10,15 +10,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import model.Persona;
 
@@ -27,11 +31,6 @@ public class PersonaController3 implements Initializable{
     @FXML
     private Button btnAddPersona;
     
-    @FXML
-    private Button btnDelPersona;
-
-    @FXML
-    private Button btnModPersona;
     @FXML
     private TableView<Persona> tablePersona;
     
@@ -44,15 +43,6 @@ public class PersonaController3 implements Initializable{
     @FXML
     private TableColumn<Persona, String> tbClmNombre;
     
-    @FXML
-    private TextField tfApellidos;
-
-    @FXML
-    private TextField tfEdad;
-
-    @FXML
-    private TextField tfNombre;
-    
     private ObservableList<Persona> lstPesonas = FXCollections.observableArrayList();
     
     /**
@@ -62,6 +52,26 @@ public class PersonaController3 implements Initializable{
      */
     @FXML
     void clic_addPersona(ActionEvent event) {
+    	
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioD_Modal.fxml"));
+    		Parent parent = loader.load();
+    		Scene newScene = new Scene(parent);
+    		Stage newStage = new Stage();
+    		newStage.initModality(Modality.APPLICATION_MODAL);
+    		newStage.initOwner(this.btnAddPersona.getScene().getWindow());
+    		newStage.setScene(newScene);
+    		newStage.setTitle("Nueva Persona");
+    		newStage.showAndWait();
+		} catch (Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+	        alert.setHeaderText(null);
+	        alert.setTitle("Error");
+	        alert.setContentText(e.getMessage());
+	        alert.showAndWait();
+		}
+    	
+    	
     	/*Alert alert = null;
     	String mensajeErrores = validarTextFields();
     	boolean aniadido = false;
@@ -91,7 +101,7 @@ public class PersonaController3 implements Initializable{
      * @return devuelve un mensaje con los errores que hay en caso que no
      * haya devolvera vacio en mensaje
      */
-    private String validarTextFields() {
+    /*private String validarTextFields() {
     	String mensaje = "";
     	//Validaciones
     	if(tfNombre.getText().isEmpty())
@@ -108,7 +118,7 @@ public class PersonaController3 implements Initializable{
 			}
 
     	return mensaje;
-    }
+    }*/
     
     
     /**
@@ -122,41 +132,7 @@ public class PersonaController3 implements Initializable{
     	lstPesonas.add(p);
     	return true;
     }
-    
-    /**
-     * Se le cambia el encabezado y se visualiza la alerta
-     * @param alert Alerta a visualizar
-     */
-    private void mostrarAlert(Alert alert) {
-    	//Se visualiza la alerta
-        alert.setHeaderText("");
-        alert.showAndWait();
-    }
-    
-    /**
-     * Se crea la alerta que se necesita
-     * @param alertType El tipo de alerta que es
-     * @param msg El mensaje que se quiere mostrar
-     * @return devuelve la alerta creada
-     */
-    private Alert crearAlert(AlertType alertType, String msg) {
-    	Alert alert = new Alert(alertType);
-		alert.setContentText(msg);
-		return alert;
-    }
-    
-    /**
-     * Se crea la alerta que se necesita
-     * @param alertType El tipo de alerta que es
-     * @param msg El mensaje que se quiere mostrar
-     * @param titulo
-     * @return devuelve la alerta creada
-     */
-    private Alert crearAlert(AlertType alertType, String msg, String titulo) {
-    	Alert alert = crearAlert(alertType, msg);
-    	alert.setTitle(titulo);
-    	return alert;
-    }
+
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
