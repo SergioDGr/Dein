@@ -7,7 +7,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- * 
+ * Ventana que visualiza una tabla con 3 columnas nombre, apellidos y
+ * edad, y un boton para agregar a la persona
  */
 public class EjercicioD extends Application{
 

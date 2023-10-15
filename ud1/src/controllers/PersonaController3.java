@@ -52,15 +52,13 @@ public class PersonaController3 implements Initializable{
      */
     @FXML
     void clic_addPersona(ActionEvent event) {
-    	
-    	try {
-    		//
+    	try {	//Cargamos la intefaz que se visualizara
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioD_Modal.fxml"));
     		Parent parent = loader.load();
     		//Le pasamos el controlador al controlador de la ventana modal
     		NuevaPersonaController NuevaPersonaController = loader.getController();
     		NuevaPersonaController.setpersonaController(this);
-    		//
+    		//Creamos la ventana y la visualizamos
     		Scene newScene = new Scene(parent);
     		Stage newStage = new Stage();
     		newStage.initModality(Modality.APPLICATION_MODAL);
