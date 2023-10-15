@@ -62,7 +62,7 @@ public class PersonaController3 implements Initializable{
      */
     @FXML
     void clic_addPersona(ActionEvent event) {
-    	Alert alert = null;
+    	/*Alert alert = null;
     	String mensajeErrores = validarTextFields();
     	boolean aniadido = false;
     	//En caso que no haya errores
@@ -82,65 +82,7 @@ public class PersonaController3 implements Initializable{
     		alert = crearAlert(Alert.AlertType.ERROR, mensajeErrores,"Error");
 
     	}
-    	mostrarAlert(alert);
-    }
-    
-    /**
-     * Al darle click al boton elimina a la persona selecciona de la tabla.
-     * Muestra una alerta si a podido eliminar o no a la persona correspondiente.
-     * @param event
-     */
-    @FXML
-    void click_delPersona(ActionEvent event) {
-    	Alert alert = null;
-    	int index = tablePersona.getSelectionModel().getSelectedIndex();
-    	if (index != -1) {
-    		lstPesonas.remove(index);
-    		alert = crearAlert(Alert.AlertType.INFORMATION, "La persona se ha eliminado correctamente");
-    	}else {
-    		alert = crearAlert(Alert.AlertType.ERROR, "No se a seleciona ninguna");
-    	}
-    	tablePersona.getSelectionModel().clearSelection();
-    	mostrarAlert(alert);
-    }
-    
-    /**
-     * Al darle click al boton intenta modificar a la persona seleccionada,
-     * con los valores que se han puesto textfield. Muestra con una alerta 
-     * si se a podido o no modificar a la persona.
-     * @param event
-     */
-    @FXML
-    void click_modPersona(ActionEvent event) {
-    	Alert alert = null;
-    	Persona existePersona = null;
-    	
-    	//indice de la selecion
-    	int index = tablePersona.getSelectionModel().getSelectedIndex();
-    	try {
-        	existePersona = new Persona(tfNombre.getText(), tfApellidos.getText(), Integer.parseInt(tfEdad.getText()));
-		} catch (Exception e) {}
-    	
-    	String msgError = validarTextFields();
-    	boolean estaPersona = lstPesonas.contains(existePersona);
-    	//En caso que se puede modificar a la persona
-    	if (msgError.isEmpty() && index != -1 && !estaPersona) {
-    		//Modificamos la persona
-    		Persona p = lstPesonas.get(index);
-    		p.setNombre(tfNombre.getText());
-    		p.setApellidos(tfApellidos.getText());
-    		p.setEdad(Integer.parseInt(tfEdad.getText()));
-    		tablePersona.refresh();
-    		alert = crearAlert(Alert.AlertType.INFORMATION, "La persona se ha modificado correctamente");
-    	}else { //En caso que no se puede modificar a la persona
-    		if(estaPersona)
-    			msgError = "La persona ya esta en el tabla\n";
-    		if(index == -1)
-    			msgError = "No se a seleciona ninguna\n";
-    		alert = crearAlert(Alert.AlertType.ERROR, msgError);
-    	}
-    	//Visualisamos la alerta
-    	mostrarAlert(alert);
+    	mostrarAlert(alert);*/
     }
     
     /**
