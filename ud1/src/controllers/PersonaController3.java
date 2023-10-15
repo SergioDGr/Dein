@@ -46,8 +46,8 @@ public class PersonaController3 implements Initializable{
     private ObservableList<Persona> lstPesonas = FXCollections.observableArrayList();
     
     /**
-     * Al darle click al boton intenta añadir una persona, muestra una alerta 
-     * si se a podido añadir o no la persona
+     * Al darle click al boton creara una ventana modal que gestionara
+     * la creacion de la persona
      * @param event
      */
     @FXML
@@ -75,7 +75,6 @@ public class PersonaController3 implements Initializable{
 	        alert.setContentText(e.getMessage());
 	        alert.showAndWait();
 		}
-    	
     }
     
     /**
