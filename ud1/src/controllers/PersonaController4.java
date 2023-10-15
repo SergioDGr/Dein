@@ -172,10 +172,23 @@ public class PersonaController4 implements Initializable{
     	return true;
     }
     
+    /**
+     * Se pasa una persona y se valida si esta en la lista de personas
+     * @param p : persona que se valida si esta en la lista
+     * @return Devuelve <code>true</code> si esta la persona y 
+     * <code>false</code> si no esta la persona
+     */
     public boolean estaPersona(Persona p) {
     	return lstPesonas.contains(p);
     }
     
+    /**
+     * Con los parametro que se pasan se modifica la persona seleccionada 
+     * de la tabla y se refresca
+     * @param nombre
+     * @param apellidos
+     * @param edad
+     */
     public void modificarPersona(String nombre, String apellidos, int edad) {
     	Persona p = tablePersona.getSelectionModel().getSelectedItem();
     	p.setNombre(nombre);

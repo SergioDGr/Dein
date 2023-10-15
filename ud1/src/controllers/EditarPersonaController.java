@@ -46,8 +46,8 @@ public class EditarPersonaController {
     
     /**
      * Al darle click al boton guardara la infomacion de los 3 textfield
-     * para crear a la persona y guardarla en la tabla que esta en ventana
-     * principal
+     * para modicar a la persona y visualizalo en la tabla que esta en
+     * ventana principal
      * @param event
      */
     @FXML
