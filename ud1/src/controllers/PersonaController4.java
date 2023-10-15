@@ -103,7 +103,14 @@ public class PersonaController4 implements Initializable{
      */
     @FXML
     void click_modPersona(ActionEvent event) {
+    	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	try {
+    		//Si la lista esta vacia
+    		if (lstPesonas.size() == 0)
+    			throw new Exception("No hay ninguna persona en la tabla.");
+    		//Si no se a seleccionado ninguna persona
+    		if (index == -1)
+    			throw new Exception("No se a seleccionado ningun personsa.");
     		//Creamos el controlador que queremos para la ventana modal
     		EditarPersonaController editarPersonaController = new EditarPersonaController();
     		//Le pasamos el controlador principal al controlador de la ventana modal
