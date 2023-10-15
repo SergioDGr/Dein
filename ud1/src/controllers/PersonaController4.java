@@ -95,7 +95,12 @@ public class PersonaController4 implements Initializable{
     	tablePersona.getSelectionModel().clearSelection();
     	crear_mostrar_alerta(tipoAlert, titulo, mensaje);
     }
-
+    
+    /**
+     * Al darle click al boton creara una ventana modal que gestionara
+     * la modificacion de la persona seleccionada
+     * @param event
+     */
     @FXML
     void click_modPersona(ActionEvent event) {
     	try {
