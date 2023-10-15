@@ -1,10 +1,14 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import model.Persona;
 
 public class NuevaPersonaController {
@@ -25,6 +29,9 @@ public class NuevaPersonaController {
 
     @FXML
     private TextField tfNombre;
+    
+    @FXML
+    private Text txtError;
 
     @FXML
     void click_cancelar(ActionEvent event) {
@@ -34,7 +41,6 @@ public class NuevaPersonaController {
 
     @FXML
     void click_guardar(ActionEvent event) {
-    	
     	String mensajeErrores = validarTextFields();
     	boolean aniadido = false;
     	//En caso que no haya errores
@@ -44,18 +50,18 @@ public class NuevaPersonaController {
     		aniadido = personaController.aniadirPersona(p);
     		if (aniadido) {
     			//En caso de que se podido añadirlo
-    			
+    			Stage stage = (Stage) btnCancelar.getScene().getWindow();
+    	    	stage.close();
+    	    	return;
     		}
     	}
     	//Cuando hay algun error
     	if (! mensajeErrores.isEmpty() || !aniadido) {
     		if ( mensajeErrores.isEmpty() && !aniadido)
     			mensajeErrores = "La persona ya esta en el tabla\n";
-    		
+    		txtError.setText(mensajeErrores);
     	}
     	
-    	Stage stage = (Stage) btnCancelar.getScene().getWindow();
-    	stage.close();
     }
     
     /**
