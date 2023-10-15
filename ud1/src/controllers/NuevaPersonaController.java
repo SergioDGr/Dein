@@ -23,6 +23,10 @@ public class NuevaPersonaController {
     @FXML
     private TextField tfNombre;
 
+    /**
+     * Al darle al boton cancelar cerrar la ventana
+     * @param event
+     */
     @FXML
     void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
