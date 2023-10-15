@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -90,20 +91,22 @@ public class PersonaController4 implements Initializable{
      */
     @FXML
     void click_delPersona(ActionEvent event) {
-    	Alert alert = null;
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
+    	AlertType tipoAlert;
+    	String mensaje, titulo;
     	//Si se a seleccionado alguna persona
     	if (index != -1) {
     		lstPesonas.remove(index);
-    		alert =	new Alert(Alert.AlertType.INFORMATION);
-    		alert.setContentText("La persona se ha eliminado correctamente");
+    		tipoAlert = Alert.AlertType.INFORMATION;
+    		mensaje = "La persona se ha eliminado correctamente";
+    		titulo = "Info";
     	}else { //En caso contrario
-    		alert = new Alert(Alert.AlertType.ERROR);
-    		alert.setContentText("No se a seleciona ninguna");
+    		tipoAlert = Alert.AlertType.ERROR;
+    		mensaje = "No se a seleciona ninguna";
+    		titulo = "Error";
     	}
     	tablePersona.getSelectionModel().clearSelection();
-    	alert.setHeaderText(null);
-    	alert.showAndWait();
+    	crear_mostrar_alerta(tipoAlert, titulo, mensaje);
     }
 
     @FXML
@@ -125,12 +128,16 @@ public class PersonaController4 implements Initializable{
     		newStage.setResizable(false);
     		newStage.showAndWait();
 		} catch (Exception e) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-	        alert.setHeaderText(null);
-	        alert.setTitle("Error");
-	        alert.setContentText(e.getMessage());
-	        alert.showAndWait();
+			crear_mostrar_alerta(Alert.AlertType.ERROR, "Error", e.getMessage());
 		}
+    }
+    
+    private void crear_mostrar_alerta(AlertType tipoAlert,String titulo, String msg) {
+    	Alert alert = new Alert(tipoAlert);
+    	alert.setHeaderText(null);
+    	alert.setTitle(titulo);
+    	alert.setContentText(msg);
+    	alert.showAndWait();
     }
     
     /**
