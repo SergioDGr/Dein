@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -24,7 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javafx.stage.Window;
 import model.Persona;
 
 public class PersonaController4 implements Initializable{
@@ -60,27 +61,13 @@ public class PersonaController4 implements Initializable{
     @FXML
     void clic_addPersona(ActionEvent event) {
     	try {	//Cargamos la intefaz que se visualizara
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioE_Modal.fxml"));
     		NuevaPersonaController2 nuevaPersonaController = new NuevaPersonaController2();
-    		loader.setController(nuevaPersonaController);
-    		Parent parent = loader.load();
     		//Le pasamos el controlador al controlador de la ventana modal
     		nuevaPersonaController.setpersonaController(this);
     		//Creamos la ventana y la visualizamos
-    		Scene newScene = new Scene(parent);
-    		Stage newStage = new Stage();
-    		newStage.initModality(Modality.APPLICATION_MODAL);
-    		newStage.initOwner(this.btnAddPersona.getScene().getWindow());
-    		newStage.setScene(newScene);
-    		newStage.setTitle("Nueva Persona");
-    		newStage.setResizable(false);
-    		newStage.showAndWait();
+    		cargar_ventana_modal(nuevaPersonaController, "Nueva Persona", this.btnAddPersona.getScene().getWindow());
 		} catch (Exception e) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-	        alert.setHeaderText(null);
-	        alert.setTitle("Error");
-	        alert.setContentText(e.getMessage());
-	        alert.showAndWait();
+			crear_mostrar_alerta(Alert.AlertType.ERROR, "Error", e.getMessage());
 		}
     }
     
@@ -111,22 +98,13 @@ public class PersonaController4 implements Initializable{
 
     @FXML
     void click_modPersona(ActionEvent event) {
-    	try {	//Cargamos la intefaz que se visualizara
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioE_Modal.fxml"));
+    	try {
+    		//Creamos el controlador que queremos para la ventana modal
     		EditarPersonaController editarPersonaController = new EditarPersonaController();
-    		loader.setController(editarPersonaController);
-    		Parent parent = loader.load();
-    		//Le pasamos el controlador al controlador de la ventana modal
+    		//Le pasamos el controlador principal al controlador de la ventana modal
     		editarPersonaController.setpersonaController(this);
     		//Creamos la ventana y la visualizamos
-    		Scene newScene = new Scene(parent);
-    		Stage newStage = new Stage();
-    		newStage.initModality(Modality.APPLICATION_MODAL);
-    		newStage.initOwner(this.btnAddPersona.getScene().getWindow());
-    		newStage.setScene(newScene);
-    		newStage.setTitle("Nueva Persona");
-    		newStage.setResizable(false);
-    		newStage.showAndWait();
+    		cargar_ventana_modal(editarPersonaController, "Editar Persona", this.btnModPersona.getScene().getWindow());
 		} catch (Exception e) {
 			crear_mostrar_alerta(Alert.AlertType.ERROR, "Error", e.getMessage());
 		}
@@ -138,6 +116,23 @@ public class PersonaController4 implements Initializable{
     	alert.setTitle(titulo);
     	alert.setContentText(msg);
     	alert.showAndWait();
+    }
+    
+    private void cargar_ventana_modal(Object controlador , String titulo, Window window) throws IOException {
+    	//Cargamos la intefaz que se visualizara
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioE_Modal.fxml"));
+    	//Cargamos el controllador
+		loader.setController(controlador);
+		Parent parent = loader.load();
+		//Creamos y visualizamos la venta
+    	Scene newScene = new Scene(parent);
+		Stage newStage = new Stage();
+		newStage.initModality(Modality.APPLICATION_MODAL);
+		newStage.initOwner(window);
+		newStage.setScene(newScene);
+		newStage.setTitle(titulo);
+		newStage.setResizable(false);
+		newStage.showAndWait();
     }
     
     /**
