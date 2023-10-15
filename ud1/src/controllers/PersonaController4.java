@@ -172,6 +172,18 @@ public class PersonaController4 implements Initializable{
     	return true;
     }
     
+    public boolean estaPersona(Persona p) {
+    	return lstPesonas.contains(p);
+    }
+    
+    public void modificarPersona(String nombre, String apellidos, int edad) {
+    	Persona p = tablePersona.getSelectionModel().getSelectedItem();
+    	p.setNombre(nombre);
+		p.setApellidos(apellidos);
+		p.setEdad(edad);
+		tablePersona.refresh();
+    }
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	tbClmNombre.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));

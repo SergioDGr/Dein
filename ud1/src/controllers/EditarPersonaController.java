@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
 
 import model.Persona;
@@ -51,7 +52,24 @@ public class EditarPersonaController {
      */
     @FXML
     void click_guardar(ActionEvent event) {
+    	Persona p = null;
+    	try {
+        	p = new Persona(tfNombre.getText(), tfApellidos.getText(), Integer.parseInt(tfEdad.getText()));
+		} catch (Exception e) {}
     	
+    	String msgError = validarTextFields();
+    	boolean estaPersona = personaController.estaPersona(p);
+    	//En caso que se puede modificar a la persona
+    	if (msgError.isEmpty() && !estaPersona) {
+    		//Modificamos la persona
+    		personaController.modificarPersona(p.getNombre(), p.getApellidos(), p.getEdad());
+    		Stage stage = (Stage) btnGuardar.getScene().getWindow();
+        	stage.close();
+    	}else { //En caso que no se puede modificar a la persona
+    		if(estaPersona)
+    			msgError = "La persona ya esta en el tabla\n";
+    		txtError.setText(msgError);
+    	}
     }
     
     /**
