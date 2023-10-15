@@ -65,6 +65,7 @@ public class PersonaController3 implements Initializable{
     		newStage.initOwner(this.btnAddPersona.getScene().getWindow());
     		newStage.setScene(newScene);
     		newStage.setTitle("Nueva Persona");
+    		newStage.setResizable(false);
     		newStage.showAndWait();
 		} catch (Exception e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
