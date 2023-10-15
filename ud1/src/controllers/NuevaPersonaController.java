@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class NuevaPersonaController {
 	
@@ -24,7 +25,8 @@ public class NuevaPersonaController {
 
     @FXML
     void click_cancelar(ActionEvent event) {
-
+    	Stage stage = (Stage) btnCancelar.getScene().getWindow();
+    	stage.close();
     }
 
     @FXML
