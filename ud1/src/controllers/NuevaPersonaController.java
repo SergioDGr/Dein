@@ -33,6 +33,10 @@ public class NuevaPersonaController {
     @FXML
     private Text txtError;
 
+    /**
+     * Al darle al boton cancelar cerrar la ventana
+     * @param event
+     */
     @FXML
     void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
