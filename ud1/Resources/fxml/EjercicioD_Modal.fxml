@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="478.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.NuevaPersonaController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NuevaPersonaController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="75.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="152.0" />
@@ -42,5 +43,10 @@
       </TextField>
       <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#click_guardar" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
       <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#click_cancelar" text="Cancelar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Text fx:id="txtError" fill="#ff0606" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.13671875" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin>
+      </Text>
    </children>
 </GridPane>

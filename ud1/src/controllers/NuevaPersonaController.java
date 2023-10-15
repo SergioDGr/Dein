@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class NuevaPersonaController {
 	
@@ -21,7 +22,10 @@ public class NuevaPersonaController {
 
     @FXML
     private TextField tfNombre;
-
+    
+    @FXML
+    private Text txtError;
+    
     @FXML
     void click_cancelar(ActionEvent event) {
 
