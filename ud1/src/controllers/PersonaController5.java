@@ -40,6 +40,12 @@ public class PersonaController5 implements Initializable{
     private Button btnModPersona;
     
     @FXML
+    private Button btnExportar;
+
+    @FXML
+    private Button btnImportar;
+    
+    @FXML
     private TableView<Persona> tablePersona;
     
     @FXML
@@ -120,6 +126,21 @@ public class PersonaController5 implements Initializable{
 		} catch (Exception e) {
 			crear_mostrar_alerta(Alert.AlertType.ERROR, "Error", e.getMessage());
 		}
+    }
+    
+    @FXML
+    void click_exportar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void click_importar(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void change_text_nombre(ActionEvent event) {
+
     }
     
     /**
