@@ -2,7 +2,9 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -61,7 +63,9 @@ public class PersonaController5 implements Initializable{
     @FXML
     private TextField tfFiltrarNombre;
     
-    private ObservableList<Persona> lstPesonas = FXCollections.observableArrayList();
+    private List<Persona> lstPersona = new ArrayList<Persona>();
+    
+    private ObservableList<Persona> lstPesonasVisible = FXCollections.observableArrayList();
     
     /**
      * Al darle click al boton creara una ventana modal que gestionara
@@ -93,7 +97,7 @@ public class PersonaController5 implements Initializable{
     	String mensaje, titulo;
     	//Si se a seleccionado alguna persona
     	if (index != -1) {
-    		lstPesonas.remove(index);
+    		lstPesonasVisible.remove(index);
     		tipoAlert = Alert.AlertType.INFORMATION;
     		mensaje = "La persona se ha eliminado correctamente";
     		titulo = "Info";
@@ -116,7 +120,7 @@ public class PersonaController5 implements Initializable{
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	try {
     		//Si la lista esta vacia
-    		if (lstPesonas.size() == 0)
+    		if (lstPesonasVisible.size() == 0)
     			throw new Exception("No hay ninguna persona en la tabla.");
     		//Si no se a seleccionado ninguna persona
     		if (index == -1)
@@ -144,7 +148,19 @@ public class PersonaController5 implements Initializable{
     
     @FXML
     void change_text_nombre(ActionEvent event) {
-
+    	String nombre =  tfFiltrarNombre.getText();
+    	if (!nombre.isEmpty()) {
+	    	List<Persona> lstPersonaFiltrar = FXCollections.observableArrayList();
+	    	System.out.println(lstPersona.size());
+	    	for (int i = 0; i < lstPersona.size(); i++) {
+				Persona p = lstPersona.get(i);
+				if (p.getNombre().toLowerCase().contains(nombre.toLowerCase()))
+					lstPersonaFiltrar.add(p);
+			}
+	    	lstPesonasVisible.setAll(lstPersonaFiltrar);
+    	}else {
+    		lstPesonasVisible.setAll(lstPersona);
+    	}
     }
     
     /**
@@ -191,9 +207,10 @@ public class PersonaController5 implements Initializable{
      * @return devuelve si se a podido o no añadir la persona
      */
     public boolean aniadirPersona(Persona p) {
-    	if(lstPesonas.contains(p))
+    	if(lstPesonasVisible.contains(p))
     		return false;
-    	lstPesonas.add(p);
+    	lstPesonasVisible.add(p);
+    	lstPersona.add(p);
     	return true;
     }
     
@@ -204,7 +221,7 @@ public class PersonaController5 implements Initializable{
      * <code>false</code> si no esta la persona
      */
     public boolean estaPersona(Persona p) {
-    	return lstPesonas.contains(p);
+    	return lstPesonasVisible.contains(p);
     }
     
     /**
@@ -215,10 +232,12 @@ public class PersonaController5 implements Initializable{
      * @param edad
      */
     public void modificarPersona(String nombre, String apellidos, int edad) {
+    	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	Persona p = tablePersona.getSelectionModel().getSelectedItem();
     	p.setNombre(nombre);
 		p.setApellidos(apellidos);
 		p.setEdad(edad);
+		lstPersona.set(index, p);
 		tablePersona.refresh();
     }
     
@@ -228,7 +247,7 @@ public class PersonaController5 implements Initializable{
     	tbClmEdad.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("edad"));
     	tbClmApellidos.setCellValueFactory(new PropertyValueFactory<Persona, String>("apellidos"));
     	
-    	tablePersona.setItems(lstPesonas);
+    	tablePersona.setItems(lstPesonasVisible);
     }
 
 }
