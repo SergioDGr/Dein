@@ -40,7 +40,12 @@ public class Persona {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-
+	
+	@Override
+		public String toString() {
+			return nombre + "," + apellidos + "," + edad;
+		}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellidos, edad, nombre);

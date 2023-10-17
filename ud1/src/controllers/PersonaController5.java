@@ -1,6 +1,10 @@
 package controllers;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,7 +29,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -138,12 +143,31 @@ public class PersonaController5 implements Initializable{
     
     @FXML
     void click_exportar(ActionEvent event) {
-
+    	
+    	File selectedFile = elegirFicheroCsv();
+    	if (selectedFile != null) {
+    		try {
+				FileWriter fw = new FileWriter(selectedFile);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter pw = new PrintWriter(bw);
+				pw.println("Nombre,Apellidos,dad");
+				for (Iterator<Persona> iterator = lstPersona.iterator(); iterator.hasNext();) {
+					Persona persona = (Persona) iterator.next();
+					pw.println(persona.toString());
+				}
+				pw.flush();
+				pw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    		crear_mostrar_alerta(AlertType.INFORMATION, "Ficheros Guardados", 
+    				"Se han exportado todas las personas de la tabla.");
+    	}
     }
-
+    
     @FXML
     void click_importar(ActionEvent event) {
-
+    	
     }
     
     /**
@@ -207,6 +231,15 @@ public class PersonaController5 implements Initializable{
 		newStage.showAndWait();
     }
     
+    private File elegirFicheroCsv() {
+    	FileChooser fileChooser = new FileChooser();
+    	Stage stage = new Stage();
+    	fileChooser.setTitle("El fichero CSV");
+    	ExtensionFilter csvFilter = new ExtensionFilter("Archivos CSV (*.csv)", "*.csv");
+    	fileChooser.getExtensionFilters().add(csvFilter);
+    	return (File) fileChooser.showOpenDialog(stage);
+    }
+    
     /**
      * Metodo que añada a la lista de personas una persona
      * @param p la persona a añadir
@@ -255,5 +288,5 @@ public class PersonaController5 implements Initializable{
     	
     	tablePersona.setItems(lstPesonasVisible);
     }
-
+    
 }
