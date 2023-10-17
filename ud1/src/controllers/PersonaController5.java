@@ -151,7 +151,6 @@ public class PersonaController5 implements Initializable{
     	String nombre =  tfFiltrarNombre.getText();
     	if (!nombre.isEmpty()) {
 	    	List<Persona> lstPersonaFiltrar = FXCollections.observableArrayList();
-	    	System.out.println(lstPersona.size());
 	    	for (int i = 0; i < lstPersona.size(); i++) {
 				Persona p = lstPersona.get(i);
 				if (p.getNombre().toLowerCase().contains(nombre.toLowerCase()))
