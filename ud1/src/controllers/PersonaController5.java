@@ -146,6 +146,13 @@ public class PersonaController5 implements Initializable{
 
     }
     
+    /**
+     * Cada vez que escriba en textfield la tabla se filtrara
+     * con los resultados que concuerdan con los caracteres 
+     * que esten el apartado del nombre de la persona
+     * 
+     * @param event
+     */
     @FXML
     void change_text_nombre(ActionEvent event) {
     	String nombre =  tfFiltrarNombre.getText();
