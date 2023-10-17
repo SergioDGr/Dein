@@ -1,7 +1,10 @@
 package controllers;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -167,6 +170,32 @@ public class PersonaController5 implements Initializable{
     
     @FXML
     void click_importar(ActionEvent event) {
+    	File selectedFile = elegirFicheroCsv();
+    	
+    	try {
+			FileReader fr = new FileReader(selectedFile);
+			BufferedReader br = new BufferedReader(fr);
+			
+			String linea = "";
+			br.readLine();
+			int aniadidas = 0;
+			while ((linea = br.readLine()) != null) {
+				String[] persona = linea.split(",");
+				for (int i = 0; i < persona.length; i++) {
+					boolean aniadido = aniadirPersona(new Persona(persona[0], persona[1], Integer.parseInt(persona[2])));
+					if(!aniadido) {
+						aniadidas += 1;
+					}
+				}
+			}
+			br.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
     	
     }
     
