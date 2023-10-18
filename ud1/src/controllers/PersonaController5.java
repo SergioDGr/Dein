@@ -145,6 +145,11 @@ public class PersonaController5 implements Initializable{
 		}
     }
     
+    /**
+     * Evento al darle click al boton de exportar, seleccionaremos el fichero csv
+     * donde se guardar las personas de la tabla y la primera linea sera la cabezera.
+     * @param event
+     */
     @FXML
     void click_exportar(ActionEvent event) {
     	
@@ -257,6 +262,11 @@ public class PersonaController5 implements Initializable{
 		newStage.showAndWait();
     }
     
+    /**
+     * Abre una ventana donde se tiene que elegir un fichero csv
+     * 
+     * @return Devuelve el fichero
+     */
     private File elegirFicheroCsv() {
     	FileChooser fileChooser = new FileChooser();
     	Stage stage = new Stage();
