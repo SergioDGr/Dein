@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -147,29 +148,6 @@ public class PersonaController5 implements Initializable{
     }
     
     /**
-     * Cada vez que escriba en textfield la tabla se filtrara
-     * con los resultados que concuerdan con los caracteres 
-     * que esten el apartado del nombre de la persona
-     * 
-     * @param event
-     */
-    @FXML
-    void change_text_nombre(ActionEvent event) {
-    	String nombre =  tfFiltrarNombre.getText();
-    	if (!nombre.isEmpty()) {
-	    	List<Persona> lstPersonaFiltrar = FXCollections.observableArrayList();
-	    	for (int i = 0; i < lstPersona.size(); i++) {
-				Persona p = lstPersona.get(i);
-				if (p.getNombre().toLowerCase().contains(nombre.toLowerCase()))
-					lstPersonaFiltrar.add(p);
-			}
-	    	lstPesonasVisible.setAll(lstPersonaFiltrar);
-    	}else {
-    		lstPesonasVisible.setAll(lstPersona);
-    	}
-    }
-    
-    /**
      * Crea y muestra un mensaje de alerta
      * @param tipoAlert El tipo de alerta
      * @param titulo El titulo que tendra la alerta
@@ -252,6 +230,25 @@ public class PersonaController5 implements Initializable{
     	tbClmNombre.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
     	tbClmEdad.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("edad"));
     	tbClmApellidos.setCellValueFactory(new PropertyValueFactory<Persona, String>("apellidos"));
+    	
+    	/* Cada vez que escriba en textfield la tabla se filtrara
+	     * con los resultados que concuerdan con los caracteres 
+	     * que esten el apartado del nombre de la persona
+	     */
+    	tfFiltrarNombre.textProperty().addListener((observable, oldValue, newValue) ->{
+    		String nombre =  tfFiltrarNombre.getText();
+        	if (!nombre.isEmpty()) {
+    	    	List<Persona> lstPersonaFiltrar = FXCollections.observableArrayList();
+    	    	for (int i = 0; i < lstPersona.size(); i++) {
+    				Persona p = lstPersona.get(i);
+    				if (p.getNombre().toLowerCase().contains(nombre.toLowerCase()))
+    					lstPersonaFiltrar.add(p);
+    			}
+    	    	lstPesonasVisible.setAll(lstPersonaFiltrar);
+        	}else {
+        		lstPesonasVisible.setAll(lstPersona);
+        	}
+		});
     	
     	tablePersona.setItems(lstPesonasVisible);
     }
