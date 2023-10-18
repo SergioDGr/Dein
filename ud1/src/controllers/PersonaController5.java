@@ -1,7 +1,10 @@
 package controllers;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -141,6 +145,11 @@ public class PersonaController5 implements Initializable{
 		}
     }
     
+    /**
+     * Evento al darle click al boton de exportar, seleccionaremos el fichero csv
+     * donde se guardar las personas de la tabla y la primera linea sera la cabezera.
+     * @param event
+     */
     @FXML
     void click_exportar(ActionEvent event) {
     	
@@ -165,32 +174,54 @@ public class PersonaController5 implements Initializable{
     	}
     }
     
-    @FXML
-    void click_importar(ActionEvent event) {
-    	
-    }
-    
     /**
-     * Cada vez que escriba en textfield la tabla se filtrara
-     * con los resultados que concuerdan con los caracteres 
-     * que esten el apartado del nombre de la persona
-     * 
+     * Evento al darle click al boton de importar, seleccionaremos el fichero csv
+     * con el formato de linea (nombre,apellidos,edad) y la primera linea la cabezera.
+     * Se pondra a la tabla, validara si se puede poner las personas y al final visualizara
+     * si a podido o no guarda los datos en la tabla.
      * @param event
      */
     @FXML
-    void change_text_nombre(ActionEvent event) {
-    	String nombre =  tfFiltrarNombre.getText();
-    	if (!nombre.isEmpty()) {
-	    	List<Persona> lstPersonaFiltrar = FXCollections.observableArrayList();
-	    	for (int i = 0; i < lstPersona.size(); i++) {
-				Persona p = lstPersona.get(i);
-				if (p.getNombre().toLowerCase().contains(nombre.toLowerCase()))
-					lstPersonaFiltrar.add(p);
+    void click_importar(ActionEvent event) {
+    	File selectedFile = elegirFicheroCsv();
+    	
+    	try {
+			FileReader fr = new FileReader(selectedFile);
+			BufferedReader br = new BufferedReader(fr);
+			
+			String linea = "";
+			br.readLine();
+			int aniadidas = 0;
+			int totalLinea = 0;
+			while ((linea = br.readLine()) != null) {
+				String[] persona = linea.split(",");
+				boolean aniadido = aniadirPersona(new Persona(persona[0], persona[1], Integer.parseInt(persona[2])));
+				if(aniadido) {
+					aniadidas += 1;
+				}
+				totalLinea += 1;
 			}
-	    	lstPesonasVisible.setAll(lstPersonaFiltrar);
-    	}else {
-    		lstPesonasVisible.setAll(lstPersona);
-    	}
+			br.close();
+			
+			if (aniadidas == totalLinea)
+				crear_mostrar_alerta(AlertType.INFORMATION, "Info personas", "Todos las personas del fichero csv se "
+					+ "han añadido");
+			else if (aniadidas == 0)
+				crear_mostrar_alerta(AlertType.ERROR, "Error personas", "Todos las personas del fichero csv no se "
+						+ "han podido añadir");
+			else
+				crear_mostrar_alerta(AlertType.WARNING, "Advertencia personas", "No se ha pidio añadir tolas las persona"
+						+ " que hay en el fichero csv");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}catch (NullPointerException e) {
+			System.out.println("Se a cerrado el seleccionador de ficheros");
+		}
+    	
+    	
     }
     
     /**
@@ -231,6 +262,11 @@ public class PersonaController5 implements Initializable{
 		newStage.showAndWait();
     }
     
+    /**
+     * Abre una ventana donde se tiene que elegir un fichero csv
+     * 
+     * @return Devuelve el fichero
+     */
     private File elegirFicheroCsv() {
     	FileChooser fileChooser = new FileChooser();
     	Stage stage = new Stage();
@@ -246,9 +282,11 @@ public class PersonaController5 implements Initializable{
      * @return devuelve si se a podido o no añadir la persona
      */
     public boolean aniadirPersona(Persona p) {
-    	if(lstPesonasVisible.contains(p))
+    	if(lstPersona.contains(p))
     		return false;
-    	lstPesonasVisible.add(p);
+    	if (p.getNombre().toLowerCase().contains(tfFiltrarNombre.getText().toLowerCase())
+    			|| tfFiltrarNombre.getText().isEmpty())
+    		lstPesonasVisible.add(p);
     	lstPersona.add(p);
     	return true;
     }
@@ -285,6 +323,25 @@ public class PersonaController5 implements Initializable{
     	tbClmNombre.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
     	tbClmEdad.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("edad"));
     	tbClmApellidos.setCellValueFactory(new PropertyValueFactory<Persona, String>("apellidos"));
+    	
+    	/* Cada vez que escriba en textfield la tabla se filtrara
+	     * con los resultados que concuerdan con los caracteres 
+	     * que esten el apartado del nombre de la persona
+	     */
+    	tfFiltrarNombre.textProperty().addListener((observable, oldValue, newValue) ->{
+    		String nombre =  tfFiltrarNombre.getText();
+        	if (!nombre.isEmpty()) {
+    	    	List<Persona> lstPersonaFiltrar = FXCollections.observableArrayList();
+    	    	for (int i = 0; i < lstPersona.size(); i++) {
+    				Persona p = lstPersona.get(i);
+    				if (p.getNombre().toLowerCase().contains(nombre.toLowerCase()))
+    					lstPersonaFiltrar.add(p);
+    			}
+    	    	lstPesonasVisible.setAll(lstPersonaFiltrar);
+        	}else {
+        		lstPesonasVisible.setAll(lstPersona);
+        	}
+		});
     	
     	tablePersona.setItems(lstPesonasVisible);
     }
