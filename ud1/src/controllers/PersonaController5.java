@@ -168,6 +168,13 @@ public class PersonaController5 implements Initializable{
     	}
     }
     
+    /**
+     * Evento al darle click al boton de importar, seleccionaremos el fichero csv
+     * con el formato de linea (nombre,apellidos,edad) y la primera linea la cabezera.
+     * Se pondra a la tabla, validara si se puede poner las personas y al final visualizara
+     * si a podido o no guarda los datos en la tabla.
+     * @param event
+     */
     @FXML
     void click_importar(ActionEvent event) {
     	File selectedFile = elegirFicheroCsv();
@@ -204,6 +211,8 @@ public class PersonaController5 implements Initializable{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}catch (NullPointerException e) {
+			System.out.println("Se a cerrado el seleccionador de ficheros");
 		}
     	
     	
@@ -285,9 +294,11 @@ public class PersonaController5 implements Initializable{
      * @return devuelve si se a podido o no añadir la persona
      */
     public boolean aniadirPersona(Persona p) {
-    	if(lstPesonasVisible.contains(p))
+    	if(lstPersona.contains(p))
     		return false;
-    	lstPesonasVisible.add(p);
+    	if (p.getNombre().toLowerCase().contains(tfFiltrarNombre.getText().toLowerCase())
+    			|| tfFiltrarNombre.getText().isEmpty())
+    		lstPesonasVisible.add(p);
     	lstPersona.add(p);
     	return true;
     }
