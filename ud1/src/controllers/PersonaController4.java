@@ -197,6 +197,14 @@ public class PersonaController4 implements Initializable{
 		tablePersona.refresh();
     }
     
+    /**
+     * Metodo que te da la persona selecionada en la tabla	
+     * @return devuelve la persona
+     */
+    public Persona getPersona() {
+    	return tablePersona.getSelectionModel().getSelectedItem();
+    }
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	tbClmNombre.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
