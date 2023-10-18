@@ -91,7 +91,10 @@ public class NuevaPersonaController3 {
     		mensaje += "El campo edad es obligatorio\n";
     	else
     		try {
-				Integer.parseInt(tfEdad.getText());
+				int edad = Integer.parseInt(tfEdad.getText());
+				if(edad < 0 || edad > 150){
+					mensaje += "La edad no es valida";
+				}
 			} catch (Exception e) {
 				mensaje += "La edad no es un entero";
 			}

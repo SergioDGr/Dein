@@ -318,6 +318,10 @@ public class PersonaController5 implements Initializable{
 		tablePersona.refresh();
     }
     
+    public Persona getPersona() {
+    	return tablePersona.getSelectionModel().getSelectedItem();
+    }
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	tbClmNombre.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
