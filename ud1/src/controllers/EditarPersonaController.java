@@ -1,9 +1,12 @@
 package controllers;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -12,7 +15,7 @@ import javafx.stage.Stage;
 
 import model.Persona;
 
-public class EditarPersonaController {
+public class EditarPersonaController implements Initializable{
 	
 	private PersonaController4 personaController;
 	
@@ -103,6 +106,15 @@ public class EditarPersonaController {
      */
     public void setpersonaController(PersonaController4 personaController) {
         this.personaController = personaController;
+    }
+    
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+    	Persona p = personaController.getPersona();
+    	tfApellidos.setText(p.getApellidos());
+    	tfNombre.setText(p.getNombre());
+    	tfEdad.setText(p.getEdad() + "");
+    	
     }
 	
 }
