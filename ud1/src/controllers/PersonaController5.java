@@ -179,16 +179,26 @@ public class PersonaController5 implements Initializable{
 			String linea = "";
 			br.readLine();
 			int aniadidas = 0;
+			int totalLinea = 0;
 			while ((linea = br.readLine()) != null) {
 				String[] persona = linea.split(",");
-				for (int i = 0; i < persona.length; i++) {
-					boolean aniadido = aniadirPersona(new Persona(persona[0], persona[1], Integer.parseInt(persona[2])));
-					if(!aniadido) {
-						aniadidas += 1;
-					}
+				boolean aniadido = aniadirPersona(new Persona(persona[0], persona[1], Integer.parseInt(persona[2])));
+				if(aniadido) {
+					aniadidas += 1;
 				}
+				totalLinea += 1;
 			}
 			br.close();
+			
+			if (aniadidas == totalLinea)
+				crear_mostrar_alerta(AlertType.INFORMATION, "Info personas", "Todos las personas del fichero csv se "
+					+ "han añadido");
+			else if (aniadidas == 0)
+				crear_mostrar_alerta(AlertType.ERROR, "Error personas", "Todos las personas del fichero csv no se "
+						+ "han podido añadir");
+			else
+				crear_mostrar_alerta(AlertType.WARNING, "Advertencia personas", "No se ha pidio añadir tolas las persona"
+						+ " que hay en el fichero csv");
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
