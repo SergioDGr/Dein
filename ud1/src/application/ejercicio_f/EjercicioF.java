@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 
 /**
  * Ventana que visualiza una tabla con 3 columnas nombre, apellidos y
- * edad, y un boton para agregar a la persona
+ * edad; un boton para agregar a la persona, editar a la persona,
+ * eliminar a la persona, un boton para exportar y otro para importar
  */
 public class EjercicioF extends Application{
 
