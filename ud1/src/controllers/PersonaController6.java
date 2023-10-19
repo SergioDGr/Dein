@@ -174,7 +174,8 @@ public class PersonaController6 implements Initializable{
     }
     
     /**
-     * Metodo que añada a la lista de personas una persona
+     * Metodo que añada a la lista de personas una persona y
+     * lo guarda en la tabla persona de base de datos
      * @param p la persona a añadir
      * @return devuelve si se a podido o no añadir la persona
      */
