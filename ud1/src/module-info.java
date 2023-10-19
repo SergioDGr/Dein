@@ -12,6 +12,7 @@ module ud1 {
 	requires javafx.swing;
 	requires javafx.media;
 	requires javafx.graphics;
+	requires java.sql;
 	opens application.ejercicio_a to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_b to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_c to javafx.graphics, javafx.fxml;
@@ -20,5 +21,6 @@ module ud1 {
 	opens application.ejercicio_f to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_h to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
-	opens model;
+	opens dao to javafx.base;
+	opens model to javafx.base;
 }

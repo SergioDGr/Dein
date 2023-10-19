@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import dao.PersonaDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -62,6 +63,8 @@ public class PersonaController6 implements Initializable{
     private List<Persona> lstPersona = new ArrayList<Persona>();
     
     private ObservableList<Persona> lstPesonasVisible = FXCollections.observableArrayList();
+    
+    private PersonaDao personaDao = new PersonaDao();
     
     /**
      * Al darle click al boton creara una ventana modal que gestionara
@@ -240,6 +243,9 @@ public class PersonaController6 implements Initializable{
         		lstPesonasVisible.setAll(lstPersona);
         	}
 		});
+    	
+    	lstPersona.addAll(personaDao.cargarPersona());
+    	lstPesonasVisible.addAll(lstPersona);
     	
     	tablePersona.setItems(lstPesonasVisible);
     }
