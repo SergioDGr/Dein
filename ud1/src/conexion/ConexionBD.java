@@ -3,6 +3,7 @@ package conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.TimeZone;
 
 public class ConexionBD {
 	
@@ -18,7 +19,7 @@ public class ConexionBD {
 		String baseDatos = "personas";
 		String usuario = "admin";
 		String password = "password";
-		String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos + "?serverTimezone=";
+		String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos + "?serverTimezone=" + TimeZone.getDefault().getID();
 		conn = DriverManager.getConnection(cadenaConexion, usuario, password);
 		conn.setAutoCommit(true);
 		
