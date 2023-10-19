@@ -42,7 +42,5 @@
       <Button fx:id="btnDelPersona" mnemonicParsing="false" onAction="#click_delPersona" text="Eliminar Persona" GridPane.columnIndex="3" GridPane.rowIndex="5" />
       <Label text="Filtrar por nombre:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <TextField fx:id="tfFiltrarNombre" GridPane.columnIndex="1" />
-      <Button fx:id="btnImportar" mnemonicParsing="false" onAction="#click_importar" text="Importar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-      <Button fx:id="btnExportar" mnemonicParsing="false" onAction="#click_exportar" text="Exportar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
    </children>
 </GridPane>

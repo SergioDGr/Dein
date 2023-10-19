@@ -1,16 +1,10 @@
 package controllers;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.net.URL;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -32,11 +26,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+
 import model.Persona;
 
 public class PersonaController6 implements Initializable{
@@ -49,12 +43,6 @@ public class PersonaController6 implements Initializable{
 
     @FXML
     private Button btnModPersona;
-    
-    @FXML
-    private Button btnExportar;
-
-    @FXML
-    private Button btnImportar;
     
     @FXML
     private TableView<Persona> tablePersona;
@@ -145,85 +133,6 @@ public class PersonaController6 implements Initializable{
     }
     
     /**
-     * Evento al darle click al boton de exportar, seleccionaremos el fichero csv
-     * donde se guardar las personas de la tabla y la primera linea sera la cabezera.
-     * @param event
-     */
-    @FXML
-    void click_exportar(ActionEvent event) {
-    	
-    	File selectedFile = elegirFicheroCsv();
-    	if (selectedFile != null) {
-    		try {
-				FileWriter fw = new FileWriter(selectedFile);
-				BufferedWriter bw = new BufferedWriter(fw);
-				PrintWriter pw = new PrintWriter(bw);
-				pw.println("Nombre,Apellidos,dad");
-				for (Iterator<Persona> iterator = lstPersona.iterator(); iterator.hasNext();) {
-					Persona persona = (Persona) iterator.next();
-					pw.println(persona.toString());
-				}
-				pw.flush();
-				pw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-    		crear_mostrar_alerta(AlertType.INFORMATION, "Ficheros Guardados", 
-    				"Se han exportado todas las personas de la tabla.");
-    	}
-    }
-    
-    /**
-     * Evento al darle click al boton de importar, seleccionaremos el fichero csv
-     * con el formato de linea (nombre,apellidos,edad) y la primera linea la cabezera.
-     * Se pondra a la tabla, validara si se puede poner las personas y al final visualizara
-     * si a podido o no guarda los datos en la tabla.
-     * @param event
-     */
-    @FXML
-    void click_importar(ActionEvent event) {
-    	File selectedFile = elegirFicheroCsv();
-    	
-    	try {
-			FileReader fr = new FileReader(selectedFile);
-			BufferedReader br = new BufferedReader(fr);
-			
-			String linea = "";
-			br.readLine();
-			int aniadidas = 0;
-			int totalLinea = 0;
-			while ((linea = br.readLine()) != null) {
-				String[] persona = linea.split(",");
-				boolean aniadido = aniadirPersona(new Persona(persona[0], persona[1], Integer.parseInt(persona[2])));
-				if(aniadido) {
-					aniadidas += 1;
-				}
-				totalLinea += 1;
-			}
-			br.close();
-			
-			if (aniadidas == totalLinea)
-				crear_mostrar_alerta(AlertType.INFORMATION, "Info personas", "Todos las personas del fichero csv se "
-					+ "han añadido");
-			else if (aniadidas == 0)
-				crear_mostrar_alerta(AlertType.ERROR, "Error personas", "Todos las personas del fichero csv no se "
-						+ "han podido añadir");
-			else
-				crear_mostrar_alerta(AlertType.WARNING, "Advertencia personas", "No se ha pidio añadir tolas las persona"
-						+ " que hay en el fichero csv");
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}catch (NullPointerException e) {
-			System.out.println("Se a cerrado el seleccionador de ficheros");
-		}
-    	
-    	
-    }
-    
-    /**
      * Crea y muestra un mensaje de alerta
      * @param tipoAlert El tipo de alerta
      * @param titulo El titulo que tendra la alerta
@@ -259,20 +168,6 @@ public class PersonaController6 implements Initializable{
 		newStage.setTitle(titulo);
 		newStage.setResizable(false);
 		newStage.showAndWait();
-    }
-    
-    /**
-     * Abre una ventana donde se tiene que elegir un fichero csv
-     * 
-     * @return Devuelve el fichero
-     */
-    private File elegirFicheroCsv() {
-    	FileChooser fileChooser = new FileChooser();
-    	Stage stage = new Stage();
-    	fileChooser.setTitle("El fichero CSV");
-    	ExtensionFilter csvFilter = new ExtensionFilter("Archivos CSV (*.csv)", "*.csv");
-    	fileChooser.getExtensionFilters().add(csvFilter);
-    	return (File) fileChooser.showOpenDialog(stage);
     }
     
     /**
