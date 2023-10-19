@@ -5,6 +5,7 @@ import conexion.ConexionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,7 +47,25 @@ public class PersonaDao {
 		return lstPersonas;
 	}
 	
+	public boolean insertarPersona(Persona p) {
+		try {
+			conn = new ConexionBD();
+			String consulta = "INSERT INTO Persona(nombre,apellidos,edad) VALUES (?, ?, ?)";
+			System.out.println(consulta);
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setString(1, p.getNombre());
+			ps.setString(2, p.getApellidos());
+			ps.setInt(3, p.getEdad());
 	
+			ps.executeUpdate();
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
 	
 	
 }

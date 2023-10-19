@@ -181,10 +181,13 @@ public class PersonaController6 implements Initializable{
     public boolean aniadirPersona(Persona p) {
     	if(lstPersona.contains(p))
     		return false;
+    	if(!personaDao.insertarPersona(p))
+			return false;
     	if (p.getNombre().toLowerCase().contains(tfFiltrarNombre.getText().toLowerCase())
     			|| tfFiltrarNombre.getText().isEmpty())
     		lstPesonasVisible.add(p);
     	lstPersona.add(p);
+    	
     	return true;
     }
     
