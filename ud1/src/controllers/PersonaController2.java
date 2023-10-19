@@ -146,6 +146,11 @@ public class PersonaController2 implements Initializable{
     	mostrarAlert(alert);
     }
     
+    /**
+     * Al darle click a la tabla si hay algun seleccion se muestra
+     * los datos en los textfield
+     * @param event
+     */
     @FXML
     void table_mouse_click(MouseEvent event) {
     	Persona p = tablePersona.getSelectionModel().getSelectedItem();
