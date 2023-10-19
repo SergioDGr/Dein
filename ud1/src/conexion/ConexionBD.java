@@ -8,6 +8,11 @@ public class ConexionBD {
 	
 	private Connection conn;
 	
+	/**
+	 * En el contructor se hara la conexion a la base de datos
+	 * y se guardar en la propiedad conn
+	 * @throws SQLException si ocurre algun error se lanzara exception ralacionada a la base datos
+	 */
 	public ConexionBD() throws SQLException {
 		String host = "localhost";
 		String baseDatos = "personas";
@@ -23,6 +28,10 @@ public class ConexionBD {
 		return conn;
 	}
 
+	/**
+	 * Cerrara la conexion
+	 * @throws SQLException si ocurre algun error se lanzara exception ralacionada a la base datos
+	 */
 	public void closeConexion() throws SQLException {
 		conn.close();
 	}

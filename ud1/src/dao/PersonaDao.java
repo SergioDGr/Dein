@@ -15,6 +15,11 @@ public class PersonaDao {
 	
 	private ConexionBD conn;
 	
+	/**
+	 * Consulta a la base de datos que devuelve las personas que hay 
+	 * y las guarda en una lista
+	 * @return Devuelve una listas de personas
+	 */
 	public ObservableList<Persona> cargarPersona(){
 		ObservableList<Persona> lstPersonas = FXCollections.observableArrayList();
 		try {

@@ -244,6 +244,10 @@ public class PersonaController6 implements Initializable{
         	}
 		});
     	
+    	/*
+    	 * Carga los datos de las persona que estan en la base de datos en la lista
+	     * Para que se visualice en la tabla
+	     */
     	lstPersona.addAll(personaDao.cargarPersona());
     	lstPesonasVisible.addAll(lstPersona);
     	
