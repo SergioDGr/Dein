@@ -19,7 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.scene.input.MouseEvent;
 import model.Persona;
 
 public class PersonaController2 implements Initializable{
@@ -73,6 +73,9 @@ public class PersonaController2 implements Initializable{
     		if (aniadido) {
     			//En caso de que se podido añadirlo
     			alert = crearAlert(Alert.AlertType.INFORMATION, "Persona añadida correctamente","info");
+    			tfNombre.clear();
+    			tfApellidos.clear();
+    			tfEdad.clear();
     		}
     	}
     	//Cuando hay algun error
@@ -141,6 +144,16 @@ public class PersonaController2 implements Initializable{
     	}
     	//Visualisamos la alerta
     	mostrarAlert(alert);
+    }
+    
+    @FXML
+    void table_mouse_click(MouseEvent event) {
+    	Persona p = tablePersona.getSelectionModel().getSelectedItem();
+    	if(p != null) {
+    		tfNombre.setText(p.getNombre());
+    		tfApellidos.setText(p.getApellidos());
+    		tfEdad.setText(p.getEdad() + "");
+    	}
     }
     
     /**
