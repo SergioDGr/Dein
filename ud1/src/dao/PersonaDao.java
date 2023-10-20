@@ -96,6 +96,11 @@ public class PersonaDao {
 		return true;
 	}
 	
+	/**
+	 * Funcion que elimina con el identificador a la persona de la tabla y de la base de datos
+	 * @param id identificador de la persona
+	 * @return devuelve <code>true</code> si se ha podido eliminarlo o <code>false</code> si no se podido
+	 */
 	public boolean eliminarPersona(int id) {
 		try {
 			System.out.println(id);

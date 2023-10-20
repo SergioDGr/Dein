@@ -85,7 +85,7 @@ public class PersonaController6 implements Initializable{
     }
     
     /**
-     * Al darle click al boton elimina a la persona selecciona de la tabla.
+     * Al darle click al boton elimina a la persona seleccionada de la tabla y de la base de datos.
      * Muestra una alerta si a podido eliminar o no a la persona correspondiente.
      * @param event
      */
