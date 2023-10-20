@@ -71,5 +71,24 @@ public class PersonaDao {
 		return true;
 	}
 	
+	public boolean modificarPersona(Persona p) {
+		try {
+			conn = new ConexionBD();
+			String consulta = "UPDATE Persona SET nombre = ?, apellidos = ?, edad = ? WHERE id = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setString(1, p.getNombre());
+			ps.setString(2, p.getApellidos());
+			ps.setInt(3, p.getEdad());
+			ps.setInt(4, p.getId());
+			
+			ps.executeUpdate();
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	
 }

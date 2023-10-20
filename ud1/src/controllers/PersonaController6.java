@@ -209,14 +209,19 @@ public class PersonaController6 implements Initializable{
      * @param apellidos
      * @param edad
      */
-    public void modificarPersona(String nombre, String apellidos, int edad) {
+    public String modificarPersona(String nombre, String apellidos, int edad) {
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	Persona p = tablePersona.getSelectionModel().getSelectedItem();
     	p.setNombre(nombre);
 		p.setApellidos(apellidos);
 		p.setEdad(edad);
-		lstPersona.set(index, p);
-		tablePersona.refresh();
+    	if (personaDao.modificarPersona(p)) {
+			lstPersona.set(index, p);
+			tablePersona.refresh();
+			return "";
+    	}else
+    		return "No se podido modificar a la persona";
+		
     }
     
     public Persona getPersona() {

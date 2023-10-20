@@ -65,9 +65,12 @@ public class EditarPersonaController3 implements Initializable{
     	//En caso que se puede modificar a la persona
     	if (msgError.isEmpty() && !estaPersona) {
     		//Modificamos la persona
-    		personaController.modificarPersona(p.getNombre(), p.getApellidos(), p.getEdad());
-    		Stage stage = (Stage) btnGuardar.getScene().getWindow();
-        	stage.close();
+    		msgError = personaController.modificarPersona(p.getNombre(), p.getApellidos(), p.getEdad());
+    		if (msgError.isEmpty()) {
+	    		Stage stage = (Stage) btnGuardar.getScene().getWindow();
+	        	stage.close();
+    		}else
+    			txtError.setText(msgError);
     	}else { //En caso que no se puede modificar a la persona
     		if(estaPersona)
     			msgError = "La persona ya esta en el tabla\n";
