@@ -96,4 +96,23 @@ public class PersonaDao {
 		return true;
 	}
 	
+	public boolean eliminarPersona(int id) {
+		try {
+			System.out.println(id);
+			conn = new ConexionBD();
+			String consulta = "DELETE FROM Persona WHERE id = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setInt(1, id);
+			
+			ps.executeUpdate();
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	
 }

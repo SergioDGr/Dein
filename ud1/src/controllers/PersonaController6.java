@@ -92,14 +92,21 @@ public class PersonaController6 implements Initializable{
     @FXML
     void click_delPersona(ActionEvent event) {
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
+    	Persona p = tablePersona.getSelectionModel().getSelectedItem();
     	AlertType tipoAlert;
     	String mensaje, titulo;
     	//Si se a seleccionado alguna persona
     	if (index != -1) {
-    		lstPesonasVisible.remove(index);
-    		tipoAlert = Alert.AlertType.INFORMATION;
-    		mensaje = "La persona se ha eliminado correctamente";
-    		titulo = "Info";
+        	if(personaDao.eliminarPersona(p.getId())) {
+	    		lstPesonasVisible.remove(index);
+	    		tipoAlert = Alert.AlertType.INFORMATION;
+	    		mensaje = "La persona se ha eliminado correctamente";
+	    		titulo = "Info";
+    		}else {
+    			tipoAlert = Alert.AlertType.ERROR;
+        		mensaje = "No se a podido eliminar a la persona";
+        		titulo = "Error";
+    		}
     	}else { //En caso contrario
     		tipoAlert = Alert.AlertType.ERROR;
     		mensaje = "No se a seleciona ninguna";
