@@ -5,6 +5,7 @@ import conexion.ConexionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,26 +50,32 @@ public class PersonaDao {
 	/**
 	 * Funcion que añade a la persona a la base de datos
 	 * @param p Persona a guadar en la base de datos
-	 * @return devuelve si lo a insertardo o no
+	 * @return devuelve el id generado sino devolvera -1
 	 */
-	public boolean insertarPersona(Persona p) {
+	public int insertarPersona(Persona p) {
 		try {
 			conn = new ConexionBD();
 			String consulta = "INSERT INTO Persona(nombre,apellidos,edad) VALUES (?, ?, ?)";
 			System.out.println(consulta);
-			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, p.getNombre());
 			ps.setString(2, p.getApellidos());
 			ps.setInt(3, p.getEdad());
 	
-			ps.executeUpdate();
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				throw new SQLException("No se ha insertado ninguna persona");
+			
+			ResultSet generatedKeys = ps.getGeneratedKeys();
+			if (generatedKeys.next())
+				return generatedKeys.getInt(1);
+				
 			conn.closeConexion();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
 		}
 		
-		return true;
+		return -1;
 	}
 	
 	/**
