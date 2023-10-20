@@ -9,14 +9,21 @@ import java.util.Objects;
 public class Persona {
 	
 	private String nombre, apellidos;
-	private int edad;
+	private int id,edad;
 	
 	public Persona(String nombre, String apellidos, int edad) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.edad = edad;
 	}
-
+	
+	public Persona(int id, String nombre, String apellidos, int edad) {
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.edad = edad;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -39,6 +46,14 @@ public class Persona {
 
 	public void setEdad(int edad) {
 		this.edad = edad;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	@Override
