@@ -71,6 +71,11 @@ public class PersonaDao {
 		return true;
 	}
 	
+	/**
+	 * Funcion que modifcar los campos de la persona en la base de datos en la tabla Persona
+	 * @param p Persona a modificar
+	 * @return devuelve <code>true</code> si se ha podido modificar o <code>false</code> si no se podido
+	 */
 	public boolean modificarPersona(Persona p) {
 		try {
 			conn = new ConexionBD();

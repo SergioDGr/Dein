@@ -203,8 +203,8 @@ public class PersonaController6 implements Initializable{
     }
     
     /**
-     * Con los parametro que se pasan se modifica la persona seleccionada 
-     * de la tabla y se refresca
+     * Con los parametro que se pasan se modifica la persona seleccionada de la tabla,
+     *  esos cambios se reflejan tambien el base de datos y se refresca la tabla.
      * @param nombre
      * @param apellidos
      * @param edad
