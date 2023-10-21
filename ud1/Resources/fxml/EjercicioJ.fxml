@@ -43,7 +43,7 @@
       </Text>
       <Button fx:id="btnLuz" alignment="CENTER" mnemonicParsing="false" onAction="#click_luz" prefHeight="28.0" prefWidth="16.0" style="-fx-background-color: transparent; -fx-padding: 0;" GridPane.rowIndex="1">
          <graphic>
-            <ImageView pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgLuz" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/lucesOff.png" />
                </image>

@@ -50,8 +50,11 @@ public class CocheController implements Initializable{
     private ImageView imgCoche;
     
     @FXML
+    private ImageView imgLuz;
+    
+    @FXML
     void click_luz(ActionEvent event) {
-
+    	
     }
     
     @FXML
