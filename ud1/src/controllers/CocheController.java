@@ -56,18 +56,24 @@ public class CocheController implements Initializable{
     @FXML
     private ImageView imgLuzEncendida;
     
+    /**
+     * Al darle al boton de encender la luz, se cambiara el icono del boton apago o encendido y
+     * se visualizara o se ocultara la imagen que muestra como el coche tiene encendido o apagado 
+     * las luces. 
+     * @param event
+     */
     @FXML
     void click_luz(ActionEvent event) {
-    	String url = imgLuz.getImage().getUrl();
-    	if(url.contains("Off")) {
-    		url = url.replace("Off", "On");
+    	String uri = imgLuz.getImage().getUrl();
+    	if(uri.contains("Off")) {
+    		uri = uri.replace("Off", "On");
     		imgLuzEncendida.setVisible(true);
     	}else {
-    		url = url.replace("On", "Off");
+    		uri = uri.replace("On", "Off");
     		imgLuzEncendida.setVisible(false);
     	}
     	//System.out.println(url);
-    	imgLuz.setImage(new Image(url));
+    	imgLuz.setImage(new Image(uri));
     }
     
     @FXML
