@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class CocheController implements Initializable{
@@ -57,7 +58,16 @@ public class CocheController implements Initializable{
     
     @FXML
     void click_luz(ActionEvent event) {
-    	
+    	String url = imgLuz.getImage().getUrl();
+    	if(url.contains("Off")) {
+    		url = url.replace("Off", "On");
+    		imgLuzEncendida.setVisible(true);
+    	}else {
+    		url = url.replace("On", "Off");
+    		imgLuzEncendida.setVisible(false);
+    	}
+    	//System.out.println(url);
+    	imgLuz.setImage(new Image(url));
     }
     
     @FXML
