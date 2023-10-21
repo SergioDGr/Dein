@@ -61,6 +61,14 @@
             <Insets left="15.0" right="15.0" />
          </GridPane.margin>
       </ImageView>
+      <ImageView fx:id="imgLuzEncendida" fitHeight="335.0" fitWidth="556.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnSpan="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <image>
+            <Image url="@../img/autoLuz.png" />
+         </image>
+         <GridPane.margin>
+            <Insets left="15.0" right="15.0" />
+         </GridPane.margin>
+      </ImageView>
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciona tu color favorito" GridPane.columnSpan="8" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="14.0" />
