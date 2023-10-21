@@ -22,7 +22,7 @@
 	-fx-background-image: url('../img/colores/colorPepperWhite.jpg');
 	-fx-background-size: cover;
 }
-#btn-gris-oscura{
+#btn-gris-oscuro{
 	-fx-background-image: url('../img/colores/colorThunderGray.jpg');
 	-fx-background-size: cover;
 }
