@@ -1,13 +1,8 @@
 package controllers;
 
-import java.net.URL;
-
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
@@ -15,7 +10,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class CocheController implements Initializable{
+public class CocheController{
 	
     @FXML
     private Button btnLuz;
@@ -72,47 +67,50 @@ public class CocheController implements Initializable{
     
     @FXML
     void click_azul(ActionEvent event) {
-
+    	cambiarColor("ElectricBlue");
     }
 
     @FXML
     void click_azul_oscuro(ActionEvent event) {
-
+    	cambiarColor("LapisluxuryBlue");
     }
 
     @FXML
     void click_blanco(ActionEvent event) {
-
+    	cambiarColor("PepperWhite");
     }
 
     @FXML
     void click_gris(ActionEvent event) {
-
+    	cambiarColor("MoonwalkGrey");
     }
 
     @FXML
     void click_gris_oscuro(ActionEvent event) {
-
+    	cambiarColor("ThunderGray");
     }
 
     @FXML
     void click_naranja(ActionEvent event) {
-
+    	cambiarColor("VolcaninOrange");
     }
 
     @FXML
     void click_negro(ActionEvent event) {
-
+    	cambiarColor("MidnightBlack");
     }
 
     @FXML
     void click_rojo(ActionEvent event) {
-
+    	cambiarColor("BlazingRed");
     }
     
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-
+    private void cambiarColor(String img) {
+    	String path_img = imgCoche.getImage().getUrl();
+    	String path_folder_img = path_img.substring(0 ,path_img.lastIndexOf("/") + 1);
+    	String new_path_img = path_folder_img + "mini" + img + ".png";
+    	//System.out.println(new_path_img);
+    	imgCoche.setImage(new Image(new_path_img));
     }
 
 }
