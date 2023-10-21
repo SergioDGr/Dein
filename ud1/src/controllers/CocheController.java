@@ -105,10 +105,15 @@ public class CocheController{
     	cambiarColor("BlazingRed");
     }
     
-    private void cambiarColor(String img) {
+    /**
+     * Cambia el color del coche, haciendo que la imagen actual del coche
+     * cambia a otra imagen con coche con el respestivo color
+     * @param color Nombre del color para el coche
+     */
+    private void cambiarColor(String color) {
     	String path_img = imgCoche.getImage().getUrl();
     	String path_folder_img = path_img.substring(0 ,path_img.lastIndexOf("/") + 1);
-    	String new_path_img = path_folder_img + "mini" + img + ".png";
+    	String new_path_img = path_folder_img + "mini" + color + ".png";
     	//System.out.println(new_path_img);
     	imgCoche.setImage(new Image(new_path_img));
     }
