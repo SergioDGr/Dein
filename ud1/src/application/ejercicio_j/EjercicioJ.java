@@ -7,9 +7,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- *	Ventana que visualiza una tabla de persona con 3 botones: añadir, modificar y eliminar. 
- *	Todos acciones se reflejaran un una base de datos, las accion de cargar datos, guadar persona,
- *	eliminar persona y modificar persona.
+ *	Ventana que visualiza un coche, un boton para encender o apagar las luces del coche,
+ *  y varios botones para cambiar el color del coche
  */
 public class EjercicioJ extends Application{
 
