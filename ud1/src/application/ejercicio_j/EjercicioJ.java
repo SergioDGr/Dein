@@ -3,6 +3,7 @@ package application.ejercicio_j;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -23,6 +24,7 @@ public class EjercicioJ extends Application{
 		scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioJ.css").toExternalForm());
 		stage.setTitle("MINI COOPER");
 		stage.setScene(scene);
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/CooperLogo.png")));
 		stage.show();
 	}
 	
