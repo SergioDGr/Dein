@@ -1,0 +1,32 @@
+#btn-rojo{
+	-fx-background-image: url('../img/colores/colorBlazingRed.jpg');
+	-fx-background-size: cover;
+}
+#btn-azul{
+	-fx-background-image: url('../img/colores/colorElectricBlue.jpg');
+	-fx-background-size: cover;
+}
+#btn-azul-oscuro{
+	-fx-background-image: url('../img/colores/colorLapisluxuryBlue.jpg');
+	-fx-background-size: cover;
+}
+#btn-negro{
+	-fx-background-image: url('../img/colores/colorMidnightBlack.jpg');
+	-fx-background-size: cover;
+}
+#btn-gris{
+	-fx-background-image: url('../img/colores/colorMoonwalkGrey.jpg');
+	-fx-background-size: cover;
+}
+#btn-blanco{
+	-fx-background-image: url('../img/colores/colorPepperWhite.jpg');
+	-fx-background-size: cover;
+}
+#btn-gris-oscura{
+	-fx-background-image: url('../img/colores/colorThunderGray.jpg');
+	-fx-background-size: cover;
+}
+#btn-naranja{
+	-fx-background-image: url('../img/colores/colorVolcaninOrange.jpg');
+	-fx-background-size: cover;
+}

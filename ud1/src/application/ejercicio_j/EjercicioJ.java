@@ -20,9 +20,9 @@ public class EjercicioJ extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioJ.fxml"));
-		Scene scene = new Scene(root,650,400);
-        //scene.getStylesheets().add(getClass() .getResource("/css/application.css").toExternalForm());
-		stage.setTitle("PERSONAS");
+		Scene scene = new Scene(root, 575, 550);
+		scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioJ.css").toExternalForm());
+		stage.setTitle("MINI COOPER");
 		stage.setScene(scene);
 		stage.show();
 	}
