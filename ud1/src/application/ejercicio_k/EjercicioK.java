@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
- *	Ventana que visualiza un coche, un boton para encender o apagar las luces del coche,
- *  y varios botones para cambiar el color del coche
+ *	Ventana que visualiza un reloj, y se ve como pasa el tiempo cada segundo
  */
 public class EjercicioK extends Application{
 
@@ -24,16 +23,19 @@ public class EjercicioK extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		//Conseguir la interfaz
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioK.fxml"));
 		GridPane root = loader.load();
 		Scene scene = new Scene(root, 467, 400);
 		//scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioK.css").toExternalForm());
+		//Mostrar la venta
 		stage.setTitle("RELOJ");
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/Icono.ico")));
 		stage.show();
 		
+		//Cuando se cierra la ventana se detiene la tarea que existe en el controlador
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			
 			@Override
