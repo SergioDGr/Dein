@@ -34,6 +34,12 @@ public class RelojController implements Initializable {
     
     private String hora1, hora2, min1, min2;
     
+    /**
+     * Funcion que mediante un numero se devuelve la ruta de la imagen que represanta uno de los digitos
+     * del reloj
+     * @param num el numero
+     * @return devuevla la ruta de la imagen
+     */
     private String getImage(String num) {
     	String path = "file://" + getClass().getResource("/img").getFile();
     	String img = "";
