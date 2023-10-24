@@ -19,12 +19,13 @@ public class EjercicioK extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioJ.fxml"));
-		Scene scene = new Scene(root, 575, 550);
-		//scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioJ.css").toExternalForm());
+		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioK.fxml"));
+		Scene scene = new Scene(root, 467, 400);
+		//scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioK.css").toExternalForm());
 		stage.setTitle("RELOJ");
 		stage.setScene(scene);
-		stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/Icono.png")));
+		stage.setResizable(false);
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/Icono.ico")));
 		stage.show();
 	}
 	
