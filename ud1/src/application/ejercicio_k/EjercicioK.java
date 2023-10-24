@@ -1,11 +1,16 @@
 package application.ejercicio_k;
 
+import controllers.RelojController;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *	Ventana que visualiza un coche, un boton para encender o apagar las luces del coche,
@@ -19,7 +24,8 @@ public class EjercicioK extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioK.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioK.fxml"));
+		GridPane root = loader.load();
 		Scene scene = new Scene(root, 467, 400);
 		//scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioK.css").toExternalForm());
 		stage.setTitle("RELOJ");
@@ -27,6 +33,16 @@ public class EjercicioK extends Application{
 		stage.setResizable(false);
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/Icono.ico")));
 		stage.show();
+		
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent arg0) {
+				RelojController controller = loader.getController();
+				controller.pararTask();
+			}
+		});
+		
 	}
 	
 }
