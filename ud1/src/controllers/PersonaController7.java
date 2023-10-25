@@ -114,16 +114,29 @@ public class PersonaController7 implements Initializable{
     	evento_modificar();
     }
     
+    /**
+     * Al darle en el contexto de menu a modificar, creara una ventana modal que gestionara
+     * la modificacion de la persona seleccionada
+     * @param event
+     */
     @FXML
     void click_menuModificar(ActionEvent event) {
     	evento_modificar();
     }
     
+    /**
+     * Al darle en el contexto de menu a eliminar, intentara eliminar a la persona de la base de datos.
+     * Muestra una alerta si a podido eliminar o no a la persona correspondiente.
+     * @param event
+     */
     @FXML
     void click_menuEliminar(ActionEvent event) {
     	evento_eliminar();
     }
     
+    /**
+     * evento que creara una ventana modal que gestionarala modificacion de la persona seleccionada
+     */
     private void evento_modificar() {
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	try {
@@ -144,6 +157,11 @@ public class PersonaController7 implements Initializable{
 		}
     }
     
+    
+    /**
+     * Evento que elimina a la persona seleccionada de la tabla y de la base de datos.
+     * Muestra una alerta si a podido eliminar o no a la persona correspondiente. 
+     */
     private void evento_eliminar() {
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	Persona p = tablePersona.getSelectionModel().getSelectedItem();
@@ -169,6 +187,7 @@ public class PersonaController7 implements Initializable{
     	tablePersona.getSelectionModel().clearSelection();
     	crear_mostrar_alerta(tipoAlert, titulo, mensaje);
     }
+    
     
     /**
      * Crea y muestra un mensaje de alerta
@@ -298,7 +317,7 @@ public class PersonaController7 implements Initializable{
     	lstPesonasVisible.addAll(lstPersona);
     	
     	
-    	
+    	//Visualiza o oculta el context menu
     	tablePersona.setOnContextMenuRequested(event -> {
     		
     	    if (!tablePersona.getSelectionModel().isEmpty()) { // Verificar si el clic fue con el botón derecho
