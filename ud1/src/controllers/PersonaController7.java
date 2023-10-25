@@ -101,6 +101,50 @@ public class PersonaController7 implements Initializable{
      */
     @FXML
     void click_delPersona(ActionEvent event) {
+    	evento_eliminar();
+    }
+    
+    /**
+     * Al darle click al boton creara una ventana modal que gestionara
+     * la modificacion de la persona seleccionada
+     * @param event
+     */
+    @FXML
+    void click_modPersona(ActionEvent event) {
+    	evento_modificar();
+    }
+    
+    @FXML
+    void click_menuModificar(ActionEvent event) {
+    	evento_modificar();
+    }
+    
+    @FXML
+    void click_menuEliminar(ActionEvent event) {
+    	evento_eliminar();
+    }
+    
+    private void evento_modificar() {
+    	int index = tablePersona.getSelectionModel().getSelectedIndex();
+    	try {
+    		//Si la lista esta vacia
+    		if (lstPesonasVisible.size() == 0)
+    			throw new Exception("No hay ninguna persona en la tabla.");
+    		//Si no se a seleccionado ninguna persona
+    		if (index == -1)
+    			throw new Exception("No se a seleccionado ningun personsa.");
+    		//Creamos el controlador que queremos para la ventana modal
+    		EditarPersonaController4 editarPersonaController = new EditarPersonaController4();
+    		//Le pasamos el controlador principal al controlador de la ventana modal
+    		editarPersonaController.setpersonaController(this);
+    		//Creamos la ventana y la visualizamos
+    		cargar_ventana_modal(editarPersonaController, "Editar Persona", this.btnModPersona.getScene().getWindow());
+		} catch (Exception e) {
+			crear_mostrar_alerta(Alert.AlertType.ERROR, "Error", e.getMessage());
+		}
+    }
+    
+    private void evento_eliminar() {
     	int index = tablePersona.getSelectionModel().getSelectedIndex();
     	Persona p = tablePersona.getSelectionModel().getSelectedItem();
     	AlertType tipoAlert;
@@ -125,41 +169,6 @@ public class PersonaController7 implements Initializable{
     	tablePersona.getSelectionModel().clearSelection();
     	crear_mostrar_alerta(tipoAlert, titulo, mensaje);
     }
-    
-    /**
-     * Al darle click al boton creara una ventana modal que gestionara
-     * la modificacion de la persona seleccionada
-     * @param event
-     */
-    @FXML
-    void click_modPersona(ActionEvent event) {
-    	int index = tablePersona.getSelectionModel().getSelectedIndex();
-    	try {
-    		//Si la lista esta vacia
-    		if (lstPesonasVisible.size() == 0)
-    			throw new Exception("No hay ninguna persona en la tabla.");
-    		//Si no se a seleccionado ninguna persona
-    		if (index == -1)
-    			throw new Exception("No se a seleccionado ningun personsa.");
-    		//Creamos el controlador que queremos para la ventana modal
-    		EditarPersonaController4 editarPersonaController = new EditarPersonaController4();
-    		//Le pasamos el controlador principal al controlador de la ventana modal
-    		editarPersonaController.setpersonaController(this);
-    		//Creamos la ventana y la visualizamos
-    		cargar_ventana_modal(editarPersonaController, "Editar Persona", this.btnModPersona.getScene().getWindow());
-		} catch (Exception e) {
-			crear_mostrar_alerta(Alert.AlertType.ERROR, "Error", e.getMessage());
-		}
-    }
-    
-    @FXML
-    void click_menuModificar(ActionEvent event) {
-    }
-    
-    @FXML
-    void click_menuEliminar(ActionEvent event) {
-    }
-    
     
     /**
      * Crea y muestra un mensaje de alerta
@@ -288,7 +297,20 @@ public class PersonaController7 implements Initializable{
     	lstPersona.addAll(personaDao.cargarPersona());
     	lstPesonasVisible.addAll(lstPersona);
     	
+    	
+    	
+    	tablePersona.setOnContextMenuRequested(event -> {
+    		
+    	    if (!tablePersona.getSelectionModel().isEmpty()) { // Verificar si el clic fue con el botón derecho
+    	    	tableContextMenu.show(tablePersona, event.getScreenX(), event.getScreenY());
+    	    }else
+    	    	tableContextMenu.hide();
+    	});
+    	
+    	
     	tablePersona.setItems(lstPesonasVisible);
+    	tablePersona.getSelectionModel().clearSelection();
+    	tableContextMenu.hide();
     }
     
 }
