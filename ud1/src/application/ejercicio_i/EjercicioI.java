@@ -21,7 +21,7 @@ public class EjercicioI extends Application{
 	public void start(Stage stage) throws Exception {
 		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioI.fxml"));
 		Scene scene = new Scene(root,650,400);
-        //scene.getStylesheets().add(getClass() .getResource("/css/application.css").toExternalForm());
+        scene.getStylesheets().add(getClass() .getResource("/css/estilo_ejercicioI.css").toExternalForm());
 		stage.setTitle("PERSONAS");
 		stage.setScene(scene);
 		stage.show();
