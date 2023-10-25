@@ -24,7 +24,7 @@ public class EjercicioJ extends Application{
 		scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioJ.css").toExternalForm());
 		stage.setTitle("MINI COOPER");
 		stage.setScene(scene);
-		stage.getIcons().add(new Image(getClass().getResource("/img/cooperLogo.png").toString()));
+		stage.getIcons().add(new Image(getClass().getResource("/img/Cooper.png").toString()));
 		stage.show();
 	}
 	
