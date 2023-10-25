@@ -23,11 +23,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -59,6 +60,15 @@ public class PersonaController7 implements Initializable{
     
     @FXML
     private TextField tfFiltrarNombre;
+    
+    @FXML
+    private ContextMenu tableContextMenu;
+    
+    @FXML
+    private MenuItem menuModificar;
+    
+    @FXML
+    private MenuItem menuEliminar;
     
     private List<Persona> lstPersona = new ArrayList<Persona>();
     
@@ -141,6 +151,15 @@ public class PersonaController7 implements Initializable{
 			crear_mostrar_alerta(Alert.AlertType.ERROR, "Error", e.getMessage());
 		}
     }
+    
+    @FXML
+    void click_menuModificar(ActionEvent event) {
+    }
+    
+    @FXML
+    void click_menuEliminar(ActionEvent event) {
+    }
+    
     
     /**
      * Crea y muestra un mensaje de alerta
