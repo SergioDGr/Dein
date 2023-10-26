@@ -18,8 +18,8 @@ public class ConexionBDAeropuerto {
 	 * En el contructor se hara la conexion a la base de datos de aeropuertos
 	 * y se guardar en la propiedad conn
 	 * @throws SQLException si ocurre algun error se lanzara exception ralacionada a la base datos
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * @throws IOException si ocurre algun error en la lectura de archivo de configuracion
+	 * @throws FileNotFoundException si que no encuetre el archivo de configuracion
 	 */
 	public ConexionBDAeropuerto() throws SQLException, FileNotFoundException, IOException {
 		Properties propiedades = new Properties();
