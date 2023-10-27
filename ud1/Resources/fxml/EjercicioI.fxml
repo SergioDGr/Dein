@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
@@ -53,6 +54,19 @@
       <Button fx:id="btnModPersona" mnemonicParsing="false" onAction="#click_modPersona" text="%btn_mod.ok" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
       <Button fx:id="btnDelPersona" mnemonicParsing="false" onAction="#click_delPersona" text="%btn_del.ok" GridPane.columnIndex="3" GridPane.rowIndex="5" />
       <Label text="%lbl.filter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Button fx:id="btnAddPersona" alignment="CENTER" mnemonicParsing="false" onAction="#clic_addPersona" text="Agregar Persona" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+         <graphic>
+            <FontAwesomeIconView glyphName="PLUS" />
+         </graphic></Button>
+      <Button fx:id="btnModPersona" lineSpacing="1.0" mnemonicParsing="false" onAction="#click_modPersona" text="Modificar Persona" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+         <graphic>
+            <FontAwesomeIconView glyphName="PENCIL" selectionEnd="0" />
+         </graphic></Button>
+      <Button fx:id="btnDelPersona" mnemonicParsing="false" onAction="#click_delPersona" text="Eliminar Persona" GridPane.columnIndex="3" GridPane.rowIndex="5">
+         <graphic>
+            <FontAwesomeIconView glyphName="REMOVE" />
+         </graphic></Button>
+      <Label text="Filtrar por nombre:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <TextField fx:id="tfFiltrarNombre" GridPane.columnIndex="2" />
       <ImageView fitHeight="86.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
