@@ -1,0 +1,43 @@
+.button{
+	-fx-background-color: #800080;
+	-fx-text-fill: white;
+	-fx-background-radius: 50px;
+}
+.text-field{
+	-fx-background-radius: 50px;
+}
+
+
+.table-view .column-header-background  .filler, .table-view .column-header {
+    -fx-background-color: #800080;
+}
+
+.table-cell{
+	-fx-border: 12px;	
+}
+
+.table-view .table-cell{
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #005797;
+    -fx-background-insets: 20;
+    -fx-background-radius: 1;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: red;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #f7e4fd;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:even{
+    -fx-background-color: white;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}

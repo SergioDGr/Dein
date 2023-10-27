@@ -13,6 +13,8 @@ import javafx.stage.Stage;
  *	Ventana que visualiza una tabla de persona con 3 botones: añadir, modificar y eliminar. 
  *	Todos acciones se reflejaran un una base de datos, las accion de cargar datos, guadar persona,
  *	eliminar persona y modificar persona.
+ *	Ademas añadiendo varios idiomas para la aplicacion, ponerle un estilo a los elementos y 
+ *	agregada iconos de fontawesome
  */
 public class EjercicioI extends Application{
 
