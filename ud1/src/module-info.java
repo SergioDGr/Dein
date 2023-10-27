@@ -13,6 +13,7 @@ module ud1 {
 	requires javafx.media;
 	requires javafx.graphics;
 	requires java.sql;
+	requires de.jensd.fx.glyphs.fontawesome;
 	opens application.ejercicio_a to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_b to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_c to javafx.graphics, javafx.fxml;
@@ -22,6 +23,7 @@ module ud1 {
 	opens application.ejercicio_h to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_j to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_k to javafx.graphics, javafx.fxml;
+	opens application.ejercicio_i to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
 	opens dao to javafx.base;
 	opens model to javafx.base;
