@@ -23,12 +23,13 @@ public class EjercicioL extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioJ.fxml"));
-		Scene scene = new Scene(root, 575, 550);
+		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/EjercicioL.fxml"));
+		Scene scene = new Scene(root, 789, 550);
 		//scene.getStylesheets().add(getClass().getResource("/css/estilo_ejercicioJ.css").toExternalForm());
-		stage.setTitle("AVIONES - AEROPUERTOS");
+		stage.setTitle("AVIONES - LOGIN");
 		stage.setScene(scene);
-		stage.getIcons().add(new Image(getClass().getResource("/img/Cooper.png").toString()));
+		//stage.
+		//stage.getIcons().add(new Image(getClass().getResource("/img/Cooper.png").toString()));
 		stage.show();
 	}
 	
