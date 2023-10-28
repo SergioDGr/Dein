@@ -18,7 +18,10 @@ public class LoginAeropuertoController {
 
     @FXML
     private TextField tfUsuario;
-
+    
+    @FXML
+    private Text txtError;
+    
     @FXML
     void click_login(ActionEvent event) {
 
