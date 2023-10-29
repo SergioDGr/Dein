@@ -84,7 +84,7 @@ public class AeropuertoController {
     void click_modAeropuerto(ActionEvent event) {
 
     }
-
+    
     @FXML
     void click_on_offAvion(ActionEvent event) {
 
@@ -94,5 +94,14 @@ public class AeropuertoController {
     void click_viewInfoAeropuerto(ActionEvent event) {
 
     }
+    
+    @FXML
+    void click_privado(ActionEvent event) {
 
+    }
+
+    @FXML
+    void click_publico(ActionEvent event) {
+
+    }
 }
