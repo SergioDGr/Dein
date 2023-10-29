@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Clase que repersenta aeropuerto privado
+ */
 public class AeropuertoPrivado extends Aeropuerto{
 	
 	private int socios;

@@ -123,6 +123,10 @@ public class AeropuertoController implements Initializable{
 
     }
     
+    /**
+     * Muestra los aeropuerto privados con las columnas que tiene.
+     * @param event
+     */
     @FXML
     void click_privado(ActionEvent event) {
     	tbClmNumSocios.setVisible(true);
@@ -131,6 +135,10 @@ public class AeropuertoController implements Initializable{
     	tableAeropuerto.setItems(lstAeropuertoPrivados);
     }
 
+    /**
+     * Muestra los aeropuerto publicos con las columnas que tiene.
+     * @param event
+     */
     @FXML
     void click_publico(ActionEvent event) {
     	tbClmNumSocios.setVisible(false);

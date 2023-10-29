@@ -3,6 +3,9 @@ package model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Clase que representa la Direccion de un sitio.
+ */
 public class Direccion {
 	
 	private int id;

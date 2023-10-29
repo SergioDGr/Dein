@@ -14,10 +14,17 @@ import model.AeropuertoPrivado;
 import model.AeropuertoPublico;
 import model.Direccion;
 
+/**
+ * Clase que gestiona las tablas que tengan que ver con el aeropuerto en la base de datos
+ */
 public class AeropuertoDao {
 	
 	private ConexionBDAeropuerto conn;
 	
+	/**
+	 * Metodo que los aeropuerto privados que hay en la base de datos
+	 * @return devuelve una lista de aeropuertos privados
+	 */
 	public ObservableList<Aeropuerto> getAeropuertoPrivados(){
 		ObservableList<Aeropuerto> lstAeropuerto = FXCollections.observableArrayList();
 		try {
@@ -37,6 +44,10 @@ public class AeropuertoDao {
 		return lstAeropuerto;
 	}
 	
+	/**
+	 * Metodo que los aeropuerto publicos que hay en la base de datos
+	 * @return devuelve una lista de aeropuertos publicos
+	 */
 	public ObservableList<Aeropuerto> getAeropuertoPublicos(){
 		ObservableList<Aeropuerto> lstAeropuerto = FXCollections.observableArrayList();
 		try {
@@ -57,6 +68,13 @@ public class AeropuertoDao {
 		return lstAeropuerto;
 	}
 	
+	/**
+	 * Metodo que del resultado crea un aeropuerto y lo devuelve 
+	 * @param resultado un fila del resultado de la consulta, los datos de aeropuerto
+	 * @param publico si el aeropuerto es publico
+	 * @return Devuelve el aeropuerto
+	 * @throws SQLException si ocurre algun error relacionado con la base de datos
+	 */
 	private Aeropuerto conseguirAeropuerto(ResultSet resultado, boolean publico) throws SQLException {
 		int id_aeropuerto = resultado.getInt("id");
 		String nombre = resultado.getString("nombre");

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Super Clase que repersenta aeropuerto
+ */
 public class Aeropuerto {
 	
 	private int id;
