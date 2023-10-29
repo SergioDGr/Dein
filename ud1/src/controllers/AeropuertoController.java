@@ -7,8 +7,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.AeropuertoDao;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -23,13 +25,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import model.Aeropuerto;
 import model.AeropuertoPrivado;
 import model.AeropuertoPublico;
-import model.Direccion;
-import model.Persona;
 
 public class AeropuertoController implements Initializable{
 	
@@ -121,6 +123,22 @@ public class AeropuertoController implements Initializable{
 
     }
     
+    @FXML
+    void click_privado(ActionEvent event) {
+    	tbClmNumSocios.setVisible(true);
+    	tbClmNumTrabajadores.setVisible(false);
+    	tbClmFinaciacion.setVisible(false);
+    	tableAeropuerto.setItems(lstAeropuertoPrivados);
+    }
+
+    @FXML
+    void click_publico(ActionEvent event) {
+    	tbClmNumSocios.setVisible(false);
+    	tbClmNumTrabajadores.setVisible(true);
+    	tbClmFinaciacion.setVisible(true);
+    	tableAeropuerto.setItems(lstAeropuertoPublicos);
+    }
+    
     /**
      * carga y muestra la ventana modal con los siguientes paramatros:
      * @param controlador El controlador de la ventana
@@ -167,14 +185,5 @@ public class AeropuertoController implements Initializable{
     	
     	//Añadir a la tabla
     	tableAeropuerto.setItems(lstAeropuertoPrivados);
-    }
-    @FXML
-    void click_privado(ActionEvent event) {
-
-    }
-
-    @FXML
-    void click_publico(ActionEvent event) {
-
     }
 }
