@@ -110,7 +110,7 @@ public class AeropuertoController implements Initializable{
     void click_modAeropuerto(ActionEvent event) {
 
     }
-
+    
     @FXML
     void click_on_offAvion(ActionEvent event) {
 
@@ -168,5 +168,13 @@ public class AeropuertoController implements Initializable{
     	//Añadir a la tabla
     	tableAeropuerto.setItems(lstAeropuertoPrivados);
     }
+    @FXML
+    void click_privado(ActionEvent event) {
 
+    }
+
+    @FXML
+    void click_publico(ActionEvent event) {
+
+    }
 }
