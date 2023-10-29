@@ -18,8 +18,8 @@ public class AeropuertoDao {
 	
 	private ConexionBDAeropuerto conn;
 	
-	public ObservableList<AeropuertoPrivado> getAeropuertoPrivados(){
-		ObservableList<AeropuertoPrivado> lstAeropuerto = FXCollections.observableArrayList();
+	public ObservableList<Aeropuerto> getAeropuertoPrivados(){
+		ObservableList<Aeropuerto> lstAeropuerto = FXCollections.observableArrayList();
 		try {
 			conn = new ConexionBDAeropuerto();
 			String consulta = "select * from aeropuertos a, direcciones d, aeropuertos_privados pri where id_direccion = d.id and a.id = pri.id_aeropuerto;";
@@ -37,8 +37,8 @@ public class AeropuertoDao {
 		return lstAeropuerto;
 	}
 	
-	public ObservableList<AeropuertoPublico> getAeropuertoPublicos(){
-		ObservableList<AeropuertoPublico> lstAeropuerto = FXCollections.observableArrayList();
+	public ObservableList<Aeropuerto> getAeropuertoPublicos(){
+		ObservableList<Aeropuerto> lstAeropuerto = FXCollections.observableArrayList();
 		try {
 			conn = new ConexionBDAeropuerto();
 			String consulta = "select * from aeropuertos a, aeropuertos.direcciones d, aeropuertos_publicos pu where id_direccion = d.id and a.id = pu.id_aeropuerto;";
@@ -48,7 +48,7 @@ public class AeropuertoDao {
 			while(rs.next()) {
 				AeropuertoPublico aeropuerto = (AeropuertoPublico) conseguirAeropuerto(rs, true);
 				aeropuerto.setTrabajadores(rs.getInt("num_trabajadores"));
-				aeropuerto.setFinanciacion(rs.getDouble("finaciacion"));
+				aeropuerto.setFinanciacion(rs.getDouble("financiacion"));
 				lstAeropuerto.add(aeropuerto);
 			}
 		} catch (SQLException e) {

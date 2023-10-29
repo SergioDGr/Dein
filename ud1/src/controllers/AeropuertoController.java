@@ -6,6 +6,9 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
+import dao.AeropuertoDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -19,9 +22,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Aeropuerto;
+import model.AeropuertoPrivado;
+import model.AeropuertoPublico;
+import model.Direccion;
+import model.Persona;
 
 public class AeropuertoController implements Initializable{
 	
@@ -32,46 +40,51 @@ public class AeropuertoController implements Initializable{
     private RadioButton rbPublicos;
 
     @FXML
-    private TableView<?> tableAeropuerto;
+    private TableView<Aeropuerto> tableAeropuerto;
     
     @FXML
-    private TableColumn<?, ?> tbClmAnio;
+    private TableColumn<Aeropuerto, Integer> tbClmAnio;
 
     @FXML
-    private TableColumn<?, ?> tbClmCalle;
+    private TableColumn<Aeropuerto, String> tbClmCalle;
 
     @FXML
-    private TableColumn<?, ?> tbClmCapacidad;
+    private TableColumn<Aeropuerto, Integer> tbClmCapacidad;
 
     @FXML
-    private TableColumn<?, ?> tbClmCiudad;
+    private TableColumn<Aeropuerto, String> tbClmCiudad;
 
     @FXML
-    private TableColumn<?, ?> tbClmFinaciacion;
+    private TableColumn<AeropuertoPublico, Double> tbClmFinaciacion;
 
     @FXML
-    private TableColumn<?, ?> tbClmID;
+    private TableColumn<Aeropuerto, Integer> tbClmID;
 
     @FXML
-    private TableColumn<?, ?> tbClmNombre;
+    private TableColumn<Aeropuerto, String> tbClmNombre;
 
     @FXML
-    private TableColumn<?, ?> tbClmNumSocios;
+    private TableColumn<AeropuertoPrivado, Integer> tbClmNumSocios;
 
     @FXML
-    private TableColumn<?, ?> tbClmNumTrabajadores;
+    private TableColumn<AeropuertoPublico, Integer> tbClmNumTrabajadores;
 
     @FXML
-    private TableColumn<?, ?> tbClmNumero;
+    private TableColumn<Aeropuerto, Integer> tbClmNumero;
 
     @FXML
-    private TableColumn<?, ?> tbClmPais;
+    private TableColumn<Aeropuerto, String> tbClmPais;
     
     @FXML
     private TextField tfNombre;
 
     @FXML
     private ToggleGroup tipoAeropuerto;
+    
+    private AeropuertoDao aeropuertoDao;
+    
+    private ObservableList<Aeropuerto> lstAeropuertoPrivados = FXCollections.observableArrayList();
+    private ObservableList<Aeropuerto> lstAeropuertoPublicos = FXCollections.observableArrayList();
     
     @FXML
     void click_addAeropuerto(ActionEvent event) {
@@ -134,7 +147,26 @@ public class AeropuertoController implements Initializable{
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
+    	//Conseguir datos de los aeropuertos
+    	aeropuertoDao = new AeropuertoDao();
+    	lstAeropuertoPrivados = aeropuertoDao.getAeropuertoPrivados();
+    	lstAeropuertoPublicos = aeropuertoDao.getAeropuertoPublicos();
+    	
+    	//Establecer las columnas
+    	tbClmID.setCellValueFactory(new PropertyValueFactory<Aeropuerto, Integer>("id"));
+    	tbClmNombre.setCellValueFactory(new PropertyValueFactory<Aeropuerto, String>("nombre"));
+    	tbClmPais.setCellValueFactory(celldata -> celldata.getValue().getDireccion().getPaisProperty());
+    	tbClmCiudad.setCellValueFactory(celldata -> celldata.getValue().getDireccion().getCiudadProperty());
+    	tbClmCalle.setCellValueFactory(celldata -> celldata.getValue().getDireccion().getCalleProperty());
+    	tbClmNumero.setCellValueFactory(celldata -> celldata.getValue().getDireccion().getNumProperty().asObject());
+    	tbClmAnio.setCellValueFactory(new PropertyValueFactory<Aeropuerto, Integer>("anio"));
+    	tbClmCapacidad.setCellValueFactory(new PropertyValueFactory<Aeropuerto, Integer>("capacidad"));
+    	tbClmNumSocios.setCellValueFactory(new PropertyValueFactory<AeropuertoPrivado, Integer>("socios"));
+    	tbClmNumTrabajadores.setCellValueFactory(new PropertyValueFactory<AeropuertoPublico, Integer>("trabajadores"));
+    	tbClmFinaciacion.setCellValueFactory(new PropertyValueFactory<AeropuertoPublico, Double>("financiacion"));
+    	
+    	//Añadir a la tabla
+    	tableAeropuerto.setItems(lstAeropuertoPrivados);
     }
 
 }
