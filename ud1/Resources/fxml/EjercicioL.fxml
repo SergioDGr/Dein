@@ -61,15 +61,17 @@
       </Text>
       <TableView fx:id="tableAeropuerto" prefHeight="205.0" prefWidth="475.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
         <columns>
-          <TableColumn prefWidth="50.0" text="ID" />
-          <TableColumn prefWidth="112.0" text="Nombre" />
-            <TableColumn prefWidth="81.0" text="País" />
-            <TableColumn prefWidth="85.0" text="Ciudad" />
-            <TableColumn prefWidth="92.0" text="Calle" />
-            <TableColumn prefWidth="44.0" text="Numero" />
-            <TableColumn prefWidth="92.0" text="Año" />
-            <TableColumn prefWidth="120.0" text="Capacidad" />
-            <TableColumn prefWidth="92.0" text="Nº Socios" />
+          <TableColumn fx:id="tbClmID" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="tbClmNombre" prefWidth="112.0" text="Nombre" />
+            <TableColumn fx:id="tbClmPais" prefWidth="81.0" text="País" />
+            <TableColumn fx:id="tbClmCiudad" prefWidth="85.0" text="Ciudad" />
+            <TableColumn fx:id="tbClmCalle" prefWidth="92.0" text="Calle" />
+            <TableColumn fx:id="tbClmNumero" prefWidth="44.0" text="Numero" />
+            <TableColumn fx:id="tbClmAnio" prefWidth="92.0" text="Año" />
+            <TableColumn fx:id="tbClmCapacidad" prefWidth="120.0" text="Capacidad" />
+            <TableColumn fx:id="tbClmNumSocios" prefWidth="92.0" text="Nº Socios" />
+            <TableColumn fx:id="tbClmFinaciacion" prefWidth="93.0" text="Financiacion" visible="false" />
+            <TableColumn fx:id="tbClmNumTrabajadores" prefWidth="92.0" text="Nº Trabajadores" visible="false" />
         </columns>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

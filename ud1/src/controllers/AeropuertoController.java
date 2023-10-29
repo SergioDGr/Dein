@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -19,7 +20,40 @@ public class AeropuertoController {
 
     @FXML
     private TableView<?> tableAeropuerto;
+    
+    @FXML
+    private TableColumn<?, ?> tbClmAnio;
 
+    @FXML
+    private TableColumn<?, ?> tbClmCalle;
+
+    @FXML
+    private TableColumn<?, ?> tbClmCapacidad;
+
+    @FXML
+    private TableColumn<?, ?> tbClmCiudad;
+
+    @FXML
+    private TableColumn<?, ?> tbClmFinaciacion;
+
+    @FXML
+    private TableColumn<?, ?> tbClmID;
+
+    @FXML
+    private TableColumn<?, ?> tbClmNombre;
+
+    @FXML
+    private TableColumn<?, ?> tbClmNumSocios;
+
+    @FXML
+    private TableColumn<?, ?> tbClmNumTrabajadores;
+
+    @FXML
+    private TableColumn<?, ?> tbClmNumero;
+
+    @FXML
+    private TableColumn<?, ?> tbClmPais;
+    
     @FXML
     private TextField tfNombre;
 
