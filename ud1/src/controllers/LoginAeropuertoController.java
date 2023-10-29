@@ -27,6 +27,10 @@ public class LoginAeropuertoController {
     
     public boolean logeado;
     
+    /**
+     * Al darle a login validara los datos y si esta todo correcto mostrara la ventana principal
+     * @param event
+     */
     @FXML
     void click_login(ActionEvent event) {
     	String esValido = validar();
@@ -41,6 +45,11 @@ public class LoginAeropuertoController {
     	logeado = true;
     }
     
+    /**
+     * Valida el nombre del usuario y su contraseña, primero si no estan vacios y despues en la base de datos
+     * si los datos estan correctos
+     * @return devolvera un String vacio si no hay ningun error y en caso contrario devolvera cual es el error
+     */
     private String validar() {
     	if(tfUsuario.getText().isEmpty() || pfPass.getText().isEmpty())
     		return "Algun campo esta vacio";

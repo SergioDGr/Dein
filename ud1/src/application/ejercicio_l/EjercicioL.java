@@ -23,9 +23,13 @@ public class EjercicioL extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		//Consige el ventana principal 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioL.fxml"));
+		//Se instancia el controlador de la ventana
 		AeropuertoController controller = new AeropuertoController();
+		//Se visualiza una ventana modal que sirve para el login
 		LoginAeropuertoController loginController = (LoginAeropuertoController) controller.cargar_ventana_modal(new LoginAeropuertoController(), "AVIONES - LOGIN");
+		//Y si el login esta correcto lo visualiza
 		if(loginController.logeado) {
 			//controller.setLoader(loader);
 			loader.setController(controller);

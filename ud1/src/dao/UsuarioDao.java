@@ -10,8 +10,13 @@ public class UsuarioDao {
 	
 	private ConexionBDAeropuerto conn;
 	
-	public boolean validarUsuario(String usuario, String password) {
-		
+	/**
+	 * Hace una consulta para validar el nombre de usuario y la contraseña pasadas son las mismas
+	 * @param usuario
+	 * @param password
+	 * @return devuelve <code>true</code> si son las mismas en caso contrario devuelve <code>false</code>
+	 */
+	public boolean validarUsuario(String usuario, String password) {	
 		try {
 			conn = new ConexionBDAeropuerto();
 			String consulta = "SELECT * FROM usuarios WHERE usuario = ? AND password = ?";
