@@ -133,6 +133,7 @@ public class AeropuertoController implements Initializable{
     	tbClmNumTrabajadores.setVisible(false);
     	tbClmFinaciacion.setVisible(false);
     	tableAeropuerto.setItems(lstAeropuertoPrivados);
+    	tfNombre.setText("");
     }
 
     /**
@@ -145,6 +146,7 @@ public class AeropuertoController implements Initializable{
     	tbClmNumTrabajadores.setVisible(true);
     	tbClmFinaciacion.setVisible(true);
     	tableAeropuerto.setItems(lstAeropuertoPublicos);
+    	tfNombre.setText("");
     }
     
     /**
@@ -171,6 +173,11 @@ public class AeropuertoController implements Initializable{
 		return controlador;
     }
     
+    /**
+     * Consigue una lista filtrada de aeropuertos por el nombre pasado por el text field
+     * @param lstAeropuerto el contenido de la tabla
+     * @return devuelve la lista filtrada de aeropuertos
+     */
     private ObservableList<Aeropuerto> getListaFiltrada(ObservableList<Aeropuerto> lstAeropuerto){
     	ObservableList<Aeropuerto> lstAeropuertoFiltrar = FXCollections.observableArrayList();
     	String nombre =  tfNombre.getText();
