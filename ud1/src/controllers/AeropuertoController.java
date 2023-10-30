@@ -171,6 +171,22 @@ public class AeropuertoController implements Initializable{
 		return controlador;
     }
     
+    private ObservableList<Aeropuerto> getListaFiltrada(ObservableList<Aeropuerto> lstAeropuerto){
+    	ObservableList<Aeropuerto> lstAeropuertoFiltrar = FXCollections.observableArrayList();
+    	String nombre =  tfNombre.getText();
+    	if (!nombre.isEmpty()) {
+    		for (int i = 0; i < lstAeropuerto.size(); i++) {
+				Aeropuerto a = lstAeropuerto.get(i);
+				if (a.getNombre().toLowerCase().substring(0, nombre.length())
+						.contains(nombre.toLowerCase()))
+					lstAeropuertoFiltrar.add(a);
+			}
+    	}else {
+    		lstAeropuertoFiltrar.setAll(lstAeropuerto);
+    	}
+    	return lstAeropuertoFiltrar;
+    }
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	//Conseguir datos de los aeropuertos
@@ -190,6 +206,14 @@ public class AeropuertoController implements Initializable{
     	tbClmNumSocios.setCellValueFactory(new PropertyValueFactory<AeropuertoPrivado, Integer>("socios"));
     	tbClmNumTrabajadores.setCellValueFactory(new PropertyValueFactory<AeropuertoPublico, Integer>("trabajadores"));
     	tbClmFinaciacion.setCellValueFactory(new PropertyValueFactory<AeropuertoPublico, Double>("financiacion"));
+    	
+    	//Redefinir el evento del texto del text filed para filtrar
+    	tfNombre.textProperty().addListener((observable, oldValue, newValue) ->{
+    		if(rbPrivados.isSelected())
+    			tableAeropuerto.setItems(getListaFiltrada(lstAeropuertoPrivados));
+    		else
+    			tableAeropuerto.setItems(getListaFiltrada(lstAeropuertoPublicos));
+    	});
     	
     	//Añadir a la tabla
     	tableAeropuerto.setItems(lstAeropuertoPrivados);
