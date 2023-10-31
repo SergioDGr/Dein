@@ -19,11 +19,13 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.stage.Modality;
@@ -120,7 +122,16 @@ public class AeropuertoController implements Initializable{
 
     @FXML
     void click_viewInfoAeropuerto(ActionEvent event) {
-
+    	Aeropuerto aeropuerto = tableAeropuerto.getSelectionModel().getSelectedItem();
+    	if(aeropuerto != null) {
+    		String strAeropuerto = aeropuerto.toString();
+    		System.out.println(strAeropuerto);
+	    	Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setHeaderText(null);
+	    	alert.setTitle("Información");
+	    	alert.setContentText(strAeropuerto);
+	    	alert.showAndWait();
+    	}
     }
     
     /**

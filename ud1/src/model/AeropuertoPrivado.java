@@ -19,4 +19,9 @@ public class AeropuertoPrivado extends Aeropuerto{
 		this.socios = socios;
 	}
 	
+	@Override
+		public String toString() {
+			return super.toString() + "\nPrivado\nNúmero de socios:" + socios;
+		}
+	
 }

@@ -28,4 +28,9 @@ public class AeropuertoPublico extends Aeropuerto {
 	public void setTrabajadores(int trabajadores) {
 		this.trabajadores = trabajadores;
 	}
+	
+	@Override
+		public String toString() {
+			return super.toString() + "\nPublico \nFinanciación:" + financiacion + "\nNúmero de trabajadores:" + trabajadores;
+		}
 }

@@ -63,4 +63,11 @@ public class Aeropuerto {
 		this.capacidad = capacidad;
 	}
 	
+	@Override
+	public String toString() {
+		String aeropuerto = "Nombre:" + nombre +"\nPais:" +  direccion.getPais() + "\nDirección:" + direccion.getCalle() 
+			+ "\nAño de inaguracion:" + anio + "\nCapacidad:" + capacidad;
+		return aeropuerto;
+	}
+	
 }
