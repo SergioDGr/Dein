@@ -35,6 +35,9 @@ import model.Aeropuerto;
 import model.AeropuertoPrivado;
 import model.AeropuertoPublico;
 
+/**
+ * Controlador principipal que gestiona la ventana principal y todo lo referente a los aeropuertos
+ */
 public class AeropuertoController implements Initializable{
 	
 	@FXML
@@ -187,6 +190,12 @@ public class AeropuertoController implements Initializable{
 		return controlador;
     }
     
+    /**
+     * Insertar un aeropuerto en la base de datos y si todo esta correcto tambien lo guardar en la tabla
+     * referente a su tipo de aeropuerto que es
+     * @param aeropuerto
+     * @return devuelve <code>true</code> si se a podido hacer la operacion o <code>false</code> si no se apodido
+     */
     public boolean insertarAeropuerto(Aeropuerto aeropuerto) {
     	boolean aniadido = false;
     	if(aeropuerto instanceof AeropuertoPublico) {

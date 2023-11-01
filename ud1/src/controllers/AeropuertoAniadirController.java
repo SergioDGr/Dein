@@ -14,9 +14,16 @@ import model.AeropuertoPrivado;
 import model.AeropuertoPublico;
 import model.Direccion;
 
-
+/**
+ * Clase controladora que gestiona el añadir un aeropuerto en la base de datos
+ */
 public class AeropuertoAniadirController extends AeropuertoModalController implements Initializable{
 	
+	/**
+	 * Al darle a guardar valida los textfield y si todo esta correcto intenta insertar un aeropuerto en
+	 * la base de datos
+	 * @param event
+	 */
 	@FXML
     private void click_guardar(ActionEvent event) {
 		//Hace la validacion y lo guarda en mensaje

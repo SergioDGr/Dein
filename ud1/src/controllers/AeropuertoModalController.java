@@ -12,6 +12,9 @@ import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
 
+/**
+ * Clase controlador base para ventanas modal para los aeropuertos
+ */
 public class AeropuertoModalController {
 	
 	@FXML
@@ -79,6 +82,10 @@ public class AeropuertoModalController {
     	aeropuertoController = controller;
     }
     
+    /**
+     * Si se seleccion el radio button privado se cambia elementos para aeoropuerto privados
+     * @param event
+     */
     @FXML
     private void click_privado(ActionEvent event) {
     	rbtnPublico.setSelected(false);
@@ -91,6 +98,10 @@ public class AeropuertoModalController {
 		esPublico = false;
     }
     
+    /**
+     * Si se seleccion el radio button publico se cambia elementos para aeoropuerto publico
+     * @param event
+     */
     @FXML
     private void click_publico(ActionEvent event) {
     	rbtnPublico.setSelected(true);
@@ -103,12 +114,20 @@ public class AeropuertoModalController {
 		esPublico = true;
     }
     
+    /**
+     * al darle a cancelar cierra la ventana modal
+     * @param event
+     */
     @FXML
     protected void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
     	stage.close();
     }
     
+    /**
+     * Valida todos los campos text field si estan correctos
+     * @return devuelve un {@link String} vacio si todo esta valido en caso contrario guardar el mesaje del error
+     */
     protected String validar() {
     	if(tfNombre.getText().isEmpty() || tfPais.getText().isEmpty() || tfCiudad.getText().isEmpty() || tfCalle.getText().isEmpty() || tfNumero.getText().isEmpty() || 
     		tfAnio.getText().isEmpty() || tfCapacidad.getText().isEmpty() || (esPublico && (tfFinanciacion.getText().isEmpty() ||tfNumTrabajadores.getText().isEmpty()) 

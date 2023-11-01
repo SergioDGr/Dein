@@ -68,11 +68,16 @@ public class AeropuertoDao {
 		return lstAeropuerto;
 	}
 	
+	/**
+	 * Se insertar un aeropuerto publico en la base de datos
+	 * @param aeropuerto
+	 * @return devuelve <code>true</code> si se a podido insertar el aeropuerto o <code>false</code> si no se apodido
+	 */
 	public boolean insertarAeropuertoPublico(AeropuertoPublico aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
+			//Si se podido insertar el aeropuerto en la tabla aeropuertos insertara tambien en la tabla aeropuertos_publicos
 			if(insertarAeropuerto(aeropuerto)) {
-				System.out.println(aeropuerto.getId());
 				String consulta = "INSERT INTO aeropuertos_publicos VALUES(?,?,?)";
 				PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 				ps.setInt(1, aeropuerto.getId());
@@ -90,9 +95,15 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Se insertar un aeropuerto privado en la base de datos
+	 * @param aeropuerto
+	 * @return devuelve <code>true</code> si se a podido insertar el aeropuerto o <code>false</code> si no se apodido
+	 */
 	public boolean insertarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
+			//Si se podido insertar el aeropuerto en la tabla aeropuertos insertara tambien en la tabla aeropuertos_privados
 			if(insertarAeropuerto(aeropuerto)) {
 				System.out.println(aeropuerto.getId());
 				String consulta = "INSERT INTO aeropuertos_privados VALUES(?,?)";
@@ -105,15 +116,21 @@ public class AeropuertoDao {
 					return false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 		return true;
 	}
 	
+	/**
+	 * Se inserta un aeropuerto en base de datos
+	 * @param aeropuerto
+	 * @return devuelve <code>true</code> si se a podido insertar el aeropuerto o <code>false</code> si no se apodido
+	 * @throws SQLException Lanza una exepcion si ocurre algun error en la base de datos
+	 */
 	private boolean insertarAeropuerto(Aeropuerto aeropuerto) throws SQLException {
+		//Si se podido insertar la direccion se insertar el aeropuerto en la tabla aeropuertos
 		if(insertarDireccion(aeropuerto.getDireccion())) {
-			System.out.println(aeropuerto.getDireccion().getId());
 			String consulta = "INSERT INTO Aeropuertos(nombre,anio_inauguracion,capacidad,id_direccion) VALUES(?,?,?,?)";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, aeropuerto.getNombre());
@@ -134,6 +151,12 @@ public class AeropuertoDao {
 		return false;
 	}
 	
+	/**
+	 * Se insertar la direccion del aeropuerto en la base de datos
+	 * @param direccion
+	 * @return devuelve <code>true</code> si se a podido insertar la direccion o <code>false</code> si no se apodido
+	 * @throws SQLException Lanza una exepcion si ocurre algun error en la base de datos
+	 */
 	private boolean insertarDireccion(Direccion direccion) throws SQLException {
 		String consulta = "INSERT INTO direcciones(pais,ciudad,calle,numero) VALUES(?,?,?,?)";
 		PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
