@@ -93,6 +93,10 @@ public class AeropuertoController implements Initializable{
     private ObservableList<Aeropuerto> lstAeropuertoPrivados = FXCollections.observableArrayList();
     private ObservableList<Aeropuerto> lstAeropuertoPublicos = FXCollections.observableArrayList();
     
+    /**
+     * Se abre la ventana modal que gestiona el añadir un aeropuerto a la base de datos
+     * @param event
+     */
     @FXML
     void click_addAeropuerto(ActionEvent event) {
     	try {
