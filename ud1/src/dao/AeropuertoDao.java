@@ -229,6 +229,11 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Elimina un aeropuerto privado de la base de datos
+	 * @param aeropuerto privado
+	 * @return devuelve <code>true</code> si se a podido eliminar el aeropuerto o <code>false</code> si no se apodido
+	 */
 	public boolean eliminarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
@@ -242,6 +247,11 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Elimina un aeropuerto publico de la base de datos
+	 * @param aeropuerto publico
+	 * @return devuelve <code>true</code> si se a podido eliminar el aeropuerto o <code>false</code> si no se apodido
+	 */
 	public boolean eliminarAeropuertoPublico(AeropuertoPublico aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
@@ -255,6 +265,13 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Hace todo el proceso para eliminar un aeropuerto en todos las tablas que esta referida en la base de datos
+	 * @param aeropuerto se pasa el aeropuerto tanto si es privado o publico
+	 * @param consulta que elimina el aeropuerto privado o publico de su respectiva tabla
+	 * @return devuelve <code>true</code> si se a podido realizar la operacion de eliminacion o <code>false</code> si no se apodido
+	 * @throws SQLException Lanza una exepcion si ocurre algun error relacionada en la base de datos
+	 */
 	private boolean eliminaAeropuerto(Aeropuerto aeropuerto, String consulta ) throws SQLException {
 		PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 		ps.setInt(1, aeropuerto.getId());
@@ -267,6 +284,12 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Elimina el aeropuerto de la tabla aeropuertos de la base de datos
+	 * @param aeropuerto
+	 * @return devuelve <code>true</code> si se a podido eliminar el aeropuerto o <code>false</code> si no se apodido
+	 * @throws SQLException Lanza una exepcion si ocurre algun error relacionada en la base de datos
+	 */
 	private boolean eliminarAeropuerto(Aeropuerto aeropuerto) throws SQLException {
 		String consulta = "DELETE FROM aeropuertos WHERE id = ?";
 		PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
@@ -278,6 +301,12 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Elimina la direccion de la base de datos
+	 * @param direccion
+	 * @return devuelve <code>true</code> si se a podido eliminar la direccion o <code>false</code> si no se apodido
+	 * @throws SQLException Lanza una exepcion si ocurre algun error relacionada en la base de datos
+	 */
 	private boolean eliminarDireccion(Direccion direccion) throws SQLException {
 		String consulta = "DELETE FROM direcciones WHERE id = ?";
 		PreparedStatement ps = conn.getConexion().prepareStatement(consulta);

@@ -117,25 +117,34 @@ public class AeropuertoController implements Initializable{
     void click_addAvion(ActionEvent event) {
 
     }
-
+    
+    /**
+     * Se intenta eliminar el aeropuerto seleccionado de la tabla y en la base de datos
+     * @param event
+     */
     @FXML
     void click_delAeropuerto(ActionEvent event) {
+    	//Si se seleccionado un aeropuerto
     	if(tableAeropuerto.getSelectionModel().getSelectedIndex() != -1) {
     		boolean eliminado;
+    		//Si aeropuerto privado
     		if(rbPrivados.isSelected()) {
     			AeropuertoPrivado aPrivado = (AeropuertoPrivado) tableAeropuerto.getSelectionModel().getSelectedItem();
     			eliminado = aeropuertoDao.eliminarAeropuertoPrivado(aPrivado);
+    			//si se apodido eliminar de la base de datos se quita de la tabla
     			if (eliminado)
     				lstAeropuertoPrivados.remove(aPrivado);
-    		}else {
+    		}else { //Si aeropuerto publico
     			AeropuertoPublico aPublico = (AeropuertoPublico) tableAeropuerto.getSelectionModel().getSelectedItem();
     			eliminado = aeropuertoDao.eliminarAeropuertoPublico(aPublico);
+    			//si se apodido eliminar de la base de datos se quita de la tabla
     			if (eliminado)
     				lstAeropuertoPublicos.remove(aPublico);
     		}
+    		//Si se a eliminado muestra que se apodido
     		if (eliminado) 
     			crear_mostrar_alerta(AlertType.INFORMATION, "Informacion - Eliminar AEROPUERTO", "Se a eliminado el aeropuerto", tableAeropuerto.getScene().getWindow());
-    	}else {
+    	}else { //Mostrara un mensaje de error
     		crear_mostrar_alerta(AlertType.ERROR, "Error - Eliminar AEROPUERTO", "No se a seleccionado ningun aeropuerto", tableAeropuerto.getScene().getWindow());
     	}
     }
@@ -208,6 +217,7 @@ public class AeropuertoController implements Initializable{
      * @param tipoAlert El tipo de alerta
      * @param titulo El titulo que tendra la alerta
      * @param msg El mensaje que mostrara la alerta
+     * @param window ventana propietaria
      */
     private void crear_mostrar_alerta(AlertType tipoAlert,String titulo, String msg, Window window) {
     	Alert alert = new Alert(tipoAlert);
