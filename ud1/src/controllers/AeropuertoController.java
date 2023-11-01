@@ -127,7 +127,11 @@ public class AeropuertoController implements Initializable{
     void click_delAvion(ActionEvent event) {
 
     }
-
+    
+    /**
+     * Se abre la ventana modal que gestiona la modificacion de un aeropuerto a la base de datos
+     * @param event
+     */
     @FXML
     void click_modAeropuerto(ActionEvent event) {
     	if(tableAeropuerto.getSelectionModel().getSelectedIndex() != -1) {
@@ -214,6 +218,10 @@ public class AeropuertoController implements Initializable{
 		return controlador;
     }
     
+    /**
+     * Consigue el aeropuerto seleccionado de la tabla
+     * @return devuelve un aeropuerto
+     */
     public Aeropuerto getAeropuerto() {
     	return tableAeropuerto.getSelectionModel().getSelectedItem();
     }
@@ -238,6 +246,12 @@ public class AeropuertoController implements Initializable{
     	return aniadido;
     }
     
+    /**
+     * con el aeropuerto privado que se pasan se modifica el aeropuerto privado seleccionada de la tabla,
+     * esos cambios se reflejan tambien el base de datos y se refresca la tabla.
+     * @param aeropuerto privado
+     * @return devuelve <code>true</code> si se apodido modificar y <code>false</code> si no se apodido.
+     */
     public boolean modificarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
 		AeropuertoPrivado a = (AeropuertoPrivado) tableAeropuerto.getSelectionModel().getSelectedItem();
     	if(aeropuertoDao.modificarAeropuertoPrivado(aeropuerto) && aeropuertoDao.modificarAeropuerto(aeropuerto)
@@ -253,6 +267,12 @@ public class AeropuertoController implements Initializable{
     	return false;
     }
     
+    /**
+     * con el aeropuerto publico que se pasan se modifica el aeropuerto publico seleccionada de la tabla,
+     * esos cambios se reflejan tambien el base de datos y se refresca la tabla.
+     * @param aeropuerto publico
+     * @return devuelve <code>true</code> si se apodido modificar y <code>false</code> si no se apodido.
+     */
     public boolean modificarAeropuertoPublico(AeropuertoPublico aeropuerto) {
 		AeropuertoPublico a = (AeropuertoPublico) tableAeropuerto.getSelectionModel().getSelectedItem();
     	if(aeropuertoDao.modificarAeropuertoPublico(aeropuerto) && aeropuertoDao.modificarAeropuerto(aeropuerto)

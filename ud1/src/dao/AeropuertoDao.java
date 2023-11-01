@@ -122,6 +122,11 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Se modifica el aeropuerto privado en la base de datos
+	 * @param aeropuerto privado
+	 * @return devuelve <code>true</code> si se a podido modificar el aeropuerto o <code>false</code> si no se apodido
+	 */
 	public boolean modificarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
@@ -143,6 +148,11 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Se modifica el aeropuerto publico en la base de datos
+	 * @param aeropuerto publico
+	 * @return devuelve <code>true</code> si se a podido insertar el aeropuerto o <code>false</code> si no se apodido
+	 */
 	public boolean modificarAeropuertoPublico(AeropuertoPublico aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
@@ -164,6 +174,11 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Se modifica el aeropuerto en la base de datos
+	 * @param aeropuerto
+	 * @return devuelve <code>true</code> si se a podido modificar el aeropuerto o <code>false</code> si no se apodido
+	 */
 	public boolean modificarAeropuerto(Aeropuerto aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
@@ -186,6 +201,11 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	/**
+	 * Se modifica la direccion del aeropuerto en la base de datos
+	 * @param direccion
+	 * @return devuelve <code>true</code> si se a podido modificar la direccion o <code>false</code> si no se apodido
+	 */
 	public boolean modificarDireccion(Direccion direccion) {
 		try {
 			conn = new ConexionBDAeropuerto();
