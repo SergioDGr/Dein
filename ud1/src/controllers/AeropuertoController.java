@@ -25,9 +25,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import model.Aeropuerto;
 import model.AeropuertoPrivado;
@@ -90,7 +92,16 @@ public class AeropuertoController implements Initializable{
     
     @FXML
     void click_addAeropuerto(ActionEvent event) {
-
+    	try {
+    		AeropuertoAniadirController controller = new AeropuertoAniadirController();
+    		controller.esPublico = rbPublicos.isSelected();
+    		controller.setAeropuertoController(this);
+			cargar_ventana_modal(controller, "/fxml/EjercicioL_Modal_Aeropuerto.fxml",  "AVIONES - AÑADIR AEROPUERTO",
+					tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()));
+			tfNombre.setText("");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
@@ -155,9 +166,9 @@ public class AeropuertoController implements Initializable{
      * @param titulo El titulo de la ventana
      * @return Devuelve el controlador
      */
-    public Object cargar_ventana_modal(Object controlador , String titulo) throws IOException {
+    public Object cargar_ventana_modal(Object controlador ,String fxml, String titulo, Window stage, Image img) throws IOException {
     	//Cargamos la intefaz que se visualizara
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioL_Login.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
     	//Cargamos el controllador
 		loader.setController(controlador);
 		Parent parent = loader.load();
@@ -169,8 +180,25 @@ public class AeropuertoController implements Initializable{
 		newStage.setScene(newScene);
 		newStage.setTitle(titulo);
 		newStage.setResizable(false);
+		newStage.initOwner(stage);
+		if(img != null)
+			newStage.getIcons().add(img);
 		newStage.showAndWait();
 		return controlador;
+    }
+    
+    public boolean insertarAeropuerto(Aeropuerto aeropuerto) {
+    	boolean aniadido = false;
+    	if(aeropuerto instanceof AeropuertoPublico) {
+    		aniadido = aeropuertoDao.insertarAeropuertoPublico((AeropuertoPublico) aeropuerto);
+    		if(aniadido)
+    			lstAeropuertoPublicos.add(aeropuerto);
+    	}else {
+    		aniadido = aeropuertoDao.insertarAeropuertoPrivado((AeropuertoPrivado) aeropuerto);
+    		if(aniadido)
+    			lstAeropuertoPrivados.add(aeropuerto);
+    	}
+    	return aniadido;
     }
     
     /**

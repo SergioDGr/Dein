@@ -68,6 +68,92 @@ public class AeropuertoDao {
 		return lstAeropuerto;
 	}
 	
+	public boolean insertarAeropuertoPublico(AeropuertoPublico aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			if(insertarAeropuerto(aeropuerto)) {
+				System.out.println(aeropuerto.getId());
+				String consulta = "INSERT INTO aeropuertos_publicos VALUES(?,?,?)";
+				PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+				ps.setInt(1, aeropuerto.getId());
+				ps.setDouble(2, aeropuerto.getFinanciacion());
+				ps.setInt(3, aeropuerto.getTrabajadores());
+				
+				int actualizado = ps.executeUpdate();
+				if(actualizado == 0)
+					return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean insertarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			if(insertarAeropuerto(aeropuerto)) {
+				System.out.println(aeropuerto.getId());
+				String consulta = "INSERT INTO aeropuertos_privados VALUES(?,?)";
+				PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+				ps.setInt(1, aeropuerto.getId());
+				ps.setDouble(2, aeropuerto.getSocios());
+				
+				int actualizado = ps.executeUpdate();
+				if(actualizado == 0)
+					return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	private boolean insertarAeropuerto(Aeropuerto aeropuerto) throws SQLException {
+		if(insertarDireccion(aeropuerto.getDireccion())) {
+			System.out.println(aeropuerto.getDireccion().getId());
+			String consulta = "INSERT INTO Aeropuertos(nombre,anio_inauguracion,capacidad,id_direccion) VALUES(?,?,?,?)";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, aeropuerto.getNombre());
+			ps.setInt(2, aeropuerto.getAnio());
+			ps.setInt(3, aeropuerto.getCapacidad());
+			ps.setInt(4, aeropuerto.getDireccion().getId());
+			
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				throw new SQLException("No se ha insertado ninguna persona");
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			if(rs.next()) {
+				aeropuerto.setId(rs.getInt(1));
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean insertarDireccion(Direccion direccion) throws SQLException {
+		String consulta = "INSERT INTO direcciones(pais,ciudad,calle,numero) VALUES(?,?,?,?)";
+		PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
+		ps.setString(1, direccion.getPais());
+		ps.setString(2, direccion.getCiudad());
+		ps.setString(3, direccion.getCalle());
+		ps.setInt(4, direccion.getNum());
+		
+		int actualizado = ps.executeUpdate();
+		if(actualizado == 0)
+			throw new SQLException("No se ha insertado ninguna persona");
+		
+		ResultSet rs = ps.getGeneratedKeys();
+		if(rs.next()) {
+			direccion.setId(rs.getInt(1));
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Metodo que del resultado crea un aeropuerto y lo devuelve 
 	 * @param resultado un fila del resultado de la consulta, los datos de aeropuerto

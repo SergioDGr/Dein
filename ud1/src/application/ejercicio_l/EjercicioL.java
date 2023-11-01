@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 import javafx.stage.Stage;
@@ -28,7 +29,9 @@ public class EjercicioL extends Application{
 		//Se instancia el controlador de la ventana
 		AeropuertoController controller = new AeropuertoController();
 		//Se visualiza una ventana modal que sirve para el login
-		LoginAeropuertoController loginController = (LoginAeropuertoController) controller.cargar_ventana_modal(new LoginAeropuertoController(), "AVIONES - LOGIN");
+		LoginAeropuertoController loginController = (LoginAeropuertoController) controller.cargar_ventana_modal(
+				new LoginAeropuertoController(),"/fxml/EjercicioL_login.fxml", "AVIONES - LOGIN", null,
+				new Image(getClass().getResource("/img/avion.png").toString()));
 		//Y si el login esta correcto lo visualiza
 		if(loginController.logeado) {
 			//controller.setLoader(loader);
