@@ -229,6 +229,66 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	public boolean eliminarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "DELETE FROM aeropuertos_privados WHERE id_aeropuerto = ?";
+			if(!eliminaAeropuerto(aeropuerto, consulta))
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean eliminarAeropuertoPublico(AeropuertoPublico aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "DELETE FROM aeropuertos_publicos WHERE id_aeropuerto = ?";
+			if(eliminaAeropuerto(aeropuerto, consulta))
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean eliminaAeropuerto(Aeropuerto aeropuerto, String consulta ) throws SQLException {
+		PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+		ps.setInt(1, aeropuerto.getId());
+		
+		int actualizado = ps.executeUpdate();
+		if(actualizado == 0)
+			return false;
+		if(!eliminarAeropuerto(aeropuerto) || !eliminarDireccion(aeropuerto.getDireccion()))
+			return false;
+		return true;
+	}
+	
+	private boolean eliminarAeropuerto(Aeropuerto aeropuerto) throws SQLException {
+		String consulta = "DELETE FROM aeropuertos WHERE id = ?";
+		PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+		ps.setInt(1, aeropuerto.getId());
+		
+		int actualizado = ps.executeUpdate();
+		if(actualizado == 0)
+			return false;
+		return true;
+	}
+	
+	private boolean eliminarDireccion(Direccion direccion) throws SQLException {
+		String consulta = "DELETE FROM direcciones WHERE id = ?";
+		PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+		ps.setInt(1, direccion.getId());
+		
+		int actualizado = ps.executeUpdate();
+		if(actualizado == 0)
+			return false;
+		return true;
+	}
+	
 	/**
 	 * Se inserta un aeropuerto en base de datos
 	 * @param aeropuerto

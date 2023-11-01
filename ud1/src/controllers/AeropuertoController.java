@@ -120,7 +120,24 @@ public class AeropuertoController implements Initializable{
 
     @FXML
     void click_delAeropuerto(ActionEvent event) {
-
+    	if(tableAeropuerto.getSelectionModel().getSelectedIndex() != -1) {
+    		boolean eliminado;
+    		if(rbPrivados.isSelected()) {
+    			AeropuertoPrivado aPrivado = (AeropuertoPrivado) tableAeropuerto.getSelectionModel().getSelectedItem();
+    			eliminado = aeropuertoDao.eliminarAeropuertoPrivado(aPrivado);
+    			if (eliminado)
+    				lstAeropuertoPrivados.remove(aPrivado);
+    		}else {
+    			AeropuertoPublico aPublico = (AeropuertoPublico) tableAeropuerto.getSelectionModel().getSelectedItem();
+    			eliminado = aeropuertoDao.eliminarAeropuertoPublico(aPublico);
+    			if (eliminado)
+    				lstAeropuertoPublicos.remove(aPublico);
+    		}
+    		if (eliminado) 
+    			crear_mostrar_alerta(AlertType.INFORMATION, "Informacion - Eliminar AEROPUERTO", "Se a eliminado el aeropuerto", tableAeropuerto.getScene().getWindow());
+    	}else {
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Eliminar AEROPUERTO", "No se a seleccionado ningun aeropuerto", tableAeropuerto.getScene().getWindow());
+    	}
     }
 
     @FXML
@@ -146,12 +163,7 @@ public class AeropuertoController implements Initializable{
 				e.printStackTrace();
 			}
     	}else {
-    		Alert alert = new Alert(AlertType.ERROR);
-    		alert.setTitle("Error - Editar AEROPUERTO");
-    		alert.setHeaderText(null);
-    		alert.setContentText("No se a seleccionado ningun aeropuerto");
-    		alert.initOwner(tableAeropuerto.getScene().getWindow());
-    		alert.show();
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Editar AEROPUERTO", "No se a seleccionado ningun aeropuerto", tableAeropuerto.getScene().getWindow());
     	}
     }
     
@@ -189,6 +201,21 @@ public class AeropuertoController implements Initializable{
     	tbClmFinaciacion.setVisible(true);
     	tableAeropuerto.setItems(lstAeropuertoPublicos);
     	tfNombre.setText("");
+    }
+    
+    /**
+     * Crea y muestra un mensaje de alerta
+     * @param tipoAlert El tipo de alerta
+     * @param titulo El titulo que tendra la alerta
+     * @param msg El mensaje que mostrara la alerta
+     */
+    private void crear_mostrar_alerta(AlertType tipoAlert,String titulo, String msg, Window window) {
+    	Alert alert = new Alert(tipoAlert);
+    	alert.setHeaderText(null);
+    	alert.setTitle(titulo);
+    	alert.setContentText(msg);
+    	alert.initOwner(window);
+    	alert.showAndWait();
     }
     
     /**
