@@ -19,11 +19,13 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 
@@ -128,7 +130,25 @@ public class AeropuertoController implements Initializable{
 
     @FXML
     void click_modAeropuerto(ActionEvent event) {
-
+    	if(tableAeropuerto.getSelectionModel().getSelectedIndex() != -1) {
+	    	try {
+	    		EditarAeropuertoController controller = new EditarAeropuertoController();
+	    		controller.esPublico = rbPublicos.isSelected();
+	    		controller.setAeropuertoController(this);
+				cargar_ventana_modal(controller, "/fxml/EjercicioL_Modal_Aeropuerto.fxml",  "AVIONES - Editar AEROPUERTO",
+						tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()));
+				tfNombre.setText("");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Error - Editar AEROPUERTO");
+    		alert.setHeaderText(null);
+    		alert.setContentText("No se a seleccionado ningun aeropuerto");
+    		alert.initOwner(tableAeropuerto.getScene().getWindow());
+    		alert.show();
+    	}
     }
     
     @FXML
@@ -194,6 +214,10 @@ public class AeropuertoController implements Initializable{
 		return controlador;
     }
     
+    public Aeropuerto getAeropuerto() {
+    	return tableAeropuerto.getSelectionModel().getSelectedItem();
+    }
+    
     /**
      * Insertar un aeropuerto en la base de datos y si todo esta correcto tambien lo guardar en la tabla
      * referente a su tipo de aeropuerto que es
@@ -212,6 +236,37 @@ public class AeropuertoController implements Initializable{
     			lstAeropuertoPrivados.add(aeropuerto);
     	}
     	return aniadido;
+    }
+    
+    public boolean modificarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
+		AeropuertoPrivado a = (AeropuertoPrivado) tableAeropuerto.getSelectionModel().getSelectedItem();
+    	if(aeropuertoDao.modificarAeropuertoPrivado(aeropuerto) && aeropuertoDao.modificarAeropuerto(aeropuerto)
+    			&& aeropuertoDao.modificarDireccion(aeropuerto.getDireccion())) {
+    		a.setNombre(aeropuerto.getNombre());
+    		a.setDireccion(aeropuerto.getDireccion());
+    		a.setAnio(aeropuerto.getAnio());
+    		a.setCapacidad(aeropuerto.getCapacidad());
+    		a.setSocios(aeropuerto.getSocios());
+    		tableAeropuerto.refresh();
+    		return true;
+    	}
+    	return false;
+    }
+    
+    public boolean modificarAeropuertoPublico(AeropuertoPublico aeropuerto) {
+		AeropuertoPublico a = (AeropuertoPublico) tableAeropuerto.getSelectionModel().getSelectedItem();
+    	if(aeropuertoDao.modificarAeropuertoPublico(aeropuerto) && aeropuertoDao.modificarAeropuerto(aeropuerto)
+    			&& aeropuertoDao.modificarDireccion(aeropuerto.getDireccion())) {
+    		a.setNombre(aeropuerto.getNombre());
+    		a.setDireccion(aeropuerto.getDireccion());
+    		a.setAnio(aeropuerto.getAnio());
+    		a.setCapacidad(aeropuerto.getCapacidad());
+    		a.setFinanciacion(aeropuerto.getFinanciacion());
+    		a.setTrabajadores(aeropuerto.getTrabajadores());
+    		tableAeropuerto.refresh();
+    		return true;
+    	}
+    	return false;
     }
     
     /**

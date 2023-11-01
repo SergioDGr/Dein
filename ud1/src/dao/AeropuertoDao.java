@@ -122,6 +122,93 @@ public class AeropuertoDao {
 		return true;
 	}
 	
+	public boolean modificarAeropuertoPrivado(AeropuertoPrivado aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "UPDATE aeropuertos_privados SET numero_socios = ? WHERE id_aeropuerto = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setInt(1, aeropuerto.getSocios());
+			ps.setInt(2, aeropuerto.getId());
+			
+			int actualizado = ps.executeUpdate();
+			System.out.println(actualizado + " Privado");
+			if(actualizado == 0)
+				return false;
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean modificarAeropuertoPublico(AeropuertoPublico aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "UPDATE aeropuertos_publicos SET financiacion = ?, num_trabajadores = ? WHERE id_aeropuerto = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setDouble(1, aeropuerto.getFinanciacion());
+			ps.setInt(2, aeropuerto.getTrabajadores());
+			ps.setInt(3, aeropuerto.getId());
+			
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				return false;
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean modificarAeropuerto(Aeropuerto aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "UPDATE aeropuertos SET nombre = ?, anio_inauguracion = ?, capacidad = ? WHERE id = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setString(1, aeropuerto.getNombre());
+			ps.setInt(2, aeropuerto.getAnio());
+			ps.setInt(3, aeropuerto.getCapacidad());
+			ps.setInt(4, aeropuerto.getId());
+			
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				return false;
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean modificarDireccion(Direccion direccion) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "UPDATE direcciones SET pais = ?, ciudad = ?, calle = ?, numero = ? WHERE id = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setString(1, direccion.getPais());
+			ps.setString(2, direccion.getCiudad());
+			ps.setString(3, direccion.getCalle());
+			ps.setInt(4, direccion.getNum());
+			ps.setInt(5, direccion.getId());
+			
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				return false;
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * Se inserta un aeropuerto en base de datos
 	 * @param aeropuerto

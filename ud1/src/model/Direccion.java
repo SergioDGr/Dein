@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -92,5 +94,23 @@ public class Direccion {
 	
 	public SimpleIntegerProperty getNumProperty() {
 		return numProperty;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(calle, ciudad, num, pais);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Direccion other = (Direccion) obj;
+		return Objects.equals(calle, other.calle) && Objects.equals(ciudad, other.ciudad) && num == other.num
+				&& Objects.equals(pais, other.pais);
 	}
 }

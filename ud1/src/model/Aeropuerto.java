@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 /**
  * Super Clase que repersenta aeropuerto
  */
@@ -61,6 +63,24 @@ public class Aeropuerto {
 
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(anio, capacidad, direccion, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass()) 
+			return false;
+		Aeropuerto other = (Aeropuerto) obj;
+		return anio == other.anio && capacidad == other.capacidad && Objects.equals(direccion, other.direccion)
+				&& Objects.equals(nombre, other.nombre);
 	}
 	
 }

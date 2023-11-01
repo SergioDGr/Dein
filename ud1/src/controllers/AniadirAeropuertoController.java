@@ -58,7 +58,10 @@ public class AniadirAeropuertoController extends AeropuertoModalController imple
 	
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    	rbtnPublico.setSelected(esPublico);
+    	if(esPublico)
+	 		click_publico(null);
+	 	else
+	 		click_privado(null);
     }
     
 }

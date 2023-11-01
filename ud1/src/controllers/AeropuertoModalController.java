@@ -87,7 +87,7 @@ public class AeropuertoModalController {
      * @param event
      */
     @FXML
-    private void click_privado(ActionEvent event) {
+    protected void click_privado(ActionEvent event) {
     	rbtnPublico.setSelected(false);
 		tfFinanciacion.setVisible(false);
 		tfNumTrabajadores.setVisible(false);
@@ -103,7 +103,7 @@ public class AeropuertoModalController {
      * @param event
      */
     @FXML
-    private void click_publico(ActionEvent event) {
+    protected void click_publico(ActionEvent event) {
     	rbtnPublico.setSelected(true);
 		tfFinanciacion.setVisible(true);
 		tfNumTrabajadores.setVisible(true);
@@ -142,5 +142,4 @@ public class AeropuertoModalController {
     		return "Alguno de los campos no tienen el formato valido";
     	 return "";
     }
-    
 }
