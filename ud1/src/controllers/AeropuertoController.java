@@ -100,7 +100,7 @@ public class AeropuertoController implements Initializable{
     @FXML
     void click_addAeropuerto(ActionEvent event) {
     	try {
-    		AeropuertoAniadirController controller = new AeropuertoAniadirController();
+    		AniadirAeropuertoController controller = new AniadirAeropuertoController();
     		controller.esPublico = rbPublicos.isSelected();
     		controller.setAeropuertoController(this);
 			cargar_ventana_modal(controller, "/fxml/EjercicioL_Modal_Aeropuerto.fxml",  "AVIONES - AÑADIR AEROPUERTO",
