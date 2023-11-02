@@ -190,17 +190,10 @@ public class AeropuertoController implements Initializable{
     void click_viewInfoAeropuerto(ActionEvent event) {
     	Aeropuerto aeropuerto = tableAeropuerto.getSelectionModel().getSelectedItem();
     	if(aeropuerto != null) {
-	    	Alert alert = new Alert(AlertType.INFORMATION);
-	    	alert.setHeaderText(null);
-	    	alert.setTitle("Información");
-	    	alert.setContentText(aeropuerto.toString());
-	    	alert.showAndWait();
+    		crear_mostrar_alerta(AlertType.INFORMATION, "Información", aeropuerto.toString(), tableAeropuerto.getScene().getWindow());
     	}else {
-    		Alert alert = new Alert(AlertType.ERROR);
-	    	alert.setHeaderText(null);
-	    	alert.setTitle("Error");
-	    	alert.setContentText("No se a seleccionado ningun aeropuerto");
-	    	alert.showAndWait();
+    		crear_mostrar_alerta(AlertType.ERROR, "Error", "No se a seleccionado ningun aeropuerto", tableAeropuerto.getScene().getWindow());
+
     	}
     }
     
