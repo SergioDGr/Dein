@@ -83,6 +83,10 @@ public class AvionDao {
 		return true;
 	}
 	
+	/** Elimina de la base de datos el/los aviones referentes al identificador del aeropuerto pasado por parametro 
+	 * @param id_aeropuerto
+	 * @return  devuelve <code>true</code> si se a podido eliminar el/los aviones o <code>false</code> si no se apodido
+	 */
 	public boolean eliminarAviones(int id_aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
