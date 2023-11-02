@@ -1,5 +1,7 @@
 package model;
 
+import javafx.collections.ObservableList;
+
 /**
  * Super Clase que repersenta aeropuerto
  */
@@ -14,7 +16,9 @@ public class Aeropuerto {
 	private Direccion direccion;
 	
 	private int capacidad;
-
+	
+	public ObservableList<Avion> aviones;
+	
 	public Aeropuerto(int id, String nombre, int anio, Direccion direccion, int capacidad) {
 		this.id = id;
 		this.nombre = nombre;
@@ -67,6 +71,14 @@ public class Aeropuerto {
 	public String toString() {
 		String aeropuerto = "Nombre:" + nombre +"\nPais:" +  direccion.getPais() + "\nDirección:" + direccion.getCalle() 
 			+ "\nAño de inaguracion:" + anio + "\nCapacidad:" + capacidad;
+		if(aviones != null) {
+			aeropuerto += "\nAviones:\n  ";
+			for(Avion avion : aviones) {
+				aeropuerto +=  avion.toString().replace("\n", "\n  ") + "\n  ";
+			}
+			aeropuerto = aeropuerto.substring(0, aeropuerto.length() - 3);
+		}
+		
 		return aeropuerto;
 	}
 	
