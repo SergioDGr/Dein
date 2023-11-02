@@ -131,7 +131,7 @@ public class AeropuertoDao {
 	private boolean insertarAeropuerto(Aeropuerto aeropuerto) throws SQLException {
 		//Si se podido insertar la direccion se insertar el aeropuerto en la tabla aeropuertos
 		if(insertarDireccion(aeropuerto.getDireccion())) {
-			String consulta = "INSERT INTO Aeropuertos(nombre,anio_inauguracion,capacidad,id_direccion) VALUES(?,?,?,?)";
+			String consulta = "INSERT INTO aeropuertos(nombre,anio_inauguracion,capacidad,id_direccion) VALUES(?,?,?,?)";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, aeropuerto.getNombre());
 			ps.setInt(2, aeropuerto.getAnio());
