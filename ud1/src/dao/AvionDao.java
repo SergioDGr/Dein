@@ -50,5 +50,21 @@ public class AvionDao {
 		return lstAviones;
 	}
 	
+	public boolean eliminarAviones(int id_aeropuerto) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "DELETE FROM aviones WHERE id_aeropuerto = ?";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setInt(1, id_aeropuerto);
+			
+			int actualizado = ps.executeUpdate();
+			if (actualizado == 0)
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	
 }
