@@ -256,7 +256,7 @@ public class AeropuertoDao {
 		try {
 			conn = new ConexionBDAeropuerto();
 			String consulta = "DELETE FROM aeropuertos_publicos WHERE id_aeropuerto = ?";
-			if(eliminaAeropuerto(aeropuerto, consulta))
+			if(!eliminaAeropuerto(aeropuerto, consulta))
 				return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -279,6 +279,10 @@ public class AeropuertoDao {
 		int actualizado = ps.executeUpdate();
 		if(actualizado == 0)
 			return false;
+		
+		AvionDao avionDao = new AvionDao(); 
+		avionDao.eliminarAviones(aeropuerto.getId());
+		
 		if(!eliminarAeropuerto(aeropuerto) || !eliminarDireccion(aeropuerto.getDireccion()))
 			return false;
 		return true;

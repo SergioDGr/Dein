@@ -3,7 +3,7 @@ package controllers;
 import java.io.IOException;
 
 import java.net.URL;
-
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dao.AeropuertoDao;
@@ -26,6 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 
@@ -128,6 +130,16 @@ public class AeropuertoController implements Initializable{
     	//Si se seleccionado un aeropuerto
     	if(tableAeropuerto.getSelectionModel().getSelectedIndex() != -1) {
     		boolean eliminado;
+    		//Meuesta una ventana de advertencia si realmente quiere eliminar el aeropuerto
+    		ButtonType ok = new ButtonType("Sí", ButtonData.OK_DONE);
+    		ButtonType close = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+    		Alert alert = new Alert(AlertType.WARNING, "¿Seguro que quiere eliminar el aeropuerto seleccionado?", ok, close);
+    		alert.setTitle("Advetencia - Borrar AEROPUERTO");
+    		alert.setHeaderText(null);
+    		Optional<ButtonType> result = alert.showAndWait();
+    		if(result.orElse(ok) == close) {
+    			return;
+    		}
     		//Si aeropuerto privado
     		if(rbPrivados.isSelected()) {
     			AeropuertoPrivado aPrivado = (AeropuertoPrivado) tableAeropuerto.getSelectionModel().getSelectedItem();
@@ -141,6 +153,9 @@ public class AeropuertoController implements Initializable{
     			//si se apodido eliminar de la base de datos se quita de la tabla
     			if (eliminado)
     				lstAeropuertoPublicos.remove(aPublico);
+    			else
+    	    		crear_mostrar_alerta(AlertType.ERROR, "Error - Eliminar AEROPUERTO", "No se a podido eliminar el aeropuerto", tableAeropuerto.getScene().getWindow());
+
     		}
     		//Si se a eliminado muestra que se apodido
     		if (eliminado) 
