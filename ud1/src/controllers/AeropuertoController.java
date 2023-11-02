@@ -348,8 +348,7 @@ public class AeropuertoController implements Initializable{
     	if (!nombre.isEmpty()) {
     		for (int i = 0; i < lstAeropuerto.size(); i++) {
 				Aeropuerto a = lstAeropuerto.get(i);
-				if (a.getNombre().toLowerCase().substring(0, nombre.length())
-						.contains(nombre.toLowerCase()))
+				if (a.getNombre().toLowerCase().contains(nombre.toLowerCase()))
 					lstAeropuertoFiltrar.add(a);
 			}
     	}else {
