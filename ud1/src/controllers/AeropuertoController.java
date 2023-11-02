@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.AeropuertoDao;
-
+import dao.AvionDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -91,6 +91,7 @@ public class AeropuertoController implements Initializable{
     private ToggleGroup tipoAeropuerto;
     
     private AeropuertoDao aeropuertoDao;
+    private AvionDao avionDao;
     
     private ObservableList<Aeropuerto> lstAeropuertoPrivados = FXCollections.observableArrayList();
     private ObservableList<Aeropuerto> lstAeropuertoPublicos = FXCollections.observableArrayList();
@@ -180,10 +181,27 @@ public class AeropuertoController implements Initializable{
     void click_on_offAvion(ActionEvent event) {
 
     }
-
+    
+    /**
+     * Muestra la informacion del aeropuerto seleccionado
+     * @param event
+     */
     @FXML
     void click_viewInfoAeropuerto(ActionEvent event) {
-
+    	Aeropuerto aeropuerto = tableAeropuerto.getSelectionModel().getSelectedItem();
+    	if(aeropuerto != null) {
+	    	Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setHeaderText(null);
+	    	alert.setTitle("Información");
+	    	alert.setContentText(aeropuerto.toString());
+	    	alert.showAndWait();
+    	}else {
+    		Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setHeaderText(null);
+	    	alert.setTitle("Error");
+	    	alert.setContentText("No se a seleccionado ningun aeropuerto");
+	    	alert.showAndWait();
+    	}
     }
     
     /**
@@ -347,12 +365,25 @@ public class AeropuertoController implements Initializable{
     	return lstAeropuertoFiltrar;
     }
     
+    /**
+     * Guara los aviones en el aeropuerto
+     * @param lstAeropuertos
+     */
+    private void getAvionPorAeropuerto(ObservableList<Aeropuerto> lstAeropuertos){
+    	for (Aeropuerto aeropuerto : lstAeropuertos) {
+			aeropuerto.aviones = avionDao.getAviones(aeropuerto.getId());
+		}
+    }
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	//Conseguir datos de los aeropuertos
     	aeropuertoDao = new AeropuertoDao();
+    	avionDao = new AvionDao();
     	lstAeropuertoPrivados = aeropuertoDao.getAeropuertoPrivados();
+    	getAvionPorAeropuerto(lstAeropuertoPrivados);
     	lstAeropuertoPublicos = aeropuertoDao.getAeropuertoPublicos();
+    	getAvionPorAeropuerto(lstAeropuertoPublicos);
     	
     	//Establecer las columnas
     	tbClmID.setCellValueFactory(new PropertyValueFactory<Aeropuerto, Integer>("id"));

@@ -40,4 +40,10 @@ public class AeropuertoPrivado extends Aeropuerto{
 		AeropuertoPrivado other = (AeropuertoPrivado) obj;
 		return socios == other.socios;
 	}	
+	
+	@Override
+		public String toString() {
+			return super.toString() + "\nPrivado\nNúmero de socios:" + socios;
+		}
+	
 }
