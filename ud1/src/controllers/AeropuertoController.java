@@ -117,7 +117,11 @@ public class AeropuertoController implements Initializable{
 			e.printStackTrace();
 		}
     }
-
+    
+    /**
+     * Se abre la ventana modal que gestiona el añadir de un avion a la base de datos
+     * @param event
+     */
     @FXML
     void click_addAvion(ActionEvent event) {
     	ObservableList<Aeropuerto> lstAeropuertos = FXCollections.observableArrayList();
@@ -322,6 +326,12 @@ public class AeropuertoController implements Initializable{
     	return aniadido;
     }
     
+    /**
+     * Inserta un avion a la base de datos y despues si se podido añadir lo añade al aeropuerto
+     * @param avion
+     * @param aeropuerto
+     * @return devuelve <code>true</code> si se a podido hacer la operacion o <code>false</code> si no se apodido
+     */
     public boolean insertarAvion(Avion avion, Aeropuerto aeropuerto) {
     	if(avionDao.insetarAvion(aeropuerto.getId(), avion)) {
     		aeropuerto.aviones.add(avion);

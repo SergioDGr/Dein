@@ -83,6 +83,10 @@ public class AvionModalController implements Initializable{
     	aeropuertoController = controller;
     }
     
+    /**
+     * al darle a cancelar cierra la ventana modal
+     * @param event
+     */
     @FXML
     void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();

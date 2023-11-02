@@ -50,6 +50,12 @@ public class AvionDao {
 		return lstAviones;
 	}
 	
+	/**
+	 * Insetar un avion a la base de datos
+	 * @param id_aeropuerto
+	 * @param avion
+	 * @return devuelve <code>true</code> si se a podido insertar el avion o <code>false</code> si no se apodido
+	 */
 	public boolean insetarAvion(int id_aeropuerto, Avion avion) {
 		try {
 			conn = new ConexionBDAeropuerto();
