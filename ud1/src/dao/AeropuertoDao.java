@@ -281,8 +281,7 @@ public class AeropuertoDao {
 			return false;
 		
 		AvionDao avionDao = new AvionDao(); 
-		if(!avionDao.eliminarAviones(aeropuerto.getId()))
-			return false;
+		avionDao.eliminarAviones(aeropuerto.getId());
 		
 		if(!eliminarAeropuerto(aeropuerto) || !eliminarDireccion(aeropuerto.getDireccion()))
 			return false;
