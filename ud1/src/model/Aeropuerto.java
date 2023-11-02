@@ -69,16 +69,18 @@ public class Aeropuerto {
 	
 	@Override
 	public String toString() {
+		//Guarda toda la informacion
 		String aeropuerto = "Nombre:" + nombre +"\nPais:" +  direccion.getPais() + "\nDirección:" + direccion.getCalle() 
 			+ "\nAño de inaguracion:" + anio + "\nCapacidad:" + capacidad;
+		//Mira si hay aviones
 		if(aviones != null) {
 			aeropuerto += "\nAviones:\n  ";
+			//los recorre los guarda
 			for(Avion avion : aviones) {
 				aeropuerto +=  avion.toString().replace("\n", "\n  ") + "\n  ";
 			}
 			aeropuerto = aeropuerto.substring(0, aeropuerto.length() - 3);
 		}
-		
 		return aeropuerto;
 	}
 	

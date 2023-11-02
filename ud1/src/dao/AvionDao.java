@@ -11,10 +11,18 @@ import javafx.collections.ObservableList;
 
 import model.Avion;
 
+/**
+ * Gestiona la tabla aviones que tengan que ver con avion en la base datos
+ */
 public class AvionDao {
 	
 	private ConexionBDAeropuerto conn;
 	
+	/**
+	 * Metodo que consigue los aviones del aeropuerto pasado con su id
+	 * @param id_aeropuerto 
+	 * @return devuelve la lista de aviones del aeropuerto
+	 */
 	public ObservableList<Avion> getAviones(int id_aeropuerto){
 		ObservableList<Avion> lstAviones = FXCollections.observableArrayList();
 		try {

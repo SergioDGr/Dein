@@ -120,7 +120,11 @@ public class AeropuertoController implements Initializable{
     void click_on_offAvion(ActionEvent event) {
 
     }
-
+    
+    /**
+     * Muestra la informacion del aeropuerto seleccionado
+     * @param event
+     */
     @FXML
     void click_viewInfoAeropuerto(ActionEvent event) {
     	Aeropuerto aeropuerto = tableAeropuerto.getSelectionModel().getSelectedItem();
@@ -210,6 +214,10 @@ public class AeropuertoController implements Initializable{
     	return lstAeropuertoFiltrar;
     }
     
+    /**
+     * Guara los aviones en el aeropuerto
+     * @param lstAeropuertos
+     */
     private void getAvionPorAeropuerto(ObservableList<Aeropuerto> lstAeropuertos){
     	for (Aeropuerto aeropuerto : lstAeropuertos) {
 			aeropuerto.aviones = avionDao.getAviones(aeropuerto.getId());
