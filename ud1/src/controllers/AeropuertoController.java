@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import dao.AeropuertoDao;
 import dao.AvionDao;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -38,6 +39,7 @@ import javafx.stage.Window;
 import model.Aeropuerto;
 import model.AeropuertoPrivado;
 import model.AeropuertoPublico;
+import model.Avion;
 
 /**
  * Controlador principipal que gestiona la ventana principal y todo lo referente a los aeropuertos
@@ -118,7 +120,18 @@ public class AeropuertoController implements Initializable{
 
     @FXML
     void click_addAvion(ActionEvent event) {
-
+    	ObservableList<Aeropuerto> lstAeropuertos = FXCollections.observableArrayList();
+    	lstAeropuertos.addAll(lstAeropuertoPublicos);
+    	lstAeropuertos.addAll(lstAeropuertoPrivados);
+    	try {
+    		AniadirAvionController controller = new AniadirAvionController();
+    		controller.setAeropuertoController(this);
+        	controller.setLstAeropuertos(lstAeropuertos);
+			cargar_ventana_modal(controller, "/fxml/EjercicioL_Avion.fxml", "AVIONES - AÑADIR AEROPUERTO", tableAeropuerto.getScene().getWindow(),
+					new Image(getClass().getResource("/img/avion.png").toString()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     /**
@@ -307,6 +320,14 @@ public class AeropuertoController implements Initializable{
     			lstAeropuertoPrivados.add(aeropuerto);
     	}
     	return aniadido;
+    }
+    
+    public boolean insertarAvion(Avion avion, Aeropuerto aeropuerto) {
+    	if(avionDao.insetarAvion(aeropuerto.getId(), avion)) {
+    		aeropuerto.aviones.add(avion);
+    		return true;
+    	}
+    	return false;
     }
     
     /**

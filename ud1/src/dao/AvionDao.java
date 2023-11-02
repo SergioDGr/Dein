@@ -50,6 +50,33 @@ public class AvionDao {
 		return lstAviones;
 	}
 	
+	public boolean insetarAvion(int id_aeropuerto, Avion avion) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "INSERT INTO aviones(modelo,numero_asientos,velocidad_maxima,activado,id_aeropuerto) VALUES(?,?,?,?,?)";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, avion.getModelo());
+			ps.setInt(2, avion.getNumero_asientos());
+			ps.setDouble(3, avion.getVelocidad_maxima());
+			ps.setBoolean(4, avion.isActivo());
+			ps.setInt(5, id_aeropuerto);
+			
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				return false;
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			
+			rs.next();
+			
+			avion.setId(rs.getInt(1));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean eliminarAviones(int id_aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
