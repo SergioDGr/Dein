@@ -55,7 +55,7 @@
             <ToggleGroup fx:id="tgEstado" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="rfDesactivado" mnemonicParsing="false" text="Desactivado" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <RadioButton fx:id="rfDesactivado" mnemonicParsing="false" text="Desactivado" toggleGroup="$tgEstado" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
