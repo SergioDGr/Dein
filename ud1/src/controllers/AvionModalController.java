@@ -78,6 +78,9 @@ public class AvionModalController implements Initializable{
     protected Text txtError;
     
     @FXML
+    protected Text txtRealizado;
+    
+    @FXML
     protected Text txtAvion;
     
     protected ObservableList<Aeropuerto> lstAeropuertos ;
@@ -91,6 +94,11 @@ public class AvionModalController implements Initializable{
     public void setAeropuertoController(AeropuertoController controller) {
     	aeropuertoController = controller;
     }
+    
+    @FXML
+	void change_cmbAeropuerto(ActionEvent event) {
+		 
+	}
     
     /**
      * al darle a cancelar cierra la ventana modal

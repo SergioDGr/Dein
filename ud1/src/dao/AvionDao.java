@@ -49,7 +49,7 @@ public class AvionDao {
 		
 		return lstAviones;
 	}
-	
+
 	/**
 	 * Insetar un avion a la base de datos
 	 * @param id_aeropuerto
@@ -83,6 +83,22 @@ public class AvionDao {
 		return true;
 	}
 	
+	public void activar_desactivar_avion(int id,boolean activar) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "UPDATE aviones SET activado = ? WHERE id = ?";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setBoolean(1, activar);
+			ps.setInt(2, id);
+			
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				throw new SQLException("No se actualizado el avion");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/** Elimina de la base de datos el/los aviones referentes al identificador del aeropuerto pasado por parametro 
 	 * @param id_aeropuerto
 	 * @return  devuelve <code>true</code> si se a podido eliminar el/los aviones o <code>false</code> si no se apodido
@@ -103,5 +119,4 @@ public class AvionDao {
 		}
 		return true;
 	}
-	
 }

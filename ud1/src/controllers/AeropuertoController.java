@@ -360,7 +360,11 @@ public class AeropuertoController implements Initializable{
     	return false;
     }
     
-    /**
+    public void activar_desactivar_avion(Avion avion) {
+    	avionDao.activar_desactivar_avion(avion.getId(), avion.isActivo());
+    }
+    
+	/**
      * con el aeropuerto privado que se pasan se modifica el aeropuerto privado seleccionada de la tabla,
      * esos cambios se reflejan tambien el base de datos y se refresca la tabla.
      * @param aeropuerto privado
