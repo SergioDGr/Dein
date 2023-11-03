@@ -36,7 +36,7 @@ public class AvionModalController implements Initializable{
     protected ComboBox<String> cmbAeropuerto;
     
     @FXML
-    protected ComboBox<?> cmbAvion;
+    protected ComboBox<String> cmbAvion;
     
     @FXML
     protected GridPane gdPane;
@@ -45,7 +45,7 @@ public class AvionModalController implements Initializable{
     protected RadioButton rbActivado;
 
     @FXML
-    private RadioButton rfDesactivado;
+    protected RadioButton rbDesactivado;
 
     @FXML
     protected TextField tfAsientos;
@@ -58,6 +58,9 @@ public class AvionModalController implements Initializable{
 
     @FXML
     private ToggleGroup tgEstado;
+    
+    @FXML
+    protected Text txtTitulo;
 
     @FXML
     protected Text txtAeropuerto;
@@ -98,6 +101,14 @@ public class AvionModalController implements Initializable{
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
     	stage.close();
     }
+    
+    protected ObservableList<String> getAvion(Aeropuerto aeropuerto){
+		 ObservableList<String> lstAvion = FXCollections.observableArrayList();
+		 aeropuerto.aviones.forEach(avion ->{
+			 lstAvion.add(avion.getModelo());
+		 });
+		 return lstAvion;
+	 }
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
