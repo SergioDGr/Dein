@@ -27,10 +27,10 @@ import model.Aeropuerto;
 public class AvionModalController implements Initializable{
     
 	@FXML
-    private Button btnCancelar;
+	private Button btnCancelar;
 
     @FXML
-    private Button btnGuardar;
+    protected Button btnGuardar;
 
     @FXML
     protected ComboBox<String> cmbAeropuerto;
@@ -114,12 +114,40 @@ public class AvionModalController implements Initializable{
      * @return devuelve la lista de los aviones del aeropuerto
      */
     protected ObservableList<String> getAvion(Aeropuerto aeropuerto){
-		 ObservableList<String> lstAvion = FXCollections.observableArrayList();
-		 aeropuerto.aviones.forEach(avion ->{
-			 lstAvion.add(avion.getModelo());
-		 });
-		 return lstAvion;
+		ObservableList<String> lstAvion = FXCollections.observableArrayList();
+		if(!aeropuerto.aviones.isEmpty()) {
+			btnGuardar.setDisable(false);
+			aeropuerto.aviones.forEach(avion ->{
+				 lstAvion.add(avion.getModelo());
+			});
+		}else {
+			lstAvion.add("No tiene ningun Avión");
+			btnGuardar.setDisable(true);
+		}
+		
+		return lstAvion;
 	 }
+    
+    protected void cambiarInterfaz() {
+    	//Carga el avion
+		change_cmbAeropuerto(null);
+		//Se modifica el panel
+		GridPane.setRowIndex(txtAeropuerto, 1);
+		GridPane.setRowIndex(cmbAeropuerto, 1);
+		GridPane.setRowSpan(rbActivado, 2);
+		GridPane.setRowSpan(rbDesactivado, 2);
+		GridPane.setRowSpan(txtError, 1);
+		GridPane.setRowSpan(txtRealizado, 1);
+		//Se cambia la visibilidad de los componenetes
+		txtAvion.setVisible(true);
+		cmbAvion.setVisible(true);
+		txtAsientos.setVisible(false);
+		tfAsientos.setVisible(false);
+		txtModelo.setVisible(false);
+		tfModelo.setVisible(false);
+		txtVelMax.setVisible(false);
+		tfVelMax.setVisible(false);
+    }
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

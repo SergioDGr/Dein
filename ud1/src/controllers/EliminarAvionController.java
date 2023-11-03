@@ -12,8 +12,7 @@ import javafx.fxml.Initializable;
 import model.Aeropuerto;
 import model.Avion;
 
-
-public class ActivarDesactivarAvionController extends AvionModalController implements Initializable {
+public class EliminarAvionController extends AvionModalController implements Initializable{
 	
 	private Aeropuerto aeropuerto;
 	
@@ -28,31 +27,32 @@ public class ActivarDesactivarAvionController extends AvionModalController imple
 		cmbAvion.getSelectionModel().selectFirst();
 	}
 	
-	/**
-	 * Al darle a guardar actualiza el estado de activo del avion seleccionado en la base de datos
-	 * @param event
-	 */
 	@FXML
 	private void click_guardar(ActionEvent event) {
 		int index = cmbAvion.getSelectionModel().getSelectedIndex();
 		Avion avion = aeropuerto.aviones.get(index);
-		avion.setActivo(rbActivado.isSelected());
-		aeropuertoController.activar_desactivar_avion(avion);
-		if(avion.isActivo()) {
-			txtRealizado.setText("Avion activado" );
+		
+		if(aeropuertoController.eliminarAvion(avion.getId())) {
+			aeropuerto.aviones.remove(avion);
+			cmbAvion.getSelectionModel().selectFirst();
+			cmbAvion.setItems(getAvion(aeropuerto));
 			txtError.setText("");
+			txtRealizado.setText("Se a eliminado el avión");
 		}else {
-			txtError.setText("Avion desactivado");
 			txtRealizado.setText("");
+			txtError.setText("No se apodido eliminar el avión");
 		}
 	}
-	 
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		super.initialize(arg0, arg1);
-		//Cambia el titulo
-		txtTitulo.setText("ACTIVAR/DESACTIVAR AVIÓN");
-		//Cambia la interfaz
+		txtTitulo.setText("BORRAR AVIÓN");
 		cambiarInterfaz();
+		
+		btnGuardar.setText("Borrar");
+		
+		rbActivado.setVisible(false);
+		rbDesactivado.setVisible(false);
 	}
 }

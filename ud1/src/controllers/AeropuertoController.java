@@ -138,7 +138,18 @@ public class AeropuertoController implements Initializable{
     
     @FXML
     void click_delAvion(ActionEvent event) {
-
+    	ObservableList<Aeropuerto> lstAeropuertos = FXCollections.observableArrayList();
+    	lstAeropuertos.addAll(lstAeropuertoPublicos);
+    	lstAeropuertos.addAll(lstAeropuertoPrivados);
+    	try {
+    		EliminarAvionController controller = new EliminarAvionController();
+    		controller.setAeropuertoController(this);
+        	controller.setLstAeropuertos(lstAeropuertos);
+			cargar_ventana_modal(controller, "/fxml/EjercicioL_Avion.fxml", "AVIONES - ELIMINAR AVIÓN", tableAeropuerto.getScene().getWindow(),
+					new Image(getClass().getResource("/img/avion.png").toString()), 500, 300);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     /**
@@ -366,6 +377,10 @@ public class AeropuertoController implements Initializable{
      */
     public void activar_desactivar_avion(Avion avion) {
     	avionDao.activar_desactivar_avion(avion.getId(), avion.isActivo());
+    }
+    
+    public boolean eliminarAvion(int id) {
+    	return avionDao.eliminarAvion(id);
     }
     
 	/**

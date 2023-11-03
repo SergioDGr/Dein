@@ -124,4 +124,22 @@ public class AvionDao {
 		}
 		return true;
 	}
+	
+	public boolean eliminarAvion(int id) {
+		try {
+			conn = new ConexionBDAeropuerto();
+			String consulta = "DELETE FROM aviones WHERE id = ?";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setInt(1, id);
+			
+			int actualizado = ps.executeUpdate();
+			if (actualizado == 0)
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 }
