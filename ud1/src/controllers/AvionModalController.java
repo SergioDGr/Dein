@@ -34,9 +34,12 @@ public class AvionModalController implements Initializable{
 
     @FXML
     protected ComboBox<String> cmbAeropuerto;
-
+    
     @FXML
-    private GridPane gdPane;
+    protected ComboBox<?> cmbAvion;
+    
+    @FXML
+    protected GridPane gdPane;
 
     @FXML
     protected RadioButton rbActivado;
@@ -57,19 +60,22 @@ public class AvionModalController implements Initializable{
     private ToggleGroup tgEstado;
 
     @FXML
-    private Text txtAeropuerto;
+    protected Text txtAeropuerto;
 
     @FXML
-    private Text txtAsientos;
+    protected Text txtAsientos;
 
     @FXML
-    private Text txtModelo;
+    protected Text txtModelo;
 
     @FXML
-    private Text txtVelMax;
+    protected Text txtVelMax;
     
     @FXML
     protected Text txtError;
+    
+    @FXML
+    protected Text txtAvion;
     
     protected ObservableList<Aeropuerto> lstAeropuertos ;
     

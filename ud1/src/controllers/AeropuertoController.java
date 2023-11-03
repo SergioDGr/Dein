@@ -101,24 +101,6 @@ public class AeropuertoController implements Initializable{
     private ObservableList<Aeropuerto> lstAeropuertoPublicos = FXCollections.observableArrayList();
     
     /**
-     * Se abre la ventana modal que gestiona el añadir un aeropuerto a la base de datos
-     * @param event
-     */
-    @FXML
-    void click_addAeropuerto(ActionEvent event) {
-    	try {
-    		AniadirAeropuertoController controller = new AniadirAeropuertoController();
-    		controller.esPublico = rbPublicos.isSelected();
-    		controller.setAeropuertoController(this);
-			cargar_ventana_modal(controller, "/fxml/EjercicioL_Modal_Aeropuerto.fxml",  "AVIONES - AÑADIR AEROPUERTO",
-					tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()));
-			tfNombre.setText("");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
-    
-    /**
      * Se abre la ventana modal que gestiona el añadir de un avion a la base de datos
      * @param event
      */
@@ -133,6 +115,45 @@ public class AeropuertoController implements Initializable{
         	controller.setLstAeropuertos(lstAeropuertos);
 			cargar_ventana_modal(controller, "/fxml/EjercicioL_Avion.fxml", "AVIONES - AÑADIR AEROPUERTO", tableAeropuerto.getScene().getWindow(),
 					new Image(getClass().getResource("/img/avion.png").toString()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void click_on_offAvion(ActionEvent event) {
+    	ObservableList<Aeropuerto> lstAeropuertos = FXCollections.observableArrayList();
+    	lstAeropuertos.addAll(lstAeropuertoPublicos);
+    	lstAeropuertos.addAll(lstAeropuertoPrivados);
+    	try {
+    		ActivarDesactivarAvionController controller = new ActivarDesactivarAvionController();
+    		controller.setAeropuertoController(this);
+        	controller.setLstAeropuertos(lstAeropuertos);
+			cargar_ventana_modal(controller, "/fxml/EjercicioL_Avion.fxml", "AVIONES - ACTIVAR/DESACTIVAR AVIÓN", tableAeropuerto.getScene().getWindow(),
+					new Image(getClass().getResource("/img/avion.png").toString()), 500, 300);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void click_delAvion(ActionEvent event) {
+
+    }
+    
+    /**
+     * Se abre la ventana modal que gestiona el añadir un aeropuerto a la base de datos
+     * @param event
+     */
+    @FXML
+    void click_addAeropuerto(ActionEvent event) {
+    	try {
+    		AniadirAeropuertoController controller = new AniadirAeropuertoController();
+    		controller.esPublico = rbPublicos.isSelected();
+    		controller.setAeropuertoController(this);
+			cargar_ventana_modal(controller, "/fxml/EjercicioL_Modal_Aeropuerto.fxml",  "AVIONES - AÑADIR AEROPUERTO",
+					tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()));
+			tfNombre.setText("");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -181,11 +202,6 @@ public class AeropuertoController implements Initializable{
     		crear_mostrar_alerta(AlertType.ERROR, "Error - Eliminar AEROPUERTO", "No se a seleccionado ningun aeropuerto", tableAeropuerto.getScene().getWindow());
     	}
     }
-
-    @FXML
-    void click_delAvion(ActionEvent event) {
-
-    }
     
     /**
      * Se abre la ventana modal que gestiona la modificacion de un aeropuerto a la base de datos
@@ -208,12 +224,7 @@ public class AeropuertoController implements Initializable{
     		crear_mostrar_alerta(AlertType.ERROR, "Error - Editar AEROPUERTO", "No se a seleccionado ningun aeropuerto", tableAeropuerto.getScene().getWindow());
     	}
     }
-    
-    @FXML
-    void click_on_offAvion(ActionEvent event) {
-
-    }
-    
+        
     /**
      * Muestra la informacion del aeropuerto seleccionado
      * @param event
@@ -277,7 +288,8 @@ public class AeropuertoController implements Initializable{
      * @param titulo El titulo de la ventana
      * @return Devuelve el controlador
      */
-    public Object cargar_ventana_modal(Object controlador ,String fxml, String titulo, Window stage, Image img) throws IOException {
+    public Object cargar_ventana_modal(Object controlador ,String fxml, String titulo, Window stage, Image img,
+    		double ancho, double altura) throws IOException {
     	//Cargamos la intefaz que se visualizara
     	FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
     	//Cargamos el controllador
@@ -294,8 +306,16 @@ public class AeropuertoController implements Initializable{
 		newStage.initOwner(stage);
 		if(img != null)
 			newStage.getIcons().add(img);
+		if(altura != -1)
+			newStage.setHeight(altura);
+		if(ancho != -1)
+			newStage.setWidth(ancho);
 		newStage.showAndWait();
 		return controlador;
+    }
+    
+    public Object cargar_ventana_modal(Object controlador ,String fxml, String titulo, Window stage, Image img) throws IOException {
+    	return cargar_ventana_modal(controlador, fxml, titulo, stage, img, -1, -1);
     }
     
     /**
