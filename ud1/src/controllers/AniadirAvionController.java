@@ -17,6 +17,7 @@ public class AniadirAvionController extends AvionModalController{
 	 */
     @FXML
     void click_guardar(ActionEvent event) {
+    	txtRealizado.setText("");
     	String msgError = validar();
     	//Si hay algun error
     	if(!msgError.isEmpty()) {
@@ -34,6 +35,7 @@ public class AniadirAvionController extends AvionModalController{
 			tfAsientos.setText("");
 			tfModelo.setText("");
 			tfVelMax.setText("");
+			txtRealizado.setText("Se añadido el avion");
 		}
     }
     
@@ -65,7 +67,6 @@ public class AniadirAvionController extends AvionModalController{
 	private boolean esValidarModelo() {
 		int index = cmbAeropuerto.getSelectionModel().getSelectedIndex();
 		Aeropuerto aeropuerto = lstAeropuertos.get(index);
-		System.out.println(aeropuerto);
 		ObservableList<Avion> lstAvion = aeropuerto.aviones;
 		
 		for(Avion avion : lstAvion) {
