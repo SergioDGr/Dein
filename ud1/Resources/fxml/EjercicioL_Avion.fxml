@@ -61,7 +61,7 @@
          </GridPane.margin>
       </RadioButton>
       <Text fx:id="txtAeropuerto" strokeType="OUTSIDE" strokeWidth="0.0" text="Aeropuerto:" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-      <ComboBox fx:id="cmbAeropuerto" prefWidth="425.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <ComboBox fx:id="cmbAeropuerto" onAction="#change_cmbAeropuerto" prefWidth="425.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="15.0" right="15.0" />
          </GridPane.margin>
