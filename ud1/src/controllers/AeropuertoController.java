@@ -121,6 +121,10 @@ public class AeropuertoController implements Initializable{
 		}
     }
     
+    /**
+     * Se abre la ventana modal que gestiona la activacion/desactivacion del avion en la base de datos
+     * @param event
+     */
     @FXML
     void click_on_offAvion(ActionEvent event) {
     	ObservableList<Aeropuerto> lstAeropuertos = FXCollections.observableArrayList();
