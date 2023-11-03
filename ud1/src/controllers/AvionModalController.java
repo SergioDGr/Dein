@@ -128,6 +128,10 @@ public class AvionModalController implements Initializable{
 		return lstAvion;
 	 }
     
+    /**
+     * Cambia la interfaz inicial dedica a añadir por otro mas acorde activar/desactivar avion o eliminar 
+     * avion.
+     */
     protected void cambiarInterfaz() {
     	//Carga el avion
 		change_cmbAeropuerto(null);

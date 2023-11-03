@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 
 import java.net.URL;
+
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -136,6 +137,10 @@ public class AeropuertoController implements Initializable{
 		}
     }
     
+    /**
+     * Se abre la ventana modal que gestiona la eliminacion de un avion a la base de datos
+     * @param event
+     */
     @FXML
     void click_delAvion(ActionEvent event) {
     	ObservableList<Aeropuerto> lstAeropuertos = FXCollections.observableArrayList();
@@ -296,8 +301,14 @@ public class AeropuertoController implements Initializable{
     /**
      * carga y muestra la ventana modal con los siguientes paramatros:
      * @param controlador El controlador de la ventana
+     * @param fxml la interfaz
      * @param titulo El titulo de la ventana
+     * @param stage la ventana
+     * @param img el icono
+     * @param ancho el ancho de la ventana
+     * @param altura el altura de la ventana
      * @return Devuelve el controlador
+     * @throws IOException Excepcion al intentar conseguir la interfaz
      */
     public Object cargar_ventana_modal(Object controlador ,String fxml, String titulo, Window stage, Image img,
     		double ancho, double altura) throws IOException {
@@ -325,6 +336,16 @@ public class AeropuertoController implements Initializable{
 		return controlador;
     }
     
+    /**
+     * carga y muestra la ventana modal con los siguientes paramatros:
+     * @param controlador El controlador de la ventana
+     * @param fxml la interfaz
+     * @param titulo El titulo de la ventana
+     * @param stage la ventana
+     * @param img el icono
+     * @return Devuelve el controlador
+     * @throws IOException Excepcion al intentar conseguir la interfaz
+     */
     public Object cargar_ventana_modal(Object controlador ,String fxml, String titulo, Window stage, Image img) throws IOException {
     	return cargar_ventana_modal(controlador, fxml, titulo, stage, img, -1, -1);
     }
@@ -379,6 +400,11 @@ public class AeropuertoController implements Initializable{
     	avionDao.activar_desactivar_avion(avion.getId(), avion.isActivo());
     }
     
+    /**
+     * Elimina en base de datos el avion por su id
+     * @param id del avion
+     * @return devuelve <code>true</code> si se a podido hacer la operacion o <code>false</code> si no se apodido
+     */
     public boolean eliminarAvion(int id) {
     	return avionDao.eliminarAvion(id);
     }
