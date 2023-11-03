@@ -83,5 +83,6 @@
             <Insets left="15.0" right="15.0" />
          </GridPane.margin>
       </ComboBox>
+      <Text fx:id="txtRealizado" fill="#17ff00" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
    </children>
 </GridPane>
