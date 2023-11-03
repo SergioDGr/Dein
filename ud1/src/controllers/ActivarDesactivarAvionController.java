@@ -62,6 +62,7 @@ public class ActivarDesactivarAvionController extends AvionModalController imple
 		GridPane.setRowSpan(rbActivado, 2);
 		GridPane.setRowSpan(rbDesactivado, 2);
 		GridPane.setRowSpan(txtError, 1);
+		GridPane.setRowSpan(txtRealizado, 1);
 		//Se cambia la visibilidad de los componenetes
 		txtAvion.setVisible(true);
 		cmbAvion.setVisible(true);
