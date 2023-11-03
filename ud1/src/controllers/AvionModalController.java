@@ -96,9 +96,7 @@ public class AvionModalController implements Initializable{
     }
     
     @FXML
-	void change_cmbAeropuerto(ActionEvent event) {
-		 
-	}
+	void change_cmbAeropuerto(ActionEvent event) {}
     
     /**
      * al darle a cancelar cierra la ventana modal
@@ -110,6 +108,11 @@ public class AvionModalController implements Initializable{
     	stage.close();
     }
     
+    /**
+     * Se consigue una lista de los avion del aeropuerto 
+     * @param aeropuerto
+     * @return devuelve la lista de los aviones del aeropuerto
+     */
     protected ObservableList<String> getAvion(Aeropuerto aeropuerto){
 		 ObservableList<String> lstAvion = FXCollections.observableArrayList();
 		 aeropuerto.aviones.forEach(avion ->{
@@ -120,11 +123,12 @@ public class AvionModalController implements Initializable{
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+    	//Se consigue la lista de nombres aeropuerto
     	ObservableList<String> listaNombreAeropuertos = FXCollections.observableArrayList();
     	lstAeropuertos.forEach(aeropuerto ->{
     		listaNombreAeropuertos.add(aeropuerto.getNombre());
     	});
-    	
+    	//Se guarda en el combo box de aeropuerto
     	cmbAeropuerto.setItems(listaNombreAeropuertos);
     	cmbAeropuerto.getSelectionModel().selectFirst();
     }

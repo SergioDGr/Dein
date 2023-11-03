@@ -360,6 +360,10 @@ public class AeropuertoController implements Initializable{
     	return false;
     }
     
+    /**
+     * Cambia en la base de datos en estado de activado del avion 
+     * @param avion a modificiar la activacion y desactivar
+     */
     public void activar_desactivar_avion(Avion avion) {
     	avionDao.activar_desactivar_avion(avion.getId(), avion.isActivo());
     }

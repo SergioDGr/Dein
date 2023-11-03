@@ -83,6 +83,11 @@ public class AvionDao {
 		return true;
 	}
 	
+	/**
+	 * Cambia el estado de la base de datos del avion
+	 * @param id del avion
+	 * @param activar
+	 */
 	public void activar_desactivar_avion(int id,boolean activar) {
 		try {
 			conn = new ConexionBDAeropuerto();
