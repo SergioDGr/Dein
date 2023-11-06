@@ -49,10 +49,15 @@ public class LoginAeropuertoController {
     
     @FXML
     void click_key_word(KeyEvent key) {
-    	System.out.println("HOLA");
     	if(key.getCode().equals(KeyCode.ENTER)) {
     		click_login(null);
+    		return;
     	}
+    	if(key.getCode().equals(KeyCode.ESCAPE)) {
+    		Stage stage = (Stage) btnLogin.getScene().getWindow();
+    		stage.close();
+    	}
+    		
     }
     
     /**

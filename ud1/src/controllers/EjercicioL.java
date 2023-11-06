@@ -1,8 +1,5 @@
 package controllers;
 
-import controllers.AeropuertoController;
-import controllers.LoginAeropuertoController;
-
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;

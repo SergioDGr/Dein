@@ -8,7 +8,8 @@ import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.Aeropuerto;
 import model.Avion;
 
@@ -52,6 +53,17 @@ public class EliminarAvionController extends AvionModalController implements Ini
 			txtError.setText("No se apodido eliminar el avión");
 		}
 	}
+	
+	@FXML
+    void click_key_word(KeyEvent key) {
+    	if(key.getCode().equals(KeyCode.ENTER)) {
+    		click_guardar(null);
+    		return;
+    	}
+    	if(key.getCode().equals(KeyCode.ESCAPE)) {
+    		click_cancelar(null);
+    	}
+    }
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

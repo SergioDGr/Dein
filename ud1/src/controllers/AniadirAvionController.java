@@ -47,9 +47,12 @@ public class AniadirAvionController extends AvionModalController{
     
     @FXML
     void click_key_word(KeyEvent key) {
-    	System.out.println("HOLA");
     	if(key.getCode().equals(KeyCode.ENTER)) {
     		click_guardar(null);
+    		return;
+    	}
+    	if(key.getCode().equals(KeyCode.ESCAPE)) {
+    		click_cancelar(null);
     	}
     }
     
