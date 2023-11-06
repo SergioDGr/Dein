@@ -38,7 +38,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.Mnemonic;
 import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Modality;

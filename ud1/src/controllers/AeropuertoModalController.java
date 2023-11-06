@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
@@ -74,6 +75,12 @@ public class AeropuertoModalController {
     @FXML
     protected Text txtError;
     
+    @FXML
+    private Text txtImagen;
+    
+    @FXML
+    private ImageView imageSelected;
+    
     protected boolean esPublico;
     
     protected AeropuertoController aeropuertoController;
@@ -132,6 +139,11 @@ public class AeropuertoModalController {
     protected void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
     	stage.close();
+    }
+    
+    @FXML
+    void click_select_imagen(ActionEvent event) {
+
     }
     
     /**
