@@ -1,5 +1,6 @@
 package model;
 
+import java.io.InputStream;
 import java.util.Objects;
 import javafx.collections.ObservableList;
 
@@ -17,6 +18,8 @@ public class Aeropuerto {
 	private Direccion direccion;
 	
 	private int capacidad;
+	
+	private InputStream image;
 	
 	public ObservableList<Avion> aviones;
 	
@@ -67,7 +70,15 @@ public class Aeropuerto {
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
-
+	
+	public InputStream getImage() {
+		return image;
+	}
+	
+	public void setImage(InputStream image) {
+		this.image = image;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(anio, capacidad, direccion, nombre);
@@ -100,6 +111,8 @@ public class Aeropuerto {
 			}
 			aeropuerto = aeropuerto.substring(0, aeropuerto.length() - 3);
 		}
+		if(image != null)
+			aeropuerto += "Tiene imagen";
 		return aeropuerto;
 	}
 	

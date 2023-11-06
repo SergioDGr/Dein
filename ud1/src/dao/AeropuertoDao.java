@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -182,13 +183,14 @@ public class AeropuertoDao {
 	public boolean modificarAeropuerto(Aeropuerto aeropuerto) {
 		try {
 			conn = new ConexionBDAeropuerto();
-			String consulta = "UPDATE aeropuertos SET nombre = ?, anio_inauguracion = ?, capacidad = ? WHERE id = ?";
+			String consulta = "UPDATE aeropuertos SET nombre = ?, anio_inauguracion = ?, capacidad = ?, imagen = ? WHERE id = ?";
 			
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ps.setString(1, aeropuerto.getNombre());
 			ps.setInt(2, aeropuerto.getAnio());
 			ps.setInt(3, aeropuerto.getCapacidad());
-			ps.setInt(4, aeropuerto.getId());
+			ps.setBinaryStream(4, aeropuerto.getImage().);
+			ps.setInt(5, aeropuerto.getId());
 			
 			int actualizado = ps.executeUpdate();
 			if(actualizado == 0)
@@ -331,13 +333,20 @@ public class AeropuertoDao {
 	private boolean insertarAeropuerto(Aeropuerto aeropuerto) throws SQLException {
 		//Si se podido insertar la direccion se insertar el aeropuerto en la tabla aeropuertos
 		if(insertarDireccion(aeropuerto.getDireccion())) {
-			String consulta = "INSERT INTO aeropuertos(nombre,anio_inauguracion,capacidad,id_direccion) VALUES(?,?,?,?)";
+			String consulta = "";
+			if(aeropuerto.getImage() != null)
+				consulta = "INSERT INTO aeropuertos(nombre,anio_inauguracion,capacidad,id_direccion,imagen) VALUES(?,?,?,?,?)";
+			else
+				consulta = "INSERT INTO aeropuertos(nombre,anio_inauguracion,capacidad,id_direccion) VALUES(?,?,?,?)";
+
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, aeropuerto.getNombre());
 			ps.setInt(2, aeropuerto.getAnio());
 			ps.setInt(3, aeropuerto.getCapacidad());
 			ps.setInt(4, aeropuerto.getDireccion().getId());
-			
+			if(aeropuerto.getImage() != null)
+				ps.setBinaryStream(5, aeropuerto.getImage());
+				
 			int actualizado = ps.executeUpdate();
 			if(actualizado == 0)
 				throw new SQLException("No se ha insertado ninguna persona");
@@ -394,12 +403,17 @@ public class AeropuertoDao {
 		String ciudad = resultado.getString("ciudad");
 		String calle = resultado.getString("calle");
 		int numero = resultado.getInt("numero");
+		
 		Direccion direccion = new Direccion(id_direccion, pais, ciudad, calle, numero);
 		Aeropuerto aeropuerto;
 		if (publico) 
 			aeropuerto = new AeropuertoPublico(id_aeropuerto, nombre, anio, direccion, capacidad);
 		else
 			aeropuerto = new AeropuertoPrivado(id_aeropuerto, nombre, anio, direccion, capacidad);
+		
+		InputStream image = resultado.getBinaryStream("imagen");
+		aeropuerto.setImage(image);
+		
 		return aeropuerto;
 	}
 	

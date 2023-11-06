@@ -122,12 +122,18 @@
             <Insets right="40.0" />
          </GridPane.margin>
       </Text>
-      <Text fx:id="txtImagen" strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen:" visible="false" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+      <Text fx:id="txtImagen" strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen:" visible="false" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets right="15.0" />
+            <Insets right="15.0" top="15.0" />
          </GridPane.margin>
       </Text>
-      <Button fx:id="btnImagen" mnemonicParsing="false" onAction="#click_select_imagen" text="Seleccionar Imagen ..." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <ImageView fx:id="imageSelected" fitHeight="102.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+      <Button fx:id="btnImagen" mnemonicParsing="false" onAction="#click_select_imagen" text="Seleccionar Imagen ..." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="15.0" />
+         </GridPane.margin></Button>
+      <ImageView fx:id="imageSelected" fitHeight="110.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.rowSpan="3">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="35.0" />
+         </GridPane.margin></ImageView>
    </children>
 </GridPane>

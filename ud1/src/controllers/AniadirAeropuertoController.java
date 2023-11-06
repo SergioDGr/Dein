@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.InputStream;
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -21,6 +22,8 @@ import model.Direccion;
  * Clase controladora que gestiona el añadir un aeropuerto en la base de datos
  */
 public class AniadirAeropuertoController extends AeropuertoModalController implements Initializable{
+	
+	private InputStream imageBinary;
 	
 	/**
 	 * Al darle a guardar valida los textfield y si todo esta correcto intenta insertar un aeropuerto en
@@ -52,6 +55,7 @@ public class AniadirAeropuertoController extends AeropuertoModalController imple
     		aPrivado.setSocios(Integer.parseInt(tfNumSocios.getText()));
     		a = aPrivado;
     	}
+    	a.setImage(imageBinary);
     	//se intenta insertar la base de datos
     	boolean insertado = false;
     	if(!esEjercicioM)
@@ -77,12 +81,21 @@ public class AniadirAeropuertoController extends AeropuertoModalController imple
     	}
     }
 	
+	@FXML
+    void click_select_imagen(ActionEvent event) {
+		imageBinary = seleccionarImagen(false);
+	}
+	
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    	if(esPublico)
+    	
+		if(esPublico)
 	 		click_publico(null);
 	 	else
 	 		click_privado(null);
+		imageSelected.setVisible(false);
+    	cambiarInterfazEjercicioM();
+    		
     }
     
 }

@@ -5,8 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 import model.Aeropuerto;
 import model.Avion;
 
@@ -56,6 +58,11 @@ public class AniadirAvionController extends AvionModalController{
     	}
     }
     
+    @FXML
+    void click_select_imagen(ActionEvent event) {
+    	
+    }
+    
     /**
      * Valida todos los campos text field si estan correctos
      * @return devuelve un {@link String} vacio si todo esta valido en caso contrario guardar el mesaje del error
@@ -94,5 +101,5 @@ public class AniadirAvionController extends AvionModalController{
 		
 		return true;
 	}
-
+	
 }

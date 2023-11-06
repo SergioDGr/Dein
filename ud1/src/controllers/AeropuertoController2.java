@@ -188,7 +188,7 @@ public class AeropuertoController2 implements Initializable{
     		controller.esPublico = rbPublicos.isSelected();
     		controller.setAeropuertoController(this);
 			cargar_ventana_modal(controller, "/fxml/EjercicioL_Modal_Aeropuerto.fxml",  "AVIONES - AÑADIR AEROPUERTO",
-					tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()));
+					tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()), 500, 700);
 			tfNombre.setText("");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -251,7 +251,7 @@ public class AeropuertoController2 implements Initializable{
 	    		controller.esPublico = rbPublicos.isSelected();
 	    		controller.setAeropuertoController(this);
 				cargar_ventana_modal(controller, "/fxml/EjercicioL_Modal_Aeropuerto.fxml",  "AVIONES - Editar AEROPUERTO",
-						tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()));
+						tableAeropuerto.getScene().getWindow() , new Image(getClass().getResource("/img/avion.png").toString()), 500, 700);
 				tfNombre.setText("");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -463,6 +463,13 @@ public class AeropuertoController2 implements Initializable{
     		a.setAnio(aeropuerto.getAnio());
     		a.setCapacidad(aeropuerto.getCapacidad());
     		a.setSocios(aeropuerto.getSocios());
+    		a.setImage(aeropuerto.getImage());
+    		try {
+				System.out.println(aeropuerto.getImage().available());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		tableAeropuerto.refresh();
     		return true;
     	}
@@ -485,6 +492,7 @@ public class AeropuertoController2 implements Initializable{
     		a.setCapacidad(aeropuerto.getCapacidad());
     		a.setFinanciacion(aeropuerto.getFinanciacion());
     		a.setTrabajadores(aeropuerto.getTrabajadores());
+    		a.setImage(aeropuerto.getImage());
     		tableAeropuerto.refresh();
     		return true;
     	}
