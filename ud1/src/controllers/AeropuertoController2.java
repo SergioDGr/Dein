@@ -33,6 +33,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Modality;
@@ -293,7 +294,11 @@ public class AeropuertoController2 implements Initializable{
     
     @FXML
     void table_mouse_clicked(MouseEvent event) {
-
+    	if(event.getButton().equals(MouseButton.PRIMARY)){
+            if(event.getClickCount() == 2 && tableAeropuerto.getSelectionModel().getSelectedIndex() != -1 ){
+                click_viewInfoAeropuerto(null);
+            }
+        }
     }
     
     @FXML
