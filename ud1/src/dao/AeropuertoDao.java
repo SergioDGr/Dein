@@ -189,7 +189,7 @@ public class AeropuertoDao {
 			ps.setString(1, aeropuerto.getNombre());
 			ps.setInt(2, aeropuerto.getAnio());
 			ps.setInt(3, aeropuerto.getCapacidad());
-			ps.setBinaryStream(4, aeropuerto.getImage().);
+			ps.setBinaryStream(4, aeropuerto.getImage());
 			ps.setInt(5, aeropuerto.getId());
 			
 			int actualizado = ps.executeUpdate();
