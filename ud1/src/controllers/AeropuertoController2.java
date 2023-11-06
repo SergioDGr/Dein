@@ -31,6 +31,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -100,6 +101,12 @@ public class AeropuertoController2 implements Initializable{
     
     @FXML
     private ContextMenu tableContextMenu;
+    
+    @FXML
+    private MenuItem menuItemAeorpuertoAniadir;
+
+    @FXML
+    private MenuItem menuItemAvionAniadir;
     
     private AeropuertoDao aeropuertoDao;
     private AvionDao avionDao;
