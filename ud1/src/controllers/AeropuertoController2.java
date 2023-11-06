@@ -303,12 +303,12 @@ public class AeropuertoController2 implements Initializable{
     
     @FXML
     void click_table_borrar_aeropuerto(ActionEvent event) {
-
+    	click_delAeropuerto(event);
     }
 
     @FXML
     void click_table_editar_aeropuerto(ActionEvent event) {
-
+    	click_modAeropuerto(event);
     }
     
     /**
@@ -540,6 +540,15 @@ public class AeropuertoController2 implements Initializable{
     			tableAeropuerto.setItems(getListaFiltrada(lstAeropuertoPrivados));
     		else
     			tableAeropuerto.setItems(getListaFiltrada(lstAeropuertoPublicos));
+    	});
+    	
+    	//Visualiza o oculta el context menu
+    	tableAeropuerto.setOnContextMenuRequested(event -> {
+    		
+    	    if (!tableAeropuerto.getSelectionModel().isEmpty()) { // Verificar si el click fue con el botón derecho
+    	    	tableContextMenu.show(tableAeropuerto, event.getScreenX(), event.getScreenY());
+    	    }else
+    	    	tableContextMenu.hide();
     	});
     	
     	//Añadir a la tabla
