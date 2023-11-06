@@ -35,6 +35,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.Mnemonic;
 import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Modality;
@@ -104,7 +108,7 @@ public class AeropuertoController2 implements Initializable{
     
     @FXML
     private MenuItem menuItemAeorpuertoAniadir;
-
+    
     @FXML
     private MenuItem menuItemAvionAniadir;
     
@@ -557,6 +561,13 @@ public class AeropuertoController2 implements Initializable{
     	    }else
     	    	tableContextMenu.hide();
     	});
+    	
+    	//Combinacion de teclas
+        KeyCombination kc1 = new KeyCodeCombination(KeyCode.DIGIT1, KeyCombination.CONTROL_DOWN);
+        menuItemAeorpuertoAniadir.setAccelerator(kc1);
+        KeyCombination kc2 = new KeyCodeCombination(KeyCode.DIGIT2, KeyCombination.CONTROL_DOWN);
+        menuItemAvionAniadir.setAccelerator(kc2);
+        
     	
     	//Añadir a la tabla
     	tableAeropuerto.setItems(lstAeropuertoPrivados);
