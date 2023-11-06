@@ -87,13 +87,23 @@ public class AvionModalController implements Initializable{
     
     protected AeropuertoController aeropuertoController;
     
+    protected AeropuertoController2 aeropuertoController2;
+    
+    protected boolean esEjercicioM = false;
+    
     public void setLstAeropuertos(ObservableList<Aeropuerto> lstAeropuertos) {
     	this.lstAeropuertos = lstAeropuertos;
     }
     
     public void setAeropuertoController(AeropuertoController controller) {
     	aeropuertoController = controller;
+    	esEjercicioM = false;
     }
+    
+    public void setAeropuertoController(AeropuertoController2 controller) {
+    	aeropuertoController2 = controller;
+    	esEjercicioM = true;
+	}
     
     @FXML
 	void change_cmbAeropuerto(ActionEvent event) {}

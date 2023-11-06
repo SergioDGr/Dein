@@ -37,7 +37,11 @@ public class ActivarDesactivarAvionController extends AvionModalController imple
 		int index = cmbAvion.getSelectionModel().getSelectedIndex();
 		Avion avion = aeropuerto.aviones.get(index);
 		avion.setActivo(rbActivado.isSelected());
-		aeropuertoController.activar_desactivar_avion(avion);
+		if(!esEjercicioM)
+			aeropuertoController.activar_desactivar_avion(avion);
+		else
+			aeropuertoController2.activar_desactivar_avion(avion);
+
 		if(avion.isActivo()) {
 			txtRealizado.setText("Avion activado" );
 			txtError.setText("");
@@ -55,4 +59,5 @@ public class ActivarDesactivarAvionController extends AvionModalController imple
 		//Cambia la interfaz
 		cambiarInterfaz();
 	}
+
 }

@@ -78,9 +78,19 @@ public class AeropuertoModalController {
     
     protected AeropuertoController aeropuertoController;
     
+    protected AeropuertoController2 aeropuertoController2;
+    
+    protected boolean esEjercicioM = false;
+    
     public void setAeropuertoController(AeropuertoController controller) {
     	aeropuertoController = controller;
+    	esEjercicioM = false;
     }
+    
+    public void setAeropuertoController(AeropuertoController2 controller) {
+    	aeropuertoController2 = controller;
+    	esEjercicioM = true;
+	}
     
     /**
      * Si se seleccion el radio button privado se cambia elementos para aeoropuerto privados

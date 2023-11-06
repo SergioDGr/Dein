@@ -36,7 +36,12 @@ public class EliminarAvionController extends AvionModalController implements Ini
 		int index = cmbAvion.getSelectionModel().getSelectedIndex();
 		Avion avion = aeropuerto.aviones.get(index);
 		//Se se podido eliminar el avion
-		if(aeropuertoController.eliminarAvion(avion.getId())) {
+		boolean eliminado = false;
+		if(!esEjercicioM)
+			eliminado = aeropuertoController.eliminarAvion(avion.getId());
+		else
+			eliminado = aeropuertoController2.eliminarAvion(avion.getId());
+		if(eliminado) {
 			aeropuerto.aviones.remove(avion);
 			cmbAvion.getSelectionModel().selectFirst();
 			cmbAvion.setItems(getAvion(aeropuerto));
@@ -61,4 +66,5 @@ public class EliminarAvionController extends AvionModalController implements Ini
 		rbActivado.setVisible(false);
 		rbDesactivado.setVisible(false);
 	}
+
 }

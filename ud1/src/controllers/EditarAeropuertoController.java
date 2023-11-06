@@ -49,7 +49,12 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
     			return;
     		}
     		//intenta modificar el aeropuerto
-    		if(!aeropuertoController.modificarAeropuertoPrivado(aPrivado)) {
+    		boolean modificado = false;
+    		if(!esEjercicioM)
+    			modificado = aeropuertoController.modificarAeropuertoPrivado(aPrivado);
+    		else
+    			modificado = aeropuertoController2.modificarAeropuertoPrivado(aPrivado);
+    		if(!modificado) {
     			txtError.setText("No se apodido modificar el aeropuerto");
     			return;
     		}
@@ -65,7 +70,12 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
     			return;
     		}
     		//intenta modificar el aeropuerto
-    		if(!aeropuertoController.modificarAeropuertoPublico(aPublico)) {
+    		boolean modificado = false;
+    		if(!esEjercicioM)
+    			aeropuertoController.modificarAeropuertoPublico(aPublico);
+    		else
+    			aeropuertoController2.modificarAeropuertoPublico(aPublico);
+    		if(!modificado) {
     			txtError.setText("No se apodido modificar el aeropuerto");
     			return;
     		}
@@ -78,7 +88,10 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
 	 @Override
 	    public void initialize(URL arg0, ResourceBundle arg1) {
 		 	//Guarda el aeropuerto
-		 	aeropuerto = aeropuertoController.getAeropuerto();
+		 	if(!esEjercicioM)
+		 		aeropuerto = aeropuertoController.getAeropuerto();
+		 	else
+		 		aeropuerto = aeropuertoController2.getAeropuerto();
 		 	
 		 	//se deja marcado el radiobutton 
 		 	if(esPublico)
@@ -110,4 +123,6 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
 	    	}
 	    	
 	    }
+
+	
 }

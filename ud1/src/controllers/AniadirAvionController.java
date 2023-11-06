@@ -31,7 +31,12 @@ public class AniadirAvionController extends AvionModalController{
 		Aeropuerto aeropuerto = lstAeropuertos.get(index);
 		
 		//Si se puede insetar el avion
-		if(aeropuertoController.insertarAvion(avion,aeropuerto)) {
+		boolean aniadido = false;
+		if(!esEjercicioM)
+			aniadido = aeropuertoController.insertarAvion(avion,aeropuerto);
+		else
+			aniadido = aeropuertoController2.insertarAvion(avion,aeropuerto);
+		if(aniadido) {
 			tfAsientos.setText("");
 			tfModelo.setText("");
 			tfVelMax.setText("");
@@ -77,4 +82,5 @@ public class AniadirAvionController extends AvionModalController{
 		
 		return true;
 	}
+
 }

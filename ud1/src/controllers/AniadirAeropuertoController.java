@@ -50,7 +50,14 @@ public class AniadirAeropuertoController extends AeropuertoModalController imple
     		a = aPrivado;
     	}
     	//se intenta insertar la base de datos
-    	if(aeropuertoController.insertarAeropuerto(a)) //si se inserto se cierra la ventana
+    	boolean insertado = false;
+    	if(!esEjercicioM)
+    		insertado = aeropuertoController.insertarAeropuerto(a);
+    	else
+    		insertado = aeropuertoController2.insertarAeropuerto(a);
+    	
+    	
+    	if(insertado) //si se inserto se cierra la ventana
     		click_cancelar(null);
     	else //sino muestra el mensaje de error
     		txtError.setText("No se a podido añadir el aeropuerto");
