@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#clic_key_word" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="191.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="330.0" />
@@ -106,12 +106,12 @@
          </GridPane.margin>
       </Text>
       <TextField fx:id="tfNumSocios" maxWidth="100.0" prefHeight="15.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#click_guardar" onKeyPressed="#clic_guardar_intro" text="Guardar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+      <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#click_guardar" text="Guardar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
          <GridPane.margin>
             <Insets right="125.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#click_cancelar" onKeyPressed="#click_cancelar_escape" text="Cancelar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+      <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#click_cancelar" text="Cancelar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
          <GridPane.margin>
             <Insets left="75.0" />
          </GridPane.margin>
