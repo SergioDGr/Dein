@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
@@ -132,6 +133,16 @@ public class AeropuertoModalController {
     protected void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
     	stage.close();
+    }
+    
+    @FXML
+    void clic_guardar_intro(KeyEvent event) {
+
+    }
+    
+    @FXML
+    void click_cancelar_escape(KeyEvent event) {
+
     }
     
     /**

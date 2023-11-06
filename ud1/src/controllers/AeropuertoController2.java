@@ -30,8 +30,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -94,6 +96,9 @@ public class AeropuertoController2 implements Initializable{
 
     @FXML
     private ToggleGroup tipoAeropuerto;
+    
+    @FXML
+    private ContextMenu tableContextMenu;
     
     private AeropuertoDao aeropuertoDao;
     private AvionDao avionDao;
@@ -284,6 +289,21 @@ public class AeropuertoController2 implements Initializable{
     	tbClmFinaciacion.setVisible(true);
     	tableAeropuerto.setItems(lstAeropuertoPublicos);
     	tfNombre.setText("");
+    }
+    
+    @FXML
+    void table_mouse_clicked(MouseEvent event) {
+
+    }
+    
+    @FXML
+    void click_table_borrar_aeropuerto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void click_table_editar_aeropuerto(ActionEvent event) {
+
     }
     
     /**

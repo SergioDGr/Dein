@@ -17,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -116,6 +117,16 @@ public class AvionModalController implements Initializable{
     void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
     	stage.close();
+    }
+    
+    @FXML
+    void click_guardar_intro(KeyEvent event) {
+
+    }
+    
+    @FXML
+    void click_cancelar_escape(KeyEvent event) {
+
     }
     
     /**

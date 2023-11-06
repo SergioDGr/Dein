@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -43,6 +44,11 @@ public class LoginAeropuertoController {
     	Stage stage = (Stage) btnLogin.getScene().getWindow();
     	stage.close();
     	logeado = true;
+    }
+    
+    @FXML
+    void clic_login_intro(KeyEvent event) {
+
     }
     
     /**
