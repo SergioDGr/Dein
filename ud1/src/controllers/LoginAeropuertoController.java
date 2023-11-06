@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -47,8 +48,11 @@ public class LoginAeropuertoController {
     }
     
     @FXML
-    void clic_login_intro(KeyEvent event) {
-
+    void click_key_word(KeyEvent key) {
+    	System.out.println("HOLA");
+    	if(key.getCode().equals(KeyCode.ENTER)) {
+    		click_login(null);
+    	}
     }
     
     /**

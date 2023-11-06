@@ -120,11 +120,6 @@ public class AvionModalController implements Initializable{
     }
     
     @FXML
-    void click_guardar_intro(KeyEvent event) {
-
-    }
-    
-    @FXML
     void click_cancelar_escape(KeyEvent event) {
 
     }

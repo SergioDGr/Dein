@@ -5,7 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
-
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.Aeropuerto;
 import model.Avion;
 
@@ -42,6 +43,14 @@ public class AniadirAvionController extends AvionModalController{
 			tfVelMax.setText("");
 			txtRealizado.setText("Se añadido el avion");
 		}
+    }
+    
+    @FXML
+    void click_key_word(KeyEvent key) {
+    	System.out.println("HOLA");
+    	if(key.getCode().equals(KeyCode.ENTER)) {
+    		click_guardar(null);
+    	}
     }
     
     /**
