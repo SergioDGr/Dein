@@ -24,7 +24,7 @@ public class EjercicioP extends Application{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EjercicioP.fxml"));
 		//Se instancia el controlador de la ventana
 		GridPane root = (GridPane) loader.load();
-		Scene scene = new Scene(root, 500, 300);
+		Scene scene = new Scene(root, 400, 400);
 		stage.setScene(scene);
 		stage.setTitle("TEST");
 		stage.show();
