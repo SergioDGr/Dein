@@ -70,6 +70,11 @@ public class AniadirAeropuertoController extends AeropuertoModalController imple
     		txtError.setText("No se a podido añadir el aeropuerto");
     }
 	
+	/**
+	 * Dependiendo de la tecla que se preccione si es enter intentara guardar el aeropuerto creado  o 
+	 * se preciona escape cerrara la ventana
+	 * @param key tecla del teclado
+	 */
 	@FXML
     void click_key_word(KeyEvent key) {
     	if(key.getCode().equals(KeyCode.ENTER)) {
@@ -81,6 +86,10 @@ public class AniadirAeropuertoController extends AeropuertoModalController imple
     	}
     }
 	
+	/**
+	 * Al darle al boton seleccionar imagen se abrira el exporar de archivo y seleccionara la imagen y 
+	 * lo guaradar en una variable 
+	 */
 	@FXML
     void click_select_imagen(ActionEvent event) {
 		imageBinary = seleccionarImagen(false);

@@ -47,6 +47,11 @@ public class AniadirAvionController extends AvionModalController{
 		}
     }
     
+    /**
+	 * Dependiendo de la tecla que se preccione si es enter intentara guardar el avion creado  o 
+	 * se preciona escape cerrara la ventana
+	 * @param key tecla del teclado
+	 */
     @FXML
     void click_key_word(KeyEvent key) {
     	if(key.getCode().equals(KeyCode.ENTER)) {
@@ -57,12 +62,7 @@ public class AniadirAvionController extends AvionModalController{
     		click_cancelar(null);
     	}
     }
-    
-    @FXML
-    void click_select_imagen(ActionEvent event) {
-    	
-    }
-    
+
     /**
      * Valida todos los campos text field si estan correctos
      * @return devuelve un {@link String} vacio si todo esta valido en caso contrario guardar el mesaje del error

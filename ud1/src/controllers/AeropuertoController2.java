@@ -302,6 +302,11 @@ public class AeropuertoController2 implements Initializable{
     	tfNombre.setText("");
     }
     
+    /**
+     * Al darle doble click a la tabla y tiene un elemento seleccionado abrira la ventana modal que muestra la informacion
+     * de ese aeropuerto.
+     * @param event
+     */
     @FXML
     void table_mouse_clicked(MouseEvent event) {
     	if(event.getButton().equals(MouseButton.PRIMARY)){
@@ -311,11 +316,21 @@ public class AeropuertoController2 implements Initializable{
         }
     }
     
+    /**
+     * En menu contextual de la tabla, estar selecciona un elemento y selecciona el menuitem borrar
+     * hara la funcionalidad de borrar el aeropuerto
+     * @param event
+     */
     @FXML
     void click_table_borrar_aeropuerto(ActionEvent event) {
     	click_delAeropuerto(event);
     }
 
+    /**
+     * En menu contextual de la tabla, estar selecciona un elemento y selecciona el menuitem editar
+     * hara la funcionalidad de editar el aeropuerto
+     * @param event
+     */
     @FXML
     void click_table_editar_aeropuerto(ActionEvent event) {
     	click_modAeropuerto(event);

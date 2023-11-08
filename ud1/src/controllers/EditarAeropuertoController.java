@@ -94,6 +94,11 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
     	click_cancelar(null);
 	}
 	
+	/**
+	 * Dependiendo de la tecla que se preccione si es enter intentara guardar la modificacion realizada y 
+	 * si es cancelar cerrara la ventana
+	 * @param key tecla del teclado
+	 */
 	@FXML
     void click_key_word(KeyEvent key) {
     	if(key.getCode().equals(KeyCode.ENTER)) {
@@ -105,6 +110,10 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
     	}
     }
 	
+	/**
+	 * Al darle al boton seleccionar imagen se abrira el exporar de archivo y seleccionara la imagen y o 
+	 * se preciona escape cerrara la ventana
+	 */
 	@FXML
     void click_select_imagen(ActionEvent event) {
 		imageBinary = seleccionarImagen(true);
@@ -149,6 +158,7 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
     	
     	imageSelected.setVisible(true);
 	 	
+    	//Si la imagen no es nula se visualizaria la imagen
 	 	if(aeropuerto.getImage() != null) {
 	 		System.out.println("imagen");
 	 		imageSelected.setImage(new Image(aeropuerto.getImage()));
