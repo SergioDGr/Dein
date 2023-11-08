@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- *	
+ *	Aplicacion del ejercicio L añadiendo algunas funcionaliades mas
  */
 public class EjercicioM extends Application{
 

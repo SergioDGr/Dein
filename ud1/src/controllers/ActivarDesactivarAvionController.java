@@ -52,6 +52,11 @@ public class ActivarDesactivarAvionController extends AvionModalController imple
 		}
 	}
 	
+	/**
+	 * Dependiendo de la tecla que se preccione si es enter intentara activar o deactivar el avion o 
+	 * se preciona escape cerrara la ventana
+	 * @param key tecla del teclado
+	 */
 	@FXML
     void click_key_word(KeyEvent key) {
     	if(key.getCode().equals(KeyCode.ENTER)) {

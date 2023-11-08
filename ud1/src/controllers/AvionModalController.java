@@ -119,11 +119,6 @@ public class AvionModalController implements Initializable{
     	stage.close();
     }
     
-    @FXML
-    void click_cancelar_escape(KeyEvent event) {
-
-    }
-    
     /**
      * Se consigue una lista de los avion del aeropuerto 
      * @param aeropuerto

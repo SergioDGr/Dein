@@ -205,6 +205,9 @@ public class AeropuertoModalController {
     	return imageBinary;
     }
     
+    /**
+     * Cambia la interfaz para el jercicio M 
+     */
     protected void cambiarInterfazEjercicioM() {
     	
     	if(esEjercicioM) {
