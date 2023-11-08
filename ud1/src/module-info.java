@@ -14,6 +14,7 @@ module ud1 {
 	requires javafx.graphics;
 	requires java.sql;
 	requires de.jensd.fx.glyphs.fontawesome;
+	requires ProductoLabel;
 	opens application.ejercicio_a to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_b to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_c to javafx.graphics, javafx.fxml;
