@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- *	
+ * Ventana que visualiza una iterfaz que importa otro interfaz dentro de ella
  */
 public class EjercicioN extends Application{
 
