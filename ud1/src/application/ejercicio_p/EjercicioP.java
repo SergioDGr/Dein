@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- *	
+ *	Ventana que visualiza contenido de un jar hecho en el ejercicio O
  */
 public class EjercicioP extends Application{
 
