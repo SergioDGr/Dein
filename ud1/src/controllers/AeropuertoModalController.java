@@ -3,6 +3,7 @@ package controllers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javafx.event.ActionEvent;
@@ -177,8 +178,8 @@ public class AeropuertoModalController {
     	 return "";
     }
     
-    protected InputStream seleccionarImagen(boolean editar) {
-    	InputStream imageBinary = null;
+    protected byte[] seleccionarImagen(boolean editar) {
+    	byte[] imageBinary = null;
     	FileChooser fileChooser = new FileChooser();
     	Stage stage = new Stage();
     	fileChooser.setTitle("Seleccionar Imagen ");
@@ -188,11 +189,15 @@ public class AeropuertoModalController {
     	if(imageFile != null) {
     		try {
     			Image img = new Image(imageFile.toURI().toString());
-				imageBinary = new FileInputStream(imageFile);
+				InputStream imageInputStream = new FileInputStream(imageFile);
+				imageBinary = imageInputStream.readAllBytes();
+				imageInputStream.close();
 				imageSelected.setVisible(true);
 	    		imageSelected.setImage(img);
 	    		gpPanel.getRowConstraints().get(8).setPrefHeight(150);
 			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
     	}else {

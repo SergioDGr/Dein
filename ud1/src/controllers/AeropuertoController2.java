@@ -479,12 +479,7 @@ public class AeropuertoController2 implements Initializable{
     		a.setCapacidad(aeropuerto.getCapacidad());
     		a.setSocios(aeropuerto.getSocios());
     		a.setImage(aeropuerto.getImage());
-    		try {
-				System.out.println(aeropuerto.getImage().available());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    		
     		tableAeropuerto.refresh();
     		return true;
     	}
