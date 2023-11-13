@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.InputStream;
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -23,7 +22,7 @@ import model.Direccion;
  */
 public class AniadirAeropuertoController extends AeropuertoModalController implements Initializable{
 	
-	private InputStream imageBinary;
+	private byte[] imageBinary;
 	
 	/**
 	 * Al darle a guardar valida los textfield y si todo esta correcto intenta insertar un aeropuerto en

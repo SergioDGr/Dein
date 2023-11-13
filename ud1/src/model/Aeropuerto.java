@@ -1,6 +1,5 @@
 package model;
 
-import java.io.InputStream;
 import java.util.Objects;
 import javafx.collections.ObservableList;
 
@@ -19,7 +18,7 @@ public class Aeropuerto {
 	
 	private int capacidad;
 	
-	private InputStream image;
+	private byte[] image;
 	
 	public ObservableList<Avion> aviones;
 	
@@ -71,11 +70,11 @@ public class Aeropuerto {
 		this.capacidad = capacidad;
 	}
 	
-	public InputStream getImage() {
+	public byte[] getImage() {
 		return image;
 	}
 	
-	public void setImage(InputStream image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 	

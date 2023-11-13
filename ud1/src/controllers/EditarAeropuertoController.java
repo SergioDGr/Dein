@@ -1,7 +1,7 @@
 package controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -23,7 +23,7 @@ import model.Direccion;
 public class EditarAeropuertoController extends AeropuertoModalController implements Initializable{
 	
 	private Aeropuerto aeropuerto;
-	private InputStream imageBinary = null;
+	private byte[] imageBinary = null;
 	
 	/**
 	 * Al darle a guardar valida los datos y si todo esta correcto intenta modificar un aeropuerto en
@@ -160,8 +160,10 @@ public class EditarAeropuertoController extends AeropuertoModalController implem
 	 	
     	//Si la imagen no es nula se visualizaria la imagen
 	 	if(aeropuerto.getImage() != null) {
-	 		System.out.println("imagen");
-	 		imageSelected.setImage(new Image(aeropuerto.getImage()));
+	 		imageBinary = aeropuerto.getImage();
+	 		InputStream image = new ByteArrayInputStream(imageBinary);
+	 		imageSelected.setImage(new Image(image));
+
 	 		gpPanel.getRowConstraints().get(8).setPrefHeight(150);
 	 	}
 	 	

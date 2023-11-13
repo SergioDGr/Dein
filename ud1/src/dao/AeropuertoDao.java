@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -189,7 +191,8 @@ public class AeropuertoDao {
 			ps.setString(1, aeropuerto.getNombre());
 			ps.setInt(2, aeropuerto.getAnio());
 			ps.setInt(3, aeropuerto.getCapacidad());
-			ps.setBinaryStream(4, aeropuerto.getImage());
+			InputStream image = new ByteArrayInputStream(aeropuerto.getImage());
+			ps.setBinaryStream(4, image);
 			ps.setInt(5, aeropuerto.getId());
 			
 			int actualizado = ps.executeUpdate();
@@ -344,9 +347,11 @@ public class AeropuertoDao {
 			ps.setInt(2, aeropuerto.getAnio());
 			ps.setInt(3, aeropuerto.getCapacidad());
 			ps.setInt(4, aeropuerto.getDireccion().getId());
-			if(aeropuerto.getImage() != null)
-				ps.setBinaryStream(5, aeropuerto.getImage());
-				
+			if(aeropuerto.getImage() != null) {
+				InputStream image = new ByteArrayInputStream(aeropuerto.getImage());
+				ps.setBinaryStream(5, image);
+			}
+			
 			int actualizado = ps.executeUpdate();
 			if(actualizado == 0)
 				throw new SQLException("No se ha insertado ninguna persona");
@@ -411,8 +416,16 @@ public class AeropuertoDao {
 		else
 			aeropuerto = new AeropuertoPrivado(id_aeropuerto, nombre, anio, direccion, capacidad);
 		
-		InputStream image = resultado.getBinaryStream("imagen");
-		aeropuerto.setImage(image);
+		byte[]imageByte = null;
+		try (InputStream image =  resultado.getBinaryStream("imagen");){
+			if(image != null)
+				imageByte = image.readAllBytes();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		aeropuerto.setImage(imageByte);
 		
 		return aeropuerto;
 	}
