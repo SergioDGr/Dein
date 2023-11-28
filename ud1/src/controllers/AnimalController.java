@@ -42,13 +42,34 @@ public class AnimalController {
     private TextField tfNombre;
 
     @FXML
-    void click_addConsulta(ActionEvent event) {
+    void click_addAnimal(ActionEvent event) {
 
     }
 
     @FXML
+    void click_delAnimal(ActionEvent event) {
+
+    }
+
+    @FXML
+    void click_modAnimal(ActionEvent event) {
+
+    }
+
+    @FXML
+    void click_verAnimal(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void click_addConsulta(ActionEvent event) {
+
+    }
+    
+    @FXML
     void click_verConsultas(ActionEvent event) {
 
     }
+
 	
 }

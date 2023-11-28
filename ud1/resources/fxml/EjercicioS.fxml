@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -27,6 +28,13 @@
    <children>
       <MenuBar GridPane.columnSpan="2" GridPane.valignment="TOP">
         <menus>
+            <Menu mnemonicParsing="false" text="Animales">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#click_addAnimal" text="Añadir" />
+                  <MenuItem mnemonicParsing="false" onAction="#click_modAnimal" text="Editar" />
+                  <MenuItem mnemonicParsing="false" onAction="#click_delAnimal" text="Borrar" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Consultas">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#click_addConsulta" text="Añadir" />
@@ -57,6 +65,13 @@
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#click_verAnimal" text="Ver Animal" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
       </TableView>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
