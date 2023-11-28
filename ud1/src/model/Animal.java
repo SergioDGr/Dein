@@ -27,7 +27,7 @@ public class Animal {
 	private ObservableList<Consulta> consultas;
 	
 	public Animal(int id, String nombre, char sexo, int edad, float peso, Date fecha_primera_consulta, byte[] imagen,
-			String raza, String especie, ObservableList<Consulta> consultas) {
+			String raza, String especie) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -38,7 +38,6 @@ public class Animal {
 		this.imagen = imagen;
 		this.raza = raza;
 		this.especie = especie;
-		this.consultas = consultas;
 	}
 
 	public int getId() {
