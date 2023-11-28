@@ -29,6 +29,7 @@ module ud1 {
 	opens application.ejercicio_m to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_n to javafx.graphics, javafx.fxml;
 	opens application.ejercicio_p to javafx.graphics, javafx.fxml;
+	opens application.ejercicio_s to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
 	opens dao to javafx.base;
 	opens model to javafx.base;
