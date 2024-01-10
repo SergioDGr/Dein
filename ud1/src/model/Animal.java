@@ -118,6 +118,21 @@ public class Animal {
 		consultas.add(consulta);
 	}
 	
+	public String infoConsultas() {
+		String str = "";
+		if(consultas.size() == 0)
+			return "";
+		if(consultas.size() == 1)
+			str = "Consulta:\n";
+		else
+			str = "Consultas:\n";
+		for(int i = 0; i < consultas.size(); i++) {
+			Consulta c = consultas.get(i);
+			str += "ID: " + c.getId() + "\nFecha: " + c.getFecha() + "\nObservacion:\n\t" + c.getObservacion().replace("\n", "\n\t") + "\n";
+		}
+		return str;
+	}
+	
 	public void modConsulta(int i, Consulta consulta) {
 		Consulta c = consultas.get(i);
 		c.setFecha(consulta.getFecha());

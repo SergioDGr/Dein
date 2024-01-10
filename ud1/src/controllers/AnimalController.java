@@ -156,7 +156,12 @@ public class AnimalController implements Initializable{
     
     @FXML
     void click_verConsultas(ActionEvent event) {
-
+    	if(tableAnimales.getSelectionModel().getSelectedIndex() != -1) {
+    		crear_mostrar_alerta(AlertType.INFORMATION, "Information - Ver Consultas",tableAnimales.getSelectionModel().getSelectedItem().infoConsultas(),
+    				tableAnimales.getScene().getWindow());
+    	}else {
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Ver Consultas", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
+    	}
     }
     
     public boolean aniadirAnimal(Animal animal) {
