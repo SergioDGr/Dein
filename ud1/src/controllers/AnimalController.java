@@ -14,14 +14,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+
 import model.Animal;
+import model.Consulta;
 
 
 public class AnimalController implements Initializable{
@@ -52,12 +56,13 @@ public class AnimalController implements Initializable{
 
     @FXML
     private TableColumn<Animal, String> tcEspecie;
-
-    @FXML
-    private TextField tfNombre;
     
     private ObservableList<Animal> lstAnimales;
     private AnimalDao animalDao;
+    
+	public ObservableList<Animal> getAnimals() {
+		return lstAnimales;
+	}
     
     @FXML
     void click_addAnimal(ActionEvent event) {
@@ -77,7 +82,18 @@ public class AnimalController implements Initializable{
 
     @FXML
     void click_modAnimal(ActionEvent event) {
-
+    	if(tableAnimales.getSelectionModel().getSelectedIndex() != -1) {
+	    	try {
+	    		EditarAnimalController controller = new EditarAnimalController();
+	    		controller.setController(this);
+	    		controller.setAnimal(tableAnimales.getSelectionModel().getSelectedItem());
+	    		cargar_ventana_modal(controller, "Editar Animal", "/fxml/EjercicioS_Modal_Animal.fxml", tableAnimales.getScene().getWindow());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Editar ANIMAL", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
+    	}
     }
 
     @FXML
@@ -88,7 +104,7 @@ public class AnimalController implements Initializable{
     @FXML
     void click_addConsulta(ActionEvent event) {
     	try {
-    		AniadirAnimalController controller = new AniadirAnimalController();
+    		AniadirConsultaController controller = new AniadirConsultaController();
     		controller.setController(this);
 			cargar_ventana_modal(controller, "Añadir Consulta", "/fxml/EjercicioS_Modal_Consulta.fxml", tableAnimales.getScene().getWindow());
 		} catch (IOException e) {
@@ -116,7 +132,21 @@ public class AnimalController implements Initializable{
     		lstAnimales.add(animal);
     		return true;
     	}
+    	return false;
+    }
+    
+    public boolean editarAnimal(Animal animal) {
+    	if(animalDao.mod(animal)) {
+    		tableAnimales.refresh();
+    		return true;
+    	}
     	
+    	return false;
+    }
+    
+    public boolean aniadirConsulta(Consulta consulta) {
+    	if(animalDao.add(consulta)) 
+    		return true;
     	return false;
     }
     
@@ -143,6 +173,22 @@ public class AnimalController implements Initializable{
 		newStage.setTitle(titulo);
 		newStage.setResizable(false);
 		newStage.showAndWait();
+    }
+    
+    /**
+     * Crea y muestra un mensaje de alerta
+     * @param tipoAlert El tipo de alerta
+     * @param titulo El titulo que tendra la alerta
+     * @param msg El mensaje que mostrara la alerta
+     * @param window ventana propietaria
+     */
+    private void crear_mostrar_alerta(AlertType tipoAlert,String titulo, String msg, Window window) {
+    	Alert alert = new Alert(tipoAlert);
+    	alert.setHeaderText(null);
+    	alert.setTitle(titulo);
+    	alert.setContentText(msg);
+    	alert.initOwner(window);
+    	alert.showAndWait();
     }
     
     @Override

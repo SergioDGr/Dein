@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 import java.util.Objects;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Animal {
@@ -23,9 +24,9 @@ public class Animal {
 	
 	private String raza;
 	
-	private String  especie;
+	private String especie;
 	
-	private ObservableList<Consulta> consultas;
+	private ObservableList<Consulta> consultas = FXCollections.observableArrayList();
 	
 	public Animal(int id, String nombre, char sexo, int edad, float peso, Date fecha_primera_consulta, byte[] imagen,
 			String raza, String especie) {
@@ -112,7 +113,16 @@ public class Animal {
 	public void setEspecie(String especie) {
 		this.especie = especie;
 	}
-
+	
+	public void addConsulta(Consulta consulta) {
+		consultas.add(consulta);
+	}
+	
+	@Override
+	public String toString() {
+		return this.nombre;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

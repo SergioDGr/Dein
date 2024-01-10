@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import model.Animal;
+import model.Consulta;
 
 public class AnimalDao {
 
@@ -35,7 +36,10 @@ public class AnimalDao {
 				char sexo = rs.getString("Sexo").charAt(0);
 				int edad = rs.getInt("Edad");
 				float peso = rs.getFloat("Peso");
-				Date fecha = new Date(rs.getDate("Fecha_Primera_Consulta").getTime());
+				java.sql.Date date = rs.getDate("Fecha_Primera_Consulta");
+				Date fecha = null;
+				if(date != null)
+					fecha = new Date(date.getTime());
 				
 				byte[]imageByte = null;
 				try (InputStream image =  rs.getBinaryStream("Foto");){
@@ -93,14 +97,39 @@ public class AnimalDao {
 		return true;
 	}
 	
-	public boolean remove(Animal animal) {
+	public boolean add(Consulta c) {
+		try {
+			conn = new ConexionBDAnimal();
+
+			String consulta = "INSERT INTO consulta(Fecha,IDAnimal,Observacion) VALUES(?,?,?)";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setDate(1, new java.sql.Date(c.getFecha().getTime()));
+			ps.setInt(2, c.getAnimal().getId());
+			ps.setString(3, c.getObservacion());
+			
 		
-		return false;
+			int actualizado = ps.executeUpdate();
+			if(actualizado == 0)
+				return false;
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			if(!rs.next())
+				return false;
+			
+			c.setId(rs.getInt(1));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	public boolean mod(Animal animal) {
 		
 		return false;
 	}
+	
+	
 	
 }

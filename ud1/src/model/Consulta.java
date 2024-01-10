@@ -9,6 +9,8 @@ public class Consulta {
 	private Date fecha;
 	
 	private String Observacion;
+	
+	private Animal animal;
 
 	public int getId() {
 		return id;
@@ -34,5 +36,11 @@ public class Consulta {
 		Observacion = observacion;
 	}
 	
+	public Animal getAnimal() {
+		return animal;
+	}
 	
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
 }
