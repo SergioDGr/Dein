@@ -114,7 +114,18 @@ public class AnimalController implements Initializable{
     
     @FXML
     void click_modConsulta(ActionEvent event) {
-    	
+    	if(tableAnimales.getSelectionModel().getSelectedIndex() != -1) {
+	    	try {
+	    		EditarConsultaController controller = new EditarConsultaController();
+	    		controller.setController(this);
+	    		controller.setAnimal(tableAnimales.getSelectionModel().getSelectedItem());
+	    		cargar_ventana_modal(controller, "Editar Consulta", "/fxml/EjercicioS_Modal_Consulta.fxml", tableAnimales.getScene().getWindow());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Editar Consulta", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
+    	}
     }
     
     @FXML
@@ -144,9 +155,23 @@ public class AnimalController implements Initializable{
     	return false;
     }
     
+    public void modificarFechaAnimal(Animal animal) {
+    	animalDao.updateFecha(animal);
+    	tableAnimales.refresh();
+    }
+    
     public boolean aniadirConsulta(Consulta consulta) {
     	if(animalDao.add(consulta)) 
     		return true;
+    	return false;
+    }
+    
+    public boolean editarConsulta(Consulta consulta) {
+    	if(animalDao.mod(consulta)) {
+    		tableAnimales.refresh();
+    		return true;
+    	}
+    	
     	return false;
     }
     
@@ -191,10 +216,19 @@ public class AnimalController implements Initializable{
     	alert.showAndWait();
     }
     
+    private void cargar_Consultas() {
+    	for(int i = 0; i < lstAnimales.size(); i++) {
+    		Animal animal = lstAnimales.get(i);
+    		animal.setConsultas(animalDao.get(animal));
+    	}
+    }
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	animalDao = new AnimalDao();
     	lstAnimales = animalDao.get();
+    	
+    	cargar_Consultas();
     	
     	//Establecer las columnas
     	tcID.setCellValueFactory(new PropertyValueFactory<Animal, Integer>("id"));

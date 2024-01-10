@@ -118,6 +118,30 @@ public class Animal {
 		consultas.add(consulta);
 	}
 	
+	public void modConsulta(int i, Consulta consulta) {
+		Consulta c = consultas.get(i);
+		c.setFecha(consulta.getFecha());
+		c.setObservacion(consulta.getObservacion());
+	}
+	
+	public boolean fechaMaxPequenia(Date date) {
+		for(int i = 0; i < consultas.size(); i++) {
+			Consulta c = consultas.get(i);
+			if(c.getFecha().compareTo(date) < 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public ObservableList<Consulta> getConsultas() {
+		return consultas;
+	}
+	
+	public void setConsultas(ObservableList<Consulta> consultas) {
+		this.consultas = consultas;
+	}
+	
 	@Override
 	public String toString() {
 		return this.nombre;

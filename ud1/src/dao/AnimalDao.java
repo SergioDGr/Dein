@@ -26,7 +26,7 @@ public class AnimalDao {
 		ObservableList<Animal> lstAnimales = FXCollections.observableArrayList();
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "select * from Animal";
+			String consulta = "select * from animal";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ResultSet rs = ps.executeQuery();
 			
@@ -62,6 +62,36 @@ public class AnimalDao {
 		return lstAnimales;
 	}
 	
+	public ObservableList<Consulta> get(Animal animal){
+		ObservableList<Consulta> lstConsulta = FXCollections.observableArrayList();
+		try {
+			conn = new ConexionBDAnimal();
+			String consulta = "SELECT * from consulta WHERE IDAnimal = ?";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setInt(1, animal.getId());
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {;
+				int id = rs.getInt("Id");
+				String observacion = rs.getString("observacion");
+				java.sql.Date date = rs.getDate("Fecha");
+				Date fecha = null;
+				if(date != null)
+					fecha = new Date(date.getTime());
+				
+				Consulta c = new Consulta();
+				c.setId(id);
+				c.setAnimal(animal);
+				c.setFecha(fecha);
+				c.setObservacion(observacion);
+				lstConsulta.add(c);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lstConsulta;
+	}
 	
 	public boolean add(Animal animal) {
 		try {
@@ -142,6 +172,49 @@ public class AnimalDao {
 			ps.setString(6, animal.getRaza());
 			ps.setString(7, animal.getEspecie());
 			ps.setInt(8, animal.getId());
+			
+			int actualizado = ps.executeUpdate();
+
+			if(actualizado == 0)
+				return false;
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean mod(Consulta c) {
+		try {
+			conn = new ConexionBDAnimal();
+			String consulta = "UPDATE consulta SET Fecha = ?, Observacion = ? WHERE Id = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setDate(1, new java.sql.Date(c.getFecha().getTime()));
+			ps.setString(2, c.getObservacion());
+			ps.setInt(3, c.getId());
+			
+			int actualizado = ps.executeUpdate();
+
+			if(actualizado == 0)
+				return false;
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean updateFecha(Animal animal) {
+		try {
+			conn = new ConexionBDAnimal();
+			String consulta = "UPDATE animal SET Fecha_Primera_Consulta = ? WHERE Id = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setDate(1, new java.sql.Date(animal.getFecha_primera_consulta().getTime()));
+			ps.setInt(2, animal.getId());
 			
 			int actualizado = ps.executeUpdate();
 

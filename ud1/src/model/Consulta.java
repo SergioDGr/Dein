@@ -43,4 +43,9 @@ public class Consulta {
 	public void setAnimal(Animal animal) {
 		this.animal = animal;
 	}
+	
+	@Override
+	public String toString() {
+		return id + "";
+	}
 }

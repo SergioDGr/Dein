@@ -1,17 +1,22 @@
 package controllers;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
+
 import model.Animal;
 import model.Consulta;
 
@@ -61,7 +66,12 @@ public class AniadirConsultaController implements Initializable{
     		consulta.setAnimal(cmbAnimal.getSelectionModel().getSelectedItem());
     		
     		if(controller.aniadirConsulta(consulta)) {
-    			controller.getAnimals().get(cmbAnimal.getSelectionModel().getSelectedIndex()).addConsulta(consulta);
+    			Animal a = controller.getAnimals().get(cmbAnimal.getSelectionModel().getSelectedIndex());
+    			a.addConsulta(consulta);
+    			if(a.getFecha_primera_consulta() == null || a.fechaMaxPequenia(consulta.getFecha())) {
+    				a.setFecha_primera_consulta(consulta.getFecha());
+    				controller.modificarFechaAnimal(a);
+    			}
     			click_cancelar(event);
     		}else
     			txtError.setText("No se podido insertar consulta.");
@@ -78,6 +88,9 @@ public class AniadirConsultaController implements Initializable{
     		return "No se selecciona la fecha";
     	return "";
     }
+    
+    @FXML
+    void select_Observacion(ActionEvent event) {}
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
