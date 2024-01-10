@@ -229,10 +229,40 @@ public class AnimalDao {
 	}
 	
 	public boolean remove(Animal animal) {
-		
-		return false;
+		try {
+			if(removeAllBy(animal.getId())) {
+				conn = new ConexionBDAnimal();
+				String consulta = "DELETE FROM animal WHERE Id = ?";
+				PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+				ps.setInt(1, animal.getId());
+				
+				int actualizado = ps.executeUpdate();
+				if (actualizado == 0)
+					return false;
+			}else
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
-	
+	private boolean removeAllBy(int id_animal) {
+		try {
+			conn = new ConexionBDAnimal();
+			String consulta = "DELETE FROM consulta WHERE IDAnimal = ?";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setInt(1, id_animal);
+			
+			int actualizado = ps.executeUpdate();
+			if (actualizado == 0)
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	
 }

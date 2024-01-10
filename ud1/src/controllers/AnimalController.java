@@ -2,27 +2,35 @@ package controllers;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+
 import java.net.URL;
+
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dao.AnimalDao;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -80,7 +88,25 @@ public class AnimalController implements Initializable{
 
     @FXML
     void click_delAnimal(ActionEvent event) {
-
+    	if(tableAnimales.getSelectionModel().getSelectedIndex() != -1) {
+    		ButtonType ok = new ButtonType("Sí", ButtonData.OK_DONE);
+    		ButtonType close = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+    		Alert alert = new Alert(AlertType.WARNING, "¿Seguro que quiere eliminar el animal seleccionado? se eliminaras todas sus CONSULTAS tambien.", ok, close);
+    		alert.setTitle("Advetencia - Eliminar ANIMAL");
+    		alert.setHeaderText(null);
+    		Optional<ButtonType> result = alert.showAndWait();
+    		if(result.orElse(ok) == close) {
+    			return;
+    		}
+    		
+			Animal a =  tableAnimales.getSelectionModel().getSelectedItem();
+			if (animalDao.remove(a)) {
+				lstAnimales.remove(a);
+				crear_mostrar_alerta(AlertType.INFORMATION, "Informacion - Eliminar ANIMAL", "Se a eliminado el animal", tableAnimales.getScene().getWindow());
+			}else
+	    		crear_mostrar_alerta(AlertType.ERROR, "Error - Eliminar ANIMAL", "No se a podido eliminar el animal", tableAnimales.getScene().getWindow());
+    	}else 
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Eliminar ANIMAL", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
     }
 
     @FXML
