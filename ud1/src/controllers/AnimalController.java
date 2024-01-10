@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -9,13 +10,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.Animal;
 
 
@@ -56,7 +61,13 @@ public class AnimalController implements Initializable{
     
     @FXML
     void click_addAnimal(ActionEvent event) {
-
+    	try {
+    		AniadirAnimalController controller = new AniadirAnimalController();
+    		controller.setController(this);
+			cargar_ventana_modal(controller, "Añadir Animal", "/fxml/EjercicioS_Modal_Animal.fxml", tableAnimales.getScene().getWindow());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
@@ -76,7 +87,13 @@ public class AnimalController implements Initializable{
     
     @FXML
     void click_addConsulta(ActionEvent event) {
-
+    	try {
+    		AniadirAnimalController controller = new AniadirAnimalController();
+    		controller.setController(this);
+			cargar_ventana_modal(controller, "Añadir Consulta", "/fxml/EjercicioS_Modal_Consulta.fxml", tableAnimales.getScene().getWindow());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     @FXML
@@ -92,6 +109,40 @@ public class AnimalController implements Initializable{
     @FXML
     void click_verConsultas(ActionEvent event) {
 
+    }
+    
+    public boolean aniadirAnimal(Animal animal) {
+    	if(animalDao.add(animal)) {
+    		lstAnimales.add(animal);
+    		return true;
+    	}
+    	
+    	return false;
+    }
+    
+    /**
+     * carga y muestra la ventana modal con los siguientes paramatros:
+     * @param controlador El controlador de la ventana
+     * @param titulo El titulo de la ventana
+     * @param fxml interfaz a visualizar
+     * @param window A la ventana que pertenece la ventana modal
+     * @throws IOException en caso de que de error cuando cargue el fxml
+     */
+    private void cargar_ventana_modal(Object controlador , String titulo, String fxml , Window window) throws IOException {
+    	//Cargamos la intefaz que se visualizara
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+    	//Cargamos el controllador
+		loader.setController(controlador);
+		Parent parent = loader.load();
+		//Creamos y visualizamos la venta
+    	Scene newScene = new Scene(parent);
+		Stage newStage = new Stage();
+		newStage.initModality(Modality.APPLICATION_MODAL);
+		newStage.initOwner(window);
+		newStage.setScene(newScene);
+		newStage.setTitle(titulo);
+		newStage.setResizable(false);
+		newStage.showAndWait();
     }
     
     @Override
