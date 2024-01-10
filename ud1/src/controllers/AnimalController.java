@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -19,7 +20,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -98,6 +101,24 @@ public class AnimalController implements Initializable{
 
     @FXML
     void click_verAnimal(ActionEvent event) {
+    	if(tableAnimales.getSelectionModel().getSelectedIndex() != -1) {
+    		Animal a = tableAnimales.getSelectionModel().getSelectedItem();
+    		if(a.getImagen() != null) {
+		    	// Crear un objeto Stage y un objeto Scene
+		        Stage stage = new Stage();
+		        StackPane root = new StackPane();
+		        Scene scene = new Scene(root, 300, 250);
+		        
+		        // Mostrar la imagen en el objeto Stage
+		        root.getChildren().add(new ImageView(new Image(new ByteArrayInputStream(a.getImagen()))));
+		        stage.initOwner(tableAnimales.getScene().getWindow());
+		        stage.initModality(Modality.APPLICATION_MODAL);
+		        stage.setScene(scene);
+		        stage.showAndWait();
+    		}else
+    			crear_mostrar_alerta(AlertType.ERROR, "Error - Ver ANIMAL", "No se a encontrado la foto del animal", tableAnimales.getScene().getWindow());
+        }else
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Ver ANIMAL", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
 
     }
     
