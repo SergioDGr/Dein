@@ -80,6 +80,16 @@ public class AnimalController implements Initializable{
     }
     
     @FXML
+    void click_modConsulta(ActionEvent event) {
+    	
+    }
+    
+    @FXML
+    void click_delConsulta(ActionEvent event) {
+    	
+    }
+    
+    @FXML
     void click_verConsultas(ActionEvent event) {
 
     }
