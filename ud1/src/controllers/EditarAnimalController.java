@@ -1,18 +1,20 @@
 package controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -22,9 +24,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import model.Animal;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+
+import model.Animal;
 
 public class EditarAnimalController implements Initializable{
 
@@ -39,7 +42,7 @@ public class EditarAnimalController implements Initializable{
     
     @FXML
     private ImageView ivAnimal;
-    
+
     @FXML
     private RadioButton rbtnHombre;
 
@@ -69,8 +72,7 @@ public class EditarAnimalController implements Initializable{
 
     @FXML
     private Text txtTitulo;
-    
-    
+
     byte[] imageBinary = null;
     
     private Animal animal;
@@ -80,6 +82,10 @@ public class EditarAnimalController implements Initializable{
     	this.controller = controller;
     }
     
+    public void setAnimal(Animal animal) {
+    	this.animal = animal;
+    }
+
     @FXML
     void click_cancelar(ActionEvent event) {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
@@ -88,9 +94,25 @@ public class EditarAnimalController implements Initializable{
 
     @FXML
     void click_guardar(ActionEvent event) {
-
+    	String msg = validar();
+    	if(msg.isEmpty()) {
+    		
+    		 animal.setNombre(tfNombre.getText());
+    		 animal.setSexo(rbtnHombre.isSelected()? 'M':'F');
+    		 animal.setEdad(Integer.parseInt(tfEdad.getText()));
+    		 animal.setPeso(Float.parseFloat(tfPeso.getText()));
+    		 animal.setImagen(imageBinary);
+    		 animal.setRaza(tfRaza.getText());
+    		 animal.setEspecie(tfEspecie.getText());
+    		 
+    		if(controller.editarAnimal(animal)) {
+    			click_cancelar(event);
+    		}else
+    			txtError.setText("No se podido editar el animal.");
+    	}else
+    		txtError.setText(msg);
     }
-    
+
     @FXML
     void click_select_imagen(ActionEvent event) {
     	FileChooser fileChooser = new FileChooser();
@@ -130,7 +152,20 @@ public class EditarAnimalController implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	txtTitulo.setText("Editar Animal");
+    	tfNombre.setText(animal.getNombre());
     	
+    	if(animal.getSexo() == 'F')
+    		rbtnMujer.setSelected(true);
+    		
+    	tfEdad.setText(animal.getEdad() + "");
+    	tfPeso.setText(animal.getPeso() + " ");
+    	tfRaza.setText(animal.getRaza());
+    	tfEspecie.setText(animal.getEspecie());
+    	
+    	if(animal.getImagen() != null) {
+    		InputStream image = new ByteArrayInputStream(animal.getImagen());
+	 		ivAnimal.setImage(new Image(image));
+    	}
     	
     }
     

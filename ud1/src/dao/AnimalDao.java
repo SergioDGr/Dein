@@ -126,6 +126,36 @@ public class AnimalDao {
 	}
 	
 	public boolean mod(Animal animal) {
+		try {
+			conn = new ConexionBDAnimal();
+			String consulta = "UPDATE animal SET Nombre = ?, Sexo = ?, Edad = ?, Peso = ?, Foto = ?, Raza = ?, Especie = ? WHERE Id = ?";
+			
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setString(1, animal.getNombre());
+			ps.setString(2, animal.getSexo() + "");
+			ps.setInt(3, animal.getEdad());
+			ps.setFloat(4, animal.getPeso());
+			if(animal.getImagen() != null)
+				ps.setBinaryStream(5,  new ByteArrayInputStream(animal.getImagen()));
+			else 
+				ps.setBinaryStream(5, null);
+			ps.setString(6, animal.getRaza());
+			ps.setString(7, animal.getEspecie());
+			ps.setInt(8, animal.getId());
+			
+			int actualizado = ps.executeUpdate();
+
+			if(actualizado == 0)
+				return false;
+			conn.closeConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean remove(Animal animal) {
 		
 		return false;
 	}
