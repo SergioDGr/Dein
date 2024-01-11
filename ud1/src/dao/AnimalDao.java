@@ -26,7 +26,7 @@ public class AnimalDao {
 		ObservableList<Animal> lstAnimales = FXCollections.observableArrayList();
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "select * from animal";
+			String consulta = "select * from Animal";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ResultSet rs = ps.executeQuery();
 			
@@ -66,7 +66,7 @@ public class AnimalDao {
 		ObservableList<Consulta> lstConsulta = FXCollections.observableArrayList();
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "SELECT * from consulta WHERE IDAnimal = ?";
+			String consulta = "SELECT * from Consulta WHERE IDAnimal = ?";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ps.setInt(1, animal.getId());
 			ResultSet rs = ps.executeQuery();
@@ -97,7 +97,7 @@ public class AnimalDao {
 		try {
 			conn = new ConexionBDAnimal();
 
-			String consulta = "INSERT INTO animal(Nombre,Sexo,Edad,Peso,Foto,Raza,Especie) VALUES(?,?,?,?,?,?,?)";
+			String consulta = "INSERT INTO Animal(Nombre,Sexo,Edad,Peso,Foto,Raza,Especie) VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, animal.getNombre());
 			ps.setString(2, animal.getSexo() + "");
@@ -131,7 +131,7 @@ public class AnimalDao {
 		try {
 			conn = new ConexionBDAnimal();
 
-			String consulta = "INSERT INTO consulta(Fecha,IDAnimal,Observacion) VALUES(?,?,?)";
+			String consulta = "INSERT INTO Consulta(Fecha,IDAnimal,Observacion) VALUES(?,?,?)";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta, PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setDate(1, new java.sql.Date(c.getFecha().getTime()));
 			ps.setInt(2, c.getAnimal().getId());
@@ -158,7 +158,7 @@ public class AnimalDao {
 	public boolean mod(Animal animal) {
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "UPDATE animal SET Nombre = ?, Sexo = ?, Edad = ?, Peso = ?, Foto = ?, Raza = ?, Especie = ? WHERE Id = ?";
+			String consulta = "UPDATE Animal SET Nombre = ?, Sexo = ?, Edad = ?, Peso = ?, Foto = ?, Raza = ?, Especie = ? WHERE Id = ?";
 			
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ps.setString(1, animal.getNombre());
@@ -188,7 +188,7 @@ public class AnimalDao {
 	public boolean mod(Consulta c) {
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "UPDATE consulta SET Fecha = ?, Observacion = ? WHERE Id = ?";
+			String consulta = "UPDATE Consulta SET Fecha = ?, Observacion = ? WHERE Id = ?";
 			
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ps.setDate(1, new java.sql.Date(c.getFecha().getTime()));
@@ -210,7 +210,7 @@ public class AnimalDao {
 	public boolean updateFecha(Animal animal) {
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "UPDATE animal SET Fecha_Primera_Consulta = ? WHERE Id = ?";
+			String consulta = "UPDATE Animal SET Fecha_Primera_Consulta = ? WHERE Id = ?";
 			
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ps.setDate(1, new java.sql.Date(animal.getFecha_primera_consulta().getTime()));
@@ -232,7 +232,7 @@ public class AnimalDao {
 		try {
 			if(animal.getConsultas().isEmpty() || removeAllBy(animal.getId())) {
 				conn = new ConexionBDAnimal();
-				String consulta = "DELETE FROM animal WHERE Id = ?";
+				String consulta = "DELETE FROM Animal WHERE Id = ?";
 				PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 				ps.setInt(1, animal.getId());
 				
@@ -251,7 +251,7 @@ public class AnimalDao {
 	public boolean remove(Consulta c) {
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "DELETE FROM consulta WHERE Id = ?";
+			String consulta = "DELETE FROM Consulta WHERE Id = ?";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ps.setInt(1, c.getId());
 			
@@ -268,7 +268,7 @@ public class AnimalDao {
 	private boolean removeAllBy(int id_animal) {
 		try {
 			conn = new ConexionBDAnimal();
-			String consulta = "DELETE FROM consulta WHERE IDAnimal = ?";
+			String consulta = "DELETE FROM Consulta WHERE IDAnimal = ?";
 			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
 			ps.setInt(1, id_animal);
 			
