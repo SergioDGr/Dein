@@ -1,7 +1,8 @@
 package controllers;
 
 import java.net.URL;
-
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -61,7 +62,9 @@ public class AniadirConsultaController implements Initializable{
     	if(msg.isEmpty()) {
     		txtError.setText("");
     		Consulta consulta = new Consulta();
-    		consulta.setFecha(java.sql.Date.valueOf(dpFecha.getValue()));
+    		ZoneId zoneId = ZoneId.systemDefault();
+    		Date date = Date.from(dpFecha.getValue().atStartOfDay(zoneId).toInstant());
+    		consulta.setFecha(date);
     		consulta.setObservacion(taObservacion.getText());
     		consulta.setAnimal(cmbAnimal.getSelectionModel().getSelectedItem());
     		

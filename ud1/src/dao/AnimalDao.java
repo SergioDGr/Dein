@@ -230,7 +230,7 @@ public class AnimalDao {
 	
 	public boolean remove(Animal animal) {
 		try {
-			if(removeAllBy(animal.getId())) {
+			if(animal.getConsultas().isEmpty() || removeAllBy(animal.getId())) {
 				conn = new ConexionBDAnimal();
 				String consulta = "DELETE FROM animal WHERE Id = ?";
 				PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
@@ -240,6 +240,23 @@ public class AnimalDao {
 				if (actualizado == 0)
 					return false;
 			}else
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean remove(Consulta c) {
+		try {
+			conn = new ConexionBDAnimal();
+			String consulta = "DELETE FROM consulta WHERE Id = ?";
+			PreparedStatement ps = conn.getConexion().prepareStatement(consulta);
+			ps.setInt(1, c.getId());
+			
+			int actualizado = ps.executeUpdate();
+			if (actualizado == 0)
 				return false;
 		} catch (SQLException e) {
 			e.printStackTrace();

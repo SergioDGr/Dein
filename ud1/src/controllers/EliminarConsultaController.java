@@ -3,7 +3,7 @@ package controllers;
 import java.net.URL;
 
 import java.time.ZoneId;
-import java.util.Date;
+
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 import model.Animal;
 import model.Consulta;
 
-public class EditarConsultaController implements Initializable{
+public class EliminarConsultaController implements Initializable{
 
     @FXML
     private Button btnCancelar;
@@ -68,54 +68,43 @@ public class EditarConsultaController implements Initializable{
 
     @FXML
     void click_guardar(ActionEvent event) {
-    	String msg = validar();
-    	if(msg.isEmpty()) {
-    		txtError.setText("");
-    		Consulta consulta = animal.getConsultas().get(cmbAnimal.getSelectionModel().getSelectedIndex());
-    		ZoneId zoneId = ZoneId.systemDefault();
-    		Date date = Date.from(dpFecha.getValue().atStartOfDay(zoneId).toInstant());
-    		consulta.setFecha(date);
-    		consulta.setObservacion(taObservacion.getText());
+    	Consulta consulta = cmbAnimal.getSelectionModel().getSelectedItem();
+    	if(controller.eliminarConsulta(consulta)) {
+    		animal.delConsulta(consulta);
     		
-    		if(controller.editarConsulta(consulta)) {
-    			animal.modConsulta(cmbAnimal.getSelectionModel().getSelectedIndex(), consulta);
-    			if( animal.fechaMaxPequenia(consulta.getFecha())) {
-    				animal.setFecha_primera_consulta(consulta.getFecha());
-    				controller.modificarFechaAnimal(animal);
-    			}
-    			click_cancelar(event);
-    		}else
-    			txtError.setText("No se podido editar la consulta.");
-    		
-    	}else
-    		txtError.setText(msg);
+    		txtError.setStyle("-fx-fill: green;");
+    		txtError.setText("Se a eliminado la consulta");
+    		cmbAnimal.getSelectionModel().selectFirst();
+    	}else {
+    		txtError.setStyle("-fx-fill: red;");
+    		txtError.setText("No se podio eliminar la consulta");
+    	}
     }
     
     @FXML
     void select_Observacion(ActionEvent event) {
-    	System.out.println("Fecha: " +dpFecha.getValue());
-    	Consulta con = cmbAnimal.getSelectionModel().getSelectedItem();
-    	dpFecha.setValue(con.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-    	taObservacion.setText(con.getObservacion());
+    	if(cmbAnimal.getItems().size() > 0) {
+	    	System.out.println("Fecha: " + dpFecha.getValue());
+	    	Consulta con = cmbAnimal.getSelectionModel().getSelectedItem();
+	    	dpFecha.setValue(con.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	    	taObservacion.setText(con.getObservacion());
+    	}else
+    		btnGuardar.setDisable(true);
     }
     
-    private String validar() {
-    	if(taObservacion.getText().isEmpty())
-    		return "No se a puesto ninguna observacion";
-    	if(dpFecha.getValue() == null)
-    		return "No se selecciona la fecha";
-    	return "";
-    }
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    	txtTitulo.setText("Editar Consulta");
+    	txtTitulo.setText("Eliminar Consulta");
+    	btnGuardar.setText("Eliminar");
     	txtCmb.setText("Consulta");
     	
     	cmbAnimal.setItems(animal.getConsultas());
     	cmbAnimal.getSelectionModel().selectFirst();
     	
     	select_Observacion(null);
+    	taObservacion.setDisable(true);
+    	dpFecha.setDisable(true);
     }
     
 }

@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import dao.AnimalDao;
 
 import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -171,20 +172,35 @@ public class AnimalController implements Initializable{
 				e.printStackTrace();
 			}
     	}else {
-    		crear_mostrar_alerta(AlertType.ERROR, "Error - Editar Consulta", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Editar CONSULTA", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
     	}
     }
     
     @FXML
     void click_delConsulta(ActionEvent event) {
-    	
+    	if(tableAnimales.getSelectionModel().getSelectedIndex() != -1) {
+	    	try {
+	    		EliminarConsultaController controller = new EliminarConsultaController();
+	    		controller.setController(this);
+	    		controller.setAnimal(tableAnimales.getSelectionModel().getSelectedItem());
+	    		cargar_ventana_modal(controller, "Eliminar consulta", "/fxml/EjercicioS_Modal_Consulta.fxml", tableAnimales.getScene().getWindow());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		crear_mostrar_alerta(AlertType.ERROR, "Error - Eliminar CONSULTA", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
+    	}
     }
     
     @FXML
     void click_verConsultas(ActionEvent event) {
     	if(tableAnimales.getSelectionModel().getSelectedIndex() != -1) {
-    		crear_mostrar_alerta(AlertType.INFORMATION, "Information - Ver Consultas",tableAnimales.getSelectionModel().getSelectedItem().infoConsultas(),
+    		if(!tableAnimales.getSelectionModel().getSelectedItem().infoConsultas().isBlank())
+    			crear_mostrar_alerta(AlertType.INFORMATION, "Information - Ver Consultas", tableAnimales.getSelectionModel().getSelectedItem().infoConsultas(),
     				tableAnimales.getScene().getWindow());
+    		else
+    			crear_mostrar_alerta(AlertType.ERROR, "Error - Ver Consultas", "No hay ninguna consulta",
+        				tableAnimales.getScene().getWindow());
     	}else {
     		crear_mostrar_alerta(AlertType.ERROR, "Error - Ver Consultas", "No se a seleccionado ningun animal", tableAnimales.getScene().getWindow());
     	}
@@ -223,7 +239,19 @@ public class AnimalController implements Initializable{
     		tableAnimales.refresh();
     		return true;
     	}
-    	
+    	return false;
+    }
+    
+    public boolean eliminarConsulta(Consulta consulta) {
+    	Animal animal = lstAnimales.get(tableAnimales.getSelectionModel().getSelectedIndex());
+    	boolean fechaPrimera = animal.getFecha_primera_consulta() == consulta.getFecha();
+    	if(animalDao.remove(consulta)) {
+    		if(fechaPrimera) {
+    			animal.newFechaPequenia();
+    			tableAnimales.refresh();
+    		}
+    		return true;
+    	}
     	return false;
     }
     

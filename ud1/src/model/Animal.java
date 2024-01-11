@@ -118,6 +118,10 @@ public class Animal {
 		consultas.add(consulta);
 	}
 	
+	public void delConsulta(Consulta consulta) {
+		consultas.remove(consulta);
+	}
+	
 	public String infoConsultas() {
 		String str = "";
 		if(consultas.size() == 0)
@@ -147,6 +151,27 @@ public class Animal {
 			}
 		}
 		return true;
+	}
+	
+	public void newFechaPequenia() {
+		if(consultas.size() == 0) {
+			fecha_primera_consulta = null;
+			return;
+		}
+			
+		Date fecha = new Date();
+		for(int i = 0; i < consultas.size(); i++) {
+			Consulta c = consultas.get(i);
+			if(i == 0) {
+				fecha = c.getFecha();
+				continue;
+			}
+				
+			if(c.getFecha().compareTo(fecha) > 0) {
+				fecha = c.getFecha();
+			}
+		}
+		this.fecha_primera_consulta = fecha;
 	}
 	
 	public ObservableList<Consulta> getConsultas() {
