@@ -10,4 +10,5 @@ module ud3 {
 	requires java.desktop;
 	
 	opens application to javafx.graphics, javafx.fxml;
+	opens controllers to javafx.graphics, javafx.fxml;
 }
