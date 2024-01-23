@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc54bda5-7347-41e1-be40-44dd04622f39">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Agenda"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#0000FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="empty_dataset" uuid="d5146fec-7317-4b29-b613-354c3fde7173">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="agenda" uuid="439eb612-e138-4e4c-a76e-6d9ad576fd2f">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT dni,
+	nombre,
+	apellido1,
+	apellido2
+FROM agenda.persona]]>
+		</queryString>
+		<field name="dni" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="dni"/>
+			<property name="com.jaspersoft.studio.field.label" value="dni"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+		</field>
+		<field name="apellido1" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="apellido1"/>
+			<property name="com.jaspersoft.studio.field.label" value="apellido1"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+		</field>
+		<field name="apellido2" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="apellido2"/>
+			<property name="com.jaspersoft.studio.field.label" value="apellido2"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+		</field>
+		<group name="dni">
+			<groupExpression><![CDATA[$F{dni}]]></groupExpression>
+		</group>
+		<group name="nombre">
+			<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+		</group>
+		<group name="apellido1">
+			<groupExpression><![CDATA[$F{apellido1}]]></groupExpression>
+		</group>
+		<group name="apellido2">
+			<groupExpression><![CDATA[$F{apellido2}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[select dni, nombre, apellido1, apellido2 from persona]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="79" uuid="75d8084e-cb54-4441-990e-7eba48402029"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="29"/>
+				</textElement>
+				<text><![CDATA[AGENDA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="96" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="450" y="0" width="110" height="18" uuid="6e6b34f4-5911-4552-9d09-9f86bfc32178"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement isPrintRepeatedValues="false" x="-3" y="18" width="560" height="50" isPrintInFirstWholeBand="true" uuid="cbb8960b-c47c-4a57-a05f-d9ec5ce141ad">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="agenda" uuid="c91a5575-dc43-4f2b-8fe4-e241ba842abb">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="b9a01948-913a-4efc-95cd-33edba0b977e">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" forecolor="#FFFFFF" uuid="0b48614f-3f5a-4096-b9f5-864f3f592fab">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="16"/>
+									<paragraph leftIndent="10"/>
+								</textElement>
+								<text><![CDATA[DNI]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="1ab61bd4-0702-44e9-96b8-0616ab8af9b6"/>
+								<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="66c309d6-374f-4209-a7e1-7364bedb995a">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#FFFFFF" uuid="8bc17539-36b3-492a-b52d-d1cb308153a5">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="16"/>
+									<paragraph leftIndent="10"/>
+								</textElement>
+								<text><![CDATA[NOMBRE]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="120" height="30" uuid="59d2f2a9-9528-47c9-83a8-27d5f7ebc9cf"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="160" uuid="e8aa3bad-52ca-49fa-b9c0-c6dbc486c351">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="160" height="30" forecolor="#FFFFFF" uuid="a9a773e6-e6ae-4e5b-ace6-26f49ac4ec7c">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="16"/>
+									<paragraph leftIndent="10"/>
+								</textElement>
+								<text><![CDATA[PRIMER APELLIDO]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="160" height="30" uuid="64e59b75-377a-4824-8297-97e3b6140591"/>
+								<textFieldExpression><![CDATA[$F{apellido1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="180" uuid="814d268a-eeb9-436d-9f96-06509174c721">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="180" height="30" forecolor="#FFFFFF" uuid="1aece93b-8337-4a2a-a69d-c3bd392c76f2">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="16"/>
+									<paragraph leftIndent="10"/>
+								</textElement>
+								<text><![CDATA[SEGUNDO APELLIDO]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="180" height="30" uuid="8658d2c8-8646-423f-884a-028d06e3d783"/>
+								<textFieldExpression><![CDATA[$F{apellido2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="-3" y="20" width="553" height="17" uuid="70620cec-12e9-4489-8b9c-3386f3864110"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

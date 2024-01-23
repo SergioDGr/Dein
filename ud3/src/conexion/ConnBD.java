@@ -14,9 +14,8 @@ public class ConnBD {
 	 * y se guardar en la propiedad conn
 	 * @throws SQLException si ocurre algun error se lanzara exception ralacionada a la base datos
 	 */
-	public ConnBD() throws SQLException {
+	public ConnBD(String baseDatos) throws SQLException {
 		String host = "localhost";
-		String baseDatos = "paises";
 		String usuario = "admin";
 		String password = "password";
 		String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos + "?serverTimezone=" + TimeZone.getDefault().getID();

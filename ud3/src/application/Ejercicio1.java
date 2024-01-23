@@ -24,7 +24,7 @@ public class Ejercicio1 extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			ConnBD bd = new ConnBD();
+			ConnBD bd = new ConnBD("paises");
 			
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			
