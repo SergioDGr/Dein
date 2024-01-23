@@ -44,9 +44,11 @@ public class InformesController {
 
     @FXML
     void click_aceptar(ActionEvent event) {
-    	if(rbInfoPer.isSelected()) {
+    	if(rbInfoPer.isSelected())
     		cargarInforme("/jrxml/informe_1.jasper");
-    	}
+    	
+    	if(rbInfioPerCal.isSelected())
+    		cargarInforme("/jrxml/informe_2.jasper");
     		
     }
 
