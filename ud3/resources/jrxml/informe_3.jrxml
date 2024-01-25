@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_3" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4a1d5eb-82dd-412f-a620-202e4bdf9dba">
 	<property name="template.engine" value="tabular_template"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Agenda"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="agenda"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<style name="Table">
 		<box>
@@ -38,20 +38,32 @@
 		<band height="10"/>
 	</pageHeader>
 	<detail>
-		<band height="234">
+		<band height="251">
 			<line>
-				<reportElement x="0" y="17" width="555" height="1" uuid="26f9d10d-a7cc-426d-9e57-ffa287b1cc63"/>
+				<reportElement x="0" y="23" width="555" height="1" uuid="26f9d10d-a7cc-426d-9e57-ffa287b1cc63"/>
 			</line>
 			<textField>
-				<reportElement x="0" y="4" width="555" height="14" uuid="30b63ced-56da-4eda-9d49-5e0e030308de"/>
+				<reportElement x="0" y="7" width="555" height="20" uuid="30b63ced-56da-4eda-9d49-5e0e030308de"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre} + " " + $F{apellido1} + " " + $F{apellido2}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="0" y="20" width="555" height="200" uuid="61e386a9-ed1f-4e34-8cf7-f47479175a51"/>
+				<reportElement x="0" y="23" width="280" height="200" uuid="74a33a19-a2d5-4e97-ac27-fff66217be3c"/>
 				<subreportParameter name="dni_seleccionado">
 					<subreportParameterExpression><![CDATA[$F{dni}]]></subreportParameterExpression>
 				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["resources/jrxml/informe_3_email.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="280" y="23" width="275" height="200" uuid="8f20cedf-9c90-4852-bb72-f4b8e9727850"/>
+				<subreportParameter name="dni_seleccionado">
+					<subreportParameterExpression><![CDATA[$F{dni}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["resources/jrxml/informe_3_telefono.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

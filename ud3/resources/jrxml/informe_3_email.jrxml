@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_3_email" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="58d04f72-ed28-4d86-a221-24ae6be9780b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_3_email" pageWidth="250" pageHeight="200" columnWidth="245" leftMargin="0" rightMargin="5" topMargin="5" bottomMargin="5" uuid="58d04f72-ed28-4d86-a221-24ae6be9780b">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Agenda"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="dni_seleccionado" class="java.lang.String"/>
@@ -8,27 +8,27 @@
 		<![CDATA[Select email from email where dni = $P{dni_seleccionado}]]>
 	</queryString>
 	<field name="email" class="java.lang.String"/>
-	<background>
-		<band/>
-	</background>
 	<pageHeader>
-		<band height="50">
+		<band height="32">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="10" width="555" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="58fc8ae1-2858-4b6e-a156-ac28b30a89d4"/>
+				<reportElement mode="Opaque" x="0" y="3" width="240" height="27" forecolor="#006699" backcolor="#E6E6E6" uuid="58fc8ae1-2858-4b6e-a156-ac28b30a89d4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[EMAIL]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="39">
+		<band height="26">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="10" y="30" width="555" height="1" uuid="7f2376c3-7203-4614-8e6c-0782fb3b9422"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="20" width="240" height="1" uuid="7f2376c3-7203-4614-8e6c-0782fb3b9422"/>
 			</line>
 			<textField>
-				<reportElement x="10" y="9" width="544" height="20" uuid="109e09c7-c6ca-4284-8c89-159b1aabd0c7"/>
+				<reportElement x="0" y="0" width="240" height="20" uuid="109e09c7-c6ca-4284-8c89-159b1aabd0c7"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 		</band>

@@ -15,7 +15,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+
 import javafx.stage.Stage;
+
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -49,7 +51,9 @@ public class InformesController {
     	
     	if(rbInfioPerCal.isSelected())
     		cargarInforme("/jrxml/informe_2.jasper");
-    		
+    	
+    	if(rbInfoPerSub.isSelected())
+    		cargarInforme("/jrxml/informe_3.jasper");
     }
 
     @FXML

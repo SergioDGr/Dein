@@ -8,6 +8,7 @@ module ud3 {
 	requires jasperreports;
 	requires java.sql;
 	requires java.desktop;
+	requires javafx.base;
 	
 	opens application to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
