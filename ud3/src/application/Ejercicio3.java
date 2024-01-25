@@ -15,10 +15,11 @@ public class Ejercicio3  extends Application {
 	public void start(Stage stage) {
 		try {
 			GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/supermercado.fxml"));
-			Scene scene = new Scene(root, 500, 400);
+			Scene scene = new Scene(root, 350, 250);
 	        //scene.getStylesheets().add(getClass() .getResource("/css/application.css").toExternalForm());
 			stage.setTitle("SUPERMERCADO - ETORKIZUN");
 			stage.setScene(scene);
+			stage.setResizable(false);
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
