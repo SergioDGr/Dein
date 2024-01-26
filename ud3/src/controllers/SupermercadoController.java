@@ -51,7 +51,7 @@ public class SupermercadoController {
 
     @FXML
     void click_tabla_producto(ActionEvent event) {
-
+    	cargarInforme("/jrxml/tabla_producto.jasper");
     }
     
     private void cargarInforme(String ruta_jasper) {
