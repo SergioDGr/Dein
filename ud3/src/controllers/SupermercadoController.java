@@ -46,7 +46,7 @@ public class SupermercadoController {
 
     @FXML
     void click_secciones(ActionEvent event) {
-
+    	cargarInforme("/jrxml/secciones.jasper");
     }
 
     @FXML
