@@ -36,7 +36,7 @@ public class SupermercadoController {
 
     @FXML
     void click_grafico(ActionEvent event) {
-    	
+    	cargarInforme("/jrxml/graficos.jasper");
     }
 
     @FXML

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="graficos" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5021b7ab-4d36-456c-9e0a-66c9724f9ebb">
+	<property name="template.engine" value="tabular_template"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="687"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Supermercado"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="PieChartDataset" uuid="33d77d72-cefc-44b5-96f2-92f62ab217b3"/>
+	<subDataset name="tableDataset" uuid="6e760305-b5d4-429b-b1c4-9ef037463e61">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[Select nombre, stock from producto]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="stock" class="java.lang.Integer"/>
+	<title>
+		<band height="78" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="65" height="60" uuid="1a5cdd7a-f099-451e-9ebe-346fbf40e0e5"/>
+				<imageExpression><![CDATA["resources/img/etorkizun.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="95" y="0" width="210" height="25" uuid="2a32c1aa-5a03-452d-be8a-70bae3724276">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Etorkizun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="25" width="205" height="15" uuid="de43994d-9cf5-40b5-9c2a-6135680f7620"/>
+				<text><![CDATA[Martin de Salinas Plaza, 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="40" width="205" height="15" uuid="274bbf8e-e277-4c26-9b7b-92cd24ee98bb"/>
+				<text><![CDATA[01013 Gasteiz, Araba]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="55" width="205" height="15" uuid="5d53b799-02f4-49ec-916e-f6b397c885d1"/>
+				<text><![CDATA[945 04 24 02]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="10" width="50" height="20" uuid="e02fd0b5-b35e-4cda-95e1-523bc3b3e213"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="30" width="134" height="20" uuid="708240c4-8270-4cd3-81bb-9d63a0b5740c"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Horario: 9:00 - 21:30]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="465" y="10" width="84" height="20" uuid="4f55f4fd-3520-4148-836c-9ae408659614"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="430">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="0" width="549" height="430" uuid="6f29c4cd-cc50-4196-a53d-0b50ca5a114c"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset maxCount="51">
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{stock}]]></valueExpression>
+					<labelExpression><![CDATA[$F{nombre}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</pageHeader>
+</jasperReport>
