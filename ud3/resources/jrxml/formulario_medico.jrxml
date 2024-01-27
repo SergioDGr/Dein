@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="formulario_medico" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4a1d5eb-82dd-412f-a620-202e4bdf9dba">
+	<property name="template.engine" value="tabular_template"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="tableDataset" uuid="c422b05b-4c5b-4420-91c4-71e9db20655e">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="nombre_medico" class="java.lang.String"/>
+	<parameter name="especialidad_medico" class="java.lang.String"/>
+	<parameter name="codigo_medico" class="java.lang.String"/>
+	<parameter name="nombre_paciente" class="java.lang.String"/>
+	<parameter name="direccion_paciente" class="java.lang.String"/>
+	<parameter name="numero_paciente" class="java.lang.String"/>
+	<parameter name="tratamiento" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<title>
+		<band height="97">
+			<image>
+				<reportElement x="0" y="0" width="80" height="77" uuid="79b5afa0-c92a-43e4-88c7-b305bc4593b5"/>
+				<imageExpression><![CDATA["resources/img/logo-medico.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="80" y="0" width="480" height="30" forecolor="#0000FF" uuid="07ff6804-73f5-4980-b4fb-d3d9eea8c8a8"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre_medico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="30" width="480" height="30" forecolor="#8F8F8F" uuid="f5e19127-f881-4876-8f96-8bb52fb076f8"/>
+				<textElement textAlignment="Right">
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{especialidad_medico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="60" width="480" height="30" forecolor="#BDBDBD" uuid="0678f4ac-e424-4dee-9036-f0f71d960cd1"/>
+				<textElement textAlignment="Right">
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nº Codigo " + $P{codigo_medico}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="671">
+			<rectangle radius="12">
+				<reportElement x="0" y="0" width="560" height="100" uuid="d9983492-c73e-4d64-8b50-50fa47286070"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="10" width="64" height="20" uuid="86b44d66-47b4-4d8a-8769-d06abe6dae99"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="41" width="70" height="20" uuid="e42f95cb-393b-4073-99f5-8132904c26f3"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="76" width="110" height="20" uuid="f7e8c665-80e7-4f6c-96a2-c3ea53566a63"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Documento:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="127" y="93" width="418" height="1" uuid="702a79fe-c6bb-4542-938e-d69b8401ac4d"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="127" y="57" width="418" height="1" uuid="6f339134-b4cc-47e4-b89e-82fbd8102121"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="125" y="25" width="418" height="1" uuid="6930ab3a-9717-4a6b-a820-e57ab8f4b887"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="125" y="10" width="418" height="14" uuid="e5c0948f-02fe-49d4-bf1e-2ac86bfa4ed0"/>
+				<textFieldExpression><![CDATA[$P{nombre_paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="43" width="416" height="14" uuid="8023597f-8f28-4c85-bc29-1fee5953a369"/>
+				<textFieldExpression><![CDATA[$P{direccion_paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="76" width="416" height="16" uuid="217cad0c-ef49-4aa5-99b0-a4ddae3fb743"/>
+				<textFieldExpression><![CDATA[$P{numero_paciente}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="110" width="560" height="20" forecolor="#FFFFFF" backcolor="#057EFF" uuid="13976577-e37a-4904-b626-1d80c2f04a93"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="110" width="560" height="20" forecolor="#FFFFFF" uuid="c899b9f0-434d-4a09-b1fc-bc32c9116013"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRATAMIENTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="10" y="130" width="534" height="540" uuid="b10126fc-03f2-4ed5-ad53-23f02c6320f3"/>
+				<textFieldExpression><![CDATA[$P{tratamiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="34">
+			<staticText>
+				<reportElement x="0" y="1" width="95" height="30" uuid="d343c16e-e3a4-455f-aac5-e769009c0a99"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="75" y="31" width="485" height="1" uuid="db2a4084-5c79-4e59-b40a-d99d5a79bf2d"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

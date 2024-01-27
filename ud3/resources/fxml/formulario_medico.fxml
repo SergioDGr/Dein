@@ -97,7 +97,7 @@
             <Insets right="10.0" />
          </GridPane.margin>
       </Text>
-      <TextArea fx:id="tfTratamiento" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <TextArea fx:id="taTratamiento" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
@@ -113,5 +113,6 @@
             <Insets left="265.0" />
          </GridPane.margin>
       </Button>
+      <Text fx:id="txtError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="TOP" />
    </children>
 </GridPane>
