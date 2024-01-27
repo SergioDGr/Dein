@@ -15,7 +15,7 @@ public class Ejercicio4 extends Application {
 	public void start(Stage stage) {
 		try {
 			GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/formulario_medico.fxml"));
-			Scene scene = new Scene(root, 500, 600);
+			Scene scene = new Scene(root, 600, 500);
 	        //scene.getStylesheets().add(getClass() .getResource("/css/application.css").toExternalForm());
 			stage.setTitle("FORMULARIO MÉDICO");
 			stage.setScene(scene);
